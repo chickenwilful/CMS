@@ -1,0 +1,1 @@
+Folder for Java report daemon only.
