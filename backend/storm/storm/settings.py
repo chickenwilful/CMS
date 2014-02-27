@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'post',
     'user',
     'main',
-    'bootstrap_toolkit',
     'storm_user',
     'crossdomainxhr',
     'socialnetwork',
