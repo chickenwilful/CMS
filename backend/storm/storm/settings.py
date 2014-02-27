@@ -67,8 +67,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'storm',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'storm_user',
+        'PASSWORD': 'storm_pass',
         'HOST': 'localhost',
     }
 }
