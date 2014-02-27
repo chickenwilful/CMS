@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+
+{% block TITLE %}
+<h2>This is post list</h2>
+{% endblock TITLE %}
+
+{% block CONTENT %}
+<a href="{% url 'main.main_page' %}">back to main page</a>
+<br>
+
+<a href="{% url 'post.post_create' %}">Add a new post</a>
+<br>
+
+{% for post in post_list %}
+<strong>Title:</strong>
+{{post.title}}
+<br>
+<strong>content:</strong>
+{{post.content}}
+<br>
+<strong>date created:</strong>
+{{post.created_at}}
+<a href="/post/post_retrieve/{{post.id}}/">See more..</a>
+<br>
+<h4>----------------------------------------------------</h4>
+{% endfor %}
+
+{% endblock CONTENT %}
+
+
+{% block action %}
+
+{% endblock %}

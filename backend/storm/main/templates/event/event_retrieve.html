@@ -1,0 +1,22 @@
+{% block title %}
+<h2>This is Event detail</h2>
+{% endblock %}
+
+{% block content %}
+
+<strong>Title:</strong>
+{{event.title}}
+<br>
+<strong>content:</strong>
+{{event.description}}
+<br>
+<strong>date created:</strong>
+{{event.created_at}}
+<br>
+<strong>Related to: </strong>
+{% for user in event.related_to.all %}
+{{user.username}}
+{% endfor %}
+<br>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% block title %}
+<h2>This is post detail</h2>
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'post.post_list' %}">back to post list</a>
+<br>
+
+<strong>Title:</strong>
+{{post.title}}
+<br>
+<strong>content:</strong>
+{{post.content}}
+<br>
+<strong>date created:</strong>
+{{post.created_at}}
+<br>
+<a href="/post/post_update/{{post.id}}/">Edit this post</a>
+<a href="#" onclick="confirmDeletePost()">Delete this post</a>
+<script type="text/javascript">
+	function confirmDeletePost() {
+		var resp = confirm("Are you sure to delete this post?")
+        console.log(resp + 'work');
+		if (resp) {
+            window.location.href   = '/post/post_delete/{{post.id}}/';
+        }
+        return false;
+	}
+</script>
+{% endblock %}

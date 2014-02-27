@@ -1,0 +1,31 @@
+{% block title %}
+<h2>This is post list</h2>
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'main.main_page' %}">back to main page</a>
+<br>
+
+<a href="{% url 'post.post_add' %}">Add a new post</a>
+<br>
+
+{% for event in event_list %}
+<strong>Title:</strong>
+{{event.title}}
+<br>
+<strong>content:</strong>
+{{event.description}}
+<br>
+<strong>date created:</strong>
+{{event.created_at}}
+<a href="/post/post_detail/{{post.id}}/">See more..</a>
+<br>
+<h4>----------------------------------------------------</h4>
+{% endfor %}
+
+{% endblock %}
+
+
+{% block action %}
+
+{% endblock %}

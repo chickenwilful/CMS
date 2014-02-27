@@ -1,0 +1,17 @@
+[
+  {
+    "model": "event.emergencysituation",
+    "pk": 1,
+    "fields": {
+      "name": "Haze"
+    }
+  },
+  {
+    "model": "event.emergencysituation",
+    "pk": 2,
+    "fields": {
+      "name": "Bird Flu"
+    }
+  }
+]
+
