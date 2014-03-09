@@ -3,6 +3,8 @@ from models import SocialToken
 from datetime import datetime
 import logging
 
+from socialbot import FacebookBot, TwitterBot
+
 logger = logging.getLogger('storm')
 
 class Singleton(type):
@@ -19,6 +21,8 @@ class SocialCenter(object):
         logger.debug("Creating new instance of SocialCenter")
         self.housekeep_datastore()
         self.bots = {
+            Sites.FACEBOOK: FacebookBot(settings.FACEBOOK_APP_ID, settings.FACEBOOK_SECRET),
+            Sites.TWITTER: FacebookBot(settings.TWITTER_KEY, settings.TWITTER_SECRET)
         }
         for site, social_bot in self.bots.items():
             social_token = self.get_token(site)
