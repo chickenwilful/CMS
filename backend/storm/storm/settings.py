@@ -40,11 +40,9 @@ INSTALLED_APPS = (
     'post',
     'user',
     'main',
-    'bootstrap3',
     'storm_user',
     'crossdomainxhr',
     'socialnetwork',
-    'guardian',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,8 +67,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'storm',
-        'USER': 'root',
-        'PASSWORD': 'root',
+        'USER': 'storm_user',
+        'PASSWORD': 'storm_pass',
         'HOST': 'localhost',
     }
 }
@@ -98,6 +96,39 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+# Logging settings
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+            },
+        },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+            },
+        'storm': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+            },
+        }
+    }
+
 # for permission using guardian
 
 AUTHENTICATION_BACKENDS = (
@@ -110,15 +141,12 @@ ANONYMOUS_USER_ID = -1
 
 AUTH_PROFILE_MODULE = 'storm_user.UserProfile'
 
+# Twitter API keys
 
-#for bootstrap
+TWITTER_KEY = 'arB30953S5DXoJgr3nCw'
+TWITTER_SECRET = 'zKdhSygOjx6xYTaT7XeZzT9EzWM0fK0gDY7IH6slI'
 
-BOOTSTRAP3 = {
-    'jquery_url': '//code.jquery.com/jquery.min.js',
-    'base_url': '//netdna.bootstrapcdn.com/bootstrap/3.0.3/',
-    'css_url': None,
-    'theme_url': None,
-    'javascript_url': None,
-    'horizontal_label_class': 'col-md-2',
-    'horizontal_field_class': 'col-md-4',
-}
+# Facebook API keys
+
+FACEBOOK_APP_ID = '296241580500537'
+FACEBOOK_SECRET = '3885761cc214d22bbae1aee273b789be'
