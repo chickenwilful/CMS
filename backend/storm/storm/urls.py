@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^main/', include('main.urls')),
     url(r'^post/', include('post.urls')),
     url(r'^user/', include('storm_user.urls')),
+    url(r'^social/', include('socialnetwork.urls')),
 )
