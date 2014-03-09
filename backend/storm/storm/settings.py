@@ -40,9 +40,11 @@ INSTALLED_APPS = (
     'post',
     'user',
     'main',
+    'bootstrap3',
     'storm_user',
     'crossdomainxhr',
     'socialnetwork',
+    'guardian',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,8 +69,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'storm',
-        'USER': 'storm_user',
-        'PASSWORD': 'storm_pass',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
     }
 }
@@ -107,3 +109,16 @@ ANONYMOUS_USER_ID = -1
 #for extending user
 
 AUTH_PROFILE_MODULE = 'storm_user.UserProfile'
+
+
+#for bootstrap
+
+BOOTSTRAP3 = {
+    'jquery_url': '//code.jquery.com/jquery.min.js',
+    'base_url': '//netdna.bootstrapcdn.com/bootstrap/3.0.3/',
+    'css_url': None,
+    'theme_url': None,
+    'javascript_url': None,
+    'horizontal_label_class': 'col-md-2',
+    'horizontal_field_class': 'col-md-4',
+}

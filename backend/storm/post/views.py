@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from post.forms import PostEditForm, PostAddForm
+from post.forms import PostCreateForm, PostUpdateForm
 from post.models import Post
 
 
@@ -25,11 +25,11 @@ def post_create(request):
     Render and process a form to add a Post.
     """
     if not (request.POST or request.GET):
-        form = PostAddForm()
-        return render(request, 'post/post_create.html', {'form': form, 'action': ""})
+        form = PostCreateForm()
+        return render(request, 'post/post_create.html', {'form': form})
     else:
         #Form POST request is submitted
-        form = PostAddForm(request.POST)
+        form = PostCreateForm(request.POST)
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.created_by_id = request.user.id
@@ -37,7 +37,7 @@ def post_create(request):
             model_instance.save()
             return redirect("post.post_list")
         else:
-            return render(request, 'post/post_create.html', {'form': form, 'action': ""})
+            return render(request, 'post/post_create.html', {'form': form})
 
 
 def post_update(request, post_id):
@@ -46,12 +46,12 @@ def post_update(request, post_id):
     """
     if not (request.POST or request.GET):
         post = get_object_or_404(Post, pk=post_id)
-        form = PostEditForm(instance=post)
-        return render(request, "post/post_update.html", {'form': form, 'action': ''})
+        form = PostUpdateForm(instance=post)
+        return render(request, "post/post_update.html", {'form': form})
     else:
         # Form POST request is submitted
         post = Post.objects.get(pk=post_id)
-        form = PostEditForm(request.POST, instance=post)
+        form = PostUpdateForm(request.POST, instance=post)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('post.post_retrieve', args=(post_id,)))

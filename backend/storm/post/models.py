@@ -3,11 +3,13 @@ from django.db import models
 
 
 class Post(models.Model):
-    content = models.TextField(max_length=255)
     title = models.CharField(max_length=255)
+    content = models.TextField(max_length=255)
+    imageLink = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    created_by = models.ForeignKey(User)
-    isShared = models.BooleanField()
+    created_by = models.ForeignKey(User, editable=False)
+    isShared = models.BooleanField(default=False)
+
 #    updated_at = models.DateTimeField(auto_now=False)
 #    updated_by = models.ForeignKey(User)
 
@@ -18,12 +20,9 @@ class Post(models.Model):
         verbose_name = "Post"
         verbose_name_plural = "Posts"
         permissions = (
-            ('post_create', 'STORM - post_create'),
-            ('post_update', 'STORM - post_update'),
-            ('post_list', 'STORM - post_list'),
-            ('post_delete', 'STORM - post_delete'),
+            ('post_create', 'STORM - post create'),
+            ('post_update', 'STORM - post update'),
+            ('post_list', 'STORM - post list'),
+            ('post_delete', 'STORM - post delete'),
+            ('post_retrieve', 'STORM - post retrieve'),
         )
-
-
-class Comment(models.Model):
-    content = models.CharField(max_length=255)
