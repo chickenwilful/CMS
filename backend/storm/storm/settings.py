@@ -96,6 +96,39 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+# Logging settings
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+            },
+        },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+            },
+        'storm': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+            },
+        }
+    }
+
 # for permission using guardian
 
 AUTHENTICATION_BACKENDS = (
@@ -107,3 +140,13 @@ ANONYMOUS_USER_ID = -1
 #for extending user
 
 AUTH_PROFILE_MODULE = 'storm_user.UserProfile'
+
+# Twitter API keys
+
+TWITTER_KEY = 'arB30953S5DXoJgr3nCw'
+TWITTER_SECRET = 'zKdhSygOjx6xYTaT7XeZzT9EzWM0fK0gDY7IH6slI'
+
+# Facebook API keys
+
+FACEBOOK_APP_ID = '296241580500537'
+FACEBOOK_SECRET = '3885761cc214d22bbae1aee273b789be'
