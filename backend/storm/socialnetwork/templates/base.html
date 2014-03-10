@@ -17,15 +17,15 @@
     <div>
         <h2>Social Network Login</h2>
         {% if not is_logged_into_twitter %}
-        <p><a href="javascript:;">Login with Twitter</a></p>
+        <p><a href="{{ twitter_auth_uri }}">Login with Twitter</a></p>
         {% else %}
-        <p><a href="twitter/logout">Remove Twitter Token</a></p>
+        <p><a href="{{ twitter_logout_uri }}">Remove Twitter Token</a></p>
         {% endif %}
         {% if not is_logged_into_facebook %}
         <!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="manage_pages"></div> -->
         <p><a id="facebook-login" href="javascript:;">Login with Facebook</a></p>
         {% else %}
-        <p><a href="facebook/logout">Remove Facebook Token</a></p>
+        <p><a href="{{ facebook_logout_uri }}">Remove Facebook Token</a></p>
         {% endif %}
     </div>
     <div>

@@ -1,6 +1,8 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime, timedelta
+
 import facebook
+from twython import Twython
 
 class SocialBot(object):
     __metaclass__ = ABCMeta
@@ -81,12 +83,29 @@ class FacebookBot(SocialBot):
 
 class TwitterBot(SocialBot):
 
+    @staticmethod
+    def get_char_limit():
+        return 140
+
+    @staticmethod
+    def get_url_length():
+        return 23
+
     def __init__(self, app_id, app_secret):
         self.app_id = app_id
         self.app_secret = app_secret
     
     def post(self, title, content, link):
-        return None
+        twitter = Twython(self.app_id, self.app_secret,
+                          self.main_token, self.sub_token)
+        
+        char_limit = self.get_char_limit() - self.get_url_length() - 1
+        
+        status_text = title
+        if len(title) > char_limit:
+            status_text = title[:(char_limit-3)] + "..."
+        
+        return twitter.update_status(status=status_text + " " + link)
     
     def set_token(self, token, sub_token=None):
         self.main_token = token
@@ -98,7 +117,24 @@ class TwitterBot(SocialBot):
         pass
 
     def process_token(self, client_token, **kwargs):
-        return None
+        twitter_oauth_token = kwargs["oauth_token"]
+        twitter_oauth_secret = kwargs["oauth_secret"]
+        twitter = Twython(self.app_id, self.app_secret,
+                          twitter_oauth_token, twitter_oauth_secret)
+        
+        authorized_tokens = twitter.get_authorized_tokens(client_token)
+        
+        result = {}
+        
+        if "oauth_token" in authorized_tokens:
+            self.main_token = authorized_tokens["oauth_token"]
+            self.sub_token = authorized_tokens["oauth_token_secret"]
+            result["main_token"] = authorized_tokens["oauth_token"]
+            result["sub_token"] = authorized_tokens["oauth_token_secret"]
+        else:
+            result["error"] = "Unable to retrieve tokens."
+        
+        return result
     
     def clear_token(self):
         if hasattr(self, "main_token"):

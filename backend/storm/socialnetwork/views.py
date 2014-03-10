@@ -2,27 +2,33 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseServerError
 from django.core.urlresolvers import reverse
-from django.views.decorators.http import require_POST
-
-from socialcenter import SocialCenter, Sites
+from django.views.decorators.http import require_GET, require_POST
 import json
 import logging
+
+from socialcenter import SocialCenter, Sites
 import facebook
+from twython import Twython
 
 logger = logging.getLogger('storm')
 
+@require_GET
 def social(request):
     social_center = SocialCenter()
-    is_logged_into_twitter = social_center.is_logged_in(Sites.TWITTER)
     is_logged_into_facebook = social_center.is_logged_in(Sites.FACEBOOK)
+    is_logged_into_twitter = social_center.is_logged_in(Sites.TWITTER)
     return render(request, "base.html", {
         "social_post_uri" : reverse('socialnetwork.views.social_post'),
         "facebook_redirect_uri" : reverse('socialnetwork.views.facebook_page_select'),
         "facebook_app_id" : settings.FACEBOOK_APP_ID,
+        "twitter_auth_uri" : reverse('socialnetwork.views.twitter_auth'),
         "is_logged_into_twitter" : is_logged_into_twitter,
-        "is_logged_into_facebook" : is_logged_into_facebook
+        "is_logged_into_facebook" : is_logged_into_facebook,
+        "facebook_logout_uri" : reverse('socialnetwork.views.social_logout', kwargs={ "site" : Sites.FACEBOOK }),
+        "twitter_logout_uri" : reverse('socialnetwork.views.social_logout', kwargs={ "site" : Sites.TWITTER }),
     })
 
+@require_GET
 def social_logout(request, site):
     social_center = SocialCenter()
     social_center.logout(site)
@@ -46,7 +52,8 @@ def social_post(request, site=None):
         if failed_list:
             return HttpResponseServerError(json.dumps({ "error" : failed_list }))
     return HttpResponse("OK")
-    
+
+@require_GET
 def facebook_page_select(request):
     #import pdb; pdb.set_trace()
     key = settings.FACEBOOK_APP_ID
@@ -90,3 +97,38 @@ def facebook_process(request):
         return HttpResponse("OK")
     else:
         return HttpResponseServerError("Server error")
+
+@require_GET
+def twitter_auth(request):
+    twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET)
+    
+    callback_url = request.build_absolute_uri(reverse("socialnetwork.views.twitter_callback"))
+    auth = twitter.get_authentication_tokens(callback_url=callback_url)
+    
+    request.session["twitter_oauth_token"] = auth["oauth_token"]
+    request.session["twitter_oauth_token_secret"] = auth["oauth_token_secret"]
+    
+    twitter_oauth_url = auth["auth_url"]
+    return redirect(twitter_oauth_url)
+
+@require_GET
+def twitter_callback(request):
+    if "denied" in request.GET:
+        return HttpResponseServerError("ERROR: Access to Twitter was denied.")
+
+    twitter_oauth_verifier = request.GET["oauth_verifier"]
+    
+    twitter_oauth_token = request.session["twitter_oauth_token"]
+    twitter_oauth_secret = request.session["twitter_oauth_token_secret"]
+    del request.session["twitter_oauth_token"]
+    del request.session["twitter_oauth_token_secret"]
+    
+    social_center = SocialCenter()
+    result = social_center.process_client_token(Sites.TWITTER, twitter_oauth_verifier,
+                                       oauth_token=twitter_oauth_token,
+                                       oauth_secret=twitter_oauth_secret)
+    logger.debug(result)
+    if "main_token" in result:
+        return redirect("socialnetwork.views.social")
+    else:
+        return HttpResponseServerError(result["error"])

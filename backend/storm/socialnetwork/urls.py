@@ -8,4 +8,6 @@ urlpatterns = patterns(
     url(r'^(?P<site>\w+)/logout$', views.social_logout, name="social_logout"),
     url(r'^facebook/page$', views.facebook_page_select, name="facebook_page_select"),
     url(r'^facebook/process$', views.facebook_process, name="facebook_process"),
+    url(r'^twitter/auth$', views.twitter_auth, name="twitter_auth"),
+    url(r'^twitter/callback$', views.twitter_callback, name="twitter_callback"),
 )
