@@ -9,13 +9,13 @@ jQuery.noConflict();
 jQuery(document).ready(function() {
     jQuery("#fbPageForm").submit(function(event) {
         var pageId = jQuery("#fbPageForm").find("select[name=fbPage]").val();
-        jQuery.post("{{ facebookProcessURI }}", { pageId: pageId })
+        jQuery.post("{{ facebook_process_uri }}", { pageId: pageId })
             .done(function() {
-                window.location.href = "{{ rootURI }}";
+                window.location.href = "{{ root_uri }}";
             })
             .fail(function() {
                 console.error("Failed to submit page ID.");
-                window.location.href = "{{ rootURI }}";
+                window.location.href = "{{ root_uri }}";
             });
         event.preventDefault();
     });

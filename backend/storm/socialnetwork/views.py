@@ -71,8 +71,8 @@ def facebook_page_select(request):
         
         return render(request, "facebook.html", {
             "pages" : displayed_pages,
-            "rootURI" : reverse("socialnetwork.views.social"),
-            "facebookProcessURI" : reverse("socialnetwork.views.facebook_process")
+            "root_uri" : reverse("socialnetwork.views.social"),
+            "facebook_process_uri" : reverse("socialnetwork.views.facebook_process")
         })
     else:
         logger.debug("No token")
@@ -86,7 +86,7 @@ def facebook_process(request):
     social_center = SocialCenter()
     result = social_center.process_client_token(Sites.FACEBOOK, token, page_id=page_id)
     logger.debug(result)
-    if "access_token" in result:
+    if "main_token" in result:
         return HttpResponse("OK")
     else:
         return HttpResponseServerError("Server error")

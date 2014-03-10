@@ -91,10 +91,10 @@ class TwitterBot(SocialBot):
     def set_token(self, token, sub_token=None):
         self.main_token = token
         if sub_token:
-            self.sub_toke = sub_token
+            self.sub_token = sub_token
         
     def refresh_token(self):
-        # Facebook Page access tokens last forever
+        # Twitter access tokens last forever
         pass
 
     def process_token(self, client_token, **kwargs):
