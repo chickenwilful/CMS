@@ -1,5 +1,7 @@
 {% extends 'main/base.html' %}
-{% block CONTENT %}
+
+
+{% block content %}
     <p>This is the main page</p>
     {% if user.is_authenticated %}
         <a href="{% url 'user.user_logout' %}">Logout</a>
@@ -7,7 +9,14 @@
         <a href="{% url 'user.user_login' %}">Login</a>
     {% endif %}
 
-    {% if perms.post %}
+{% load guardian_tags %}
+    {% get_obj_perms request.user for post as "post_perms" %}
+
+    {% if "post_list" in post_perms %}
+        <a href="/pages/delete?target={{ flatpage.url }}">Remove page</a>
+    {% endif %}
+
+{% if perms.post %}
         <br><strong>Post</strong>
         {% if 'post_list' in perms %}
             <a href="{% url 'post.post_list' %}">See post list..</a>
@@ -21,4 +30,4 @@
         {% endif %}
     {% endif    %}
 
-{% endblock CONTENT %}
+{% endblock content %}

@@ -1,15 +1,14 @@
 from django.forms import ModelForm
-from post import models
 from post.models import Post
 
 
-class PostAddForm(ModelForm):
+class PostCreateForm(ModelForm):
     class Meta:
         model = Post
-        fields = ('content', 'title', 'isShared')
+        field = ('title', 'content', 'imageLink', 'isShared')
 
 
-class PostEditForm(ModelForm):
+class PostUpdateForm(ModelForm):
     class Meta:
         model = Post
-        field = ('content', 'title', 'isShared')
+        field = ('title', 'content', 'imageLink', 'isShared')

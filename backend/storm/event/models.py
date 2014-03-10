@@ -11,30 +11,32 @@ class EmergencySituation(models.Model):
 
 class Event(models.Model):
     type = models.ForeignKey(EmergencySituation)
-    created_by = models.ForeignKey(User, related_name="creator")
-    created_at = models.DateTimeField()
     title = models.CharField(max_length=255, default="title")
     description = models.TextField(null=True)
-    related_to = models.ManyToManyField(User, related_name='related')
+    created_by = models.ForeignKey(User, related_name="creator")
+    created_at = models.DateTimeField()
+    related_to = models.ManyToManyField(User, related_name='related_to')
     caller_name = models.CharField(max_length=255, default="caller_name")
     caller_phone_number = models.CharField(max_length=255, default="caller_phone_number")
-    location = models.CharField(max_length=255, default="default location")
+    postal_code = models.CharField(max_length=255, default="default postal code")
 
     def __str__(self):
         return self.title
 
     class Meta:
         permissions = (
-            ("event_add", "Can see available event"),
-            ("event_edit", "Can change event"),
-            ("event_delete", "Can remove event by setting status to closed")
+            ("event_create", "STORM - event create"),
+            ("event_retrieve", "STORM - event retrieve"),
+            ("event_update", "STORM - event update"),
+            ("event_delete", "STORM - event delete"),
+            ("event_list", "STORM - event list"),
         )
 
 
-class EventResponse(models.Model):
-    content = models.TextField()
-    created_by = models.ForeignKey(User)
-    created_at = models.DateTimeField()
+# class EventResponse(models.Model):
+#     content = models.TextField()
+#     created_by = models.ForeignKey(User)
+#     created_at = models.DateTimeField()
 
 
 

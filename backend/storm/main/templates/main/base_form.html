@@ -1,51 +1,16 @@
 {% extends 'main/base.html' %}
+{% load bootstrap3 %}
 
-{% block TITLE %}
+{% block content-title %}
+    Forms
+{% endblock %}
 
-    <h1>Form_base</h1>
+{% block content %}
 
-{% endblock TITLE %}
+    <form role="form" class="form-horizontal" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form layout="horizontal" %}
+        {% buttons submit='OK' reset='Cancel' layout='horizontal' %}{% endbuttons %}
+    </form>
 
-{% block CONTENT %}
-
-    <form
-    action="{{action}}"
-    method="POST"
-    >
-    {% csrf_token %}
-
-    {% if form.non_field_errors %}
-        <ul>
-        {% for error in form.non_field_errors %}
-        <li>{{ error }}</li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-
-    <div id="formfields">
-        {% block FORMFIELDS %}
-            {% for field in form %}
-                <div id="{{ field.auto_id }}_container">
-                <span style="color: red">Help text: {{ field.help_text }}</span>
-                <div>{{ field.label_tag }} {{ field }}</div>
-                <div id="{{ field.auto_id }}_errors">
-                    <span style="color: green">{{ field.errors }}</span></div>
-                </div>
-            {% endfor %}
-        {% endblock FORMFIELDS %}
-    </div>
-    <div id="action">
-        {% block ACTION %}
-            <input id="submit" type="submit" value="Submit" />
-        {% endblock ACTION %}
-    </div>
-</form>
-
-{% block LINKTOGO %}
-{% endblock LINKTOGO %}
-
-{% endblock CONTENT %}
-
-{% block FOOTER %}
-<p>This is a footer</p>
-{% endblock FOOTER%}
+{% endblock %}
