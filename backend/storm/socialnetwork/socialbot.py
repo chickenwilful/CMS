@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import facebook
 from twython import Twython
 from requests_oauthlib import OAuth2Session
+import requests
 
 class SocialBot(object):
     __metaclass__ = ABCMeta
@@ -165,11 +166,26 @@ class GPlusBot(SocialBot):
 
     def process_token(self, client_token, **kwargs):
         callback_url = kwargs.get("callback_url")
-        oauth_session = OAuth2Session(settings.GPLUS_APP_ID, redirect_uri=callback_url)
-        token = oauth_session.fetch_token("https://api.bufferapp.com/1/oauth2/token.json",
-                                            code=client_token,
-                                            client_secret=self.app_secret)
-        return token
+        
+        # We use the requests API instead of OAuth to retrieve the access token
+        # Buffer does not follow specification and return token_type as expected
+        
+        post_data = {
+            "client_id" : self.app_id,
+            "client_secret" : self.app_secret,
+            "redirect_uri" : callback_url,
+            "code" : client_token,
+            "grant_type" : "authorization_code"
+        }
+        
+        response = requests.post("https://api.bufferapp.com/1/oauth2/token.json", data=post_data).json()
+        result = {}
+        if "access_token" in response:
+            result["main_token"] = response["access_token"]
+        else:
+            result["error"] = "Unable to retrieve access token."
+        
+        return result
     
     def clear_token(self):
         if hasattr(self, "main_token"):
