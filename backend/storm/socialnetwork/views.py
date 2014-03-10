@@ -9,6 +9,7 @@ import logging
 from socialcenter import SocialCenter, Sites
 import facebook
 from twython import Twython
+from requests_oauthlib import OAuth2Session
 
 logger = logging.getLogger('storm')
 
@@ -131,6 +132,35 @@ def twitter_callback(request):
     result = social_center.process_client_token(Sites.TWITTER, twitter_oauth_verifier,
                                        oauth_token=twitter_oauth_token,
                                        oauth_secret=twitter_oauth_secret)
+    logger.debug(result)
+    if "main_token" in result:
+        return redirect("socialnetwork.views.social")
+    else:
+        return HttpResponseServerError(result["error"])
+
+@require_GET
+def gplus_auth(request):
+    
+    callback_url = request.build_absolute_uri(reverse("socialnetwork.views.gplus_callback"))
+    oauth_session = OAuth2Session(settings.GPLUS_APP_ID, redirect_uri=callback_url)
+    
+    gplus_auth_url, state = oauth_session.authorization_url('https://bufferapp.com/oauth2/authorize')
+    
+    return redirect(gplus_auth_url)
+
+@require_GET
+def gplus_callback(request):
+    if "error" in request.GET:
+        return HttpResponseServerError("ERROR: " + request.GET["error"])
+    
+    gplus_auth_code = request.GET["code"]
+
+    gplus_callback_url = request.build_absolute_uri(reverse("socialnetwork.views.gplus_callback"))
+    
+    social_center = SocialCenter()
+    import pdb; pdb.set_trace()
+    result = social_center.process_client_token(Sites.GPLUS, gplus_auth_code,
+                                       callback_url=gplus_callback_url)
     logger.debug(result)
     if "main_token" in result:
         return redirect("socialnetwork.views.social")
