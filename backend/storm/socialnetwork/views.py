@@ -17,15 +17,19 @@ def social(request):
     social_center = SocialCenter()
     is_logged_into_facebook = social_center.is_logged_in(Sites.FACEBOOK)
     is_logged_into_twitter = social_center.is_logged_in(Sites.TWITTER)
+    is_logged_into_gplus = social_center.is_logged_in(Sites.GPLUS)
     return render(request, "base.html", {
         "social_post_uri" : reverse('socialnetwork.views.social_post'),
         "facebook_redirect_uri" : reverse('socialnetwork.views.facebook_page_select'),
         "facebook_app_id" : settings.FACEBOOK_APP_ID,
         "twitter_auth_uri" : reverse('socialnetwork.views.twitter_auth'),
+        "gplus_auth_uri" : reverse('socialnetwork.views.gplus_auth'),
         "is_logged_into_twitter" : is_logged_into_twitter,
         "is_logged_into_facebook" : is_logged_into_facebook,
+        "is_logged_into_gplus" : is_logged_into_gplus,
         "facebook_logout_uri" : reverse('socialnetwork.views.social_logout', kwargs={ "site" : Sites.FACEBOOK }),
         "twitter_logout_uri" : reverse('socialnetwork.views.social_logout', kwargs={ "site" : Sites.TWITTER }),
+        "gplus_logout_uri" : reverse('socialnetwork.views.social_logout', kwargs={ "site" : Sites.GPLUS }),
     })
 
 @require_GET

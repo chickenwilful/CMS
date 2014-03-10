@@ -22,10 +22,14 @@
         <p><a href="{{ twitter_logout_uri }}">Remove Twitter Token</a></p>
         {% endif %}
         {% if not is_logged_into_facebook %}
-        <!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="manage_pages"></div> -->
         <p><a id="facebook-login" href="javascript:;">Login with Facebook</a></p>
         {% else %}
         <p><a href="{{ facebook_logout_uri }}">Remove Facebook Token</a></p>
+        {% endif %}
+        {% if not is_logged_into_gplus %}
+        <p><a href="{{ gplus_auth_uri }}">Login with Google+</a></p>
+        {% else %}
+        <p><a href="{{ gplus_logout_uri }}">Remove Google+ Token</a></p>
         {% endif %}
     </div>
     <div>
