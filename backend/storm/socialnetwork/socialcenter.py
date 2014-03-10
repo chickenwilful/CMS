@@ -3,7 +3,7 @@ from models import SocialToken
 from datetime import datetime
 import logging
 
-from socialbot import FacebookBot, TwitterBot
+from socialbot import FacebookBot, TwitterBot, GPlusBot
 
 logger = logging.getLogger('storm')
 
