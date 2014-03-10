@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 
 import facebook
 from twython import Twython
+from requests_oauthlib import OAuth2Session
 
 class SocialBot(object):
     __metaclass__ = ABCMeta
@@ -135,6 +136,40 @@ class TwitterBot(SocialBot):
             result["error"] = "Unable to retrieve tokens."
         
         return result
+    
+    def clear_token(self):
+        if hasattr(self, "main_token"):
+            del self.main_token
+        if hasattr(self, "sub_token"):
+            del self.sub_token
+
+# Even though this bot is meant to post updates to G+, it will post them to the Buffer API instead.
+# Google has yet to release an API for Pages publicly, so we have to do it from a 3rd party API.
+class GPlusBot(SocialBot):
+
+    def __init__(self, app_id, app_secret):
+        self.app_id = app_id
+        self.app_secret = app_secret
+    
+    def post(self, title, content, link):
+        pass
+    
+    def set_token(self, token, sub_token=None):
+            self.main_token = token
+            if sub_token:
+                self.sub_token = sub_token
+        
+    def refresh_token(self):
+        # No known method of refreshing a Buffer token
+        pass
+
+    def process_token(self, client_token, **kwargs):
+        callback_url = kwargs.get("callback_url")
+        oauth_session = OAuth2Session(settings.GPLUS_APP_ID, redirect_uri=callback_url)
+        token = oauth_session.fetch_token("https://api.bufferapp.com/1/oauth2/token.json",
+                                            code=client_token,
+                                            client_secret=self.app_secret)
+        return token
     
     def clear_token(self):
         if hasattr(self, "main_token"):
