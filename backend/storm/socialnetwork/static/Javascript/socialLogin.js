@@ -4,7 +4,7 @@ function loginToFacebook() {
     FB.login(function(response) {
       console.log(response);
       if (response.status === 'connected') {
-        window.location.href = 'facebook';
+        window.location.href = settings.facebookRedirectURI;
       }
     }, { scope: "manage_pages,status_update" });
 }
@@ -28,7 +28,7 @@ jQuery(document).ready(function() {
     var postTitle = postForm.find("input[name=postTitle]").val();
     var postContent = postForm.find("textarea[name=postContent]").val();
     var postLink = postForm.find("input[name=postLink]").val();
-    jQuery.post("/social/post", {
+    jQuery.post(settings.socialPostURI, {
         postTitle: postTitle,
         postContent: postContent,
         postLink: postLink

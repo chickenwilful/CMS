@@ -4,7 +4,9 @@
 <head><title>Social Network Login</title>
 <script>
     var settings = {
-        facebookAppId: {{ facebook_app_id }}
+        facebookAppId: "{{ facebook_app_id }}",
+        socialPostURI: "{{ social_post_uri }}",
+        facebookRedirectURI: "{{ facebook_redirect_uri }}"
     };
 </script>
 </head>
@@ -17,7 +19,7 @@
         {% if not is_logged_into_twitter %}
         <p><a href="javascript:;">Login with Twitter</a></p>
         {% else %}
-        <p><a href="javascript:;">Remove Twitter Token</a></p>
+        <p><a href="twitter/logout">Remove Twitter Token</a></p>
         {% endif %}
         {% if not is_logged_into_facebook %}
         <!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true" data-scope="manage_pages"></div> -->

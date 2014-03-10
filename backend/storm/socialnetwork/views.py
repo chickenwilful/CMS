@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseServerError
+from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_POST
 
 from socialcenter import SocialCenter, Sites
@@ -10,11 +11,13 @@ import facebook
 
 logger = logging.getLogger('storm')
 
-def social_login(request):
+def social(request):
     social_center = SocialCenter()
     is_logged_into_twitter = social_center.is_logged_in(Sites.TWITTER)
     is_logged_into_facebook = social_center.is_logged_in(Sites.FACEBOOK)
     return render(request, "base.html", {
+        "social_post_uri" : reverse('socialnetwork.views.social_post'),
+        "facebook_redirect_uri" : reverse('socialnetwork.views.facebook_page_select'),
         "facebook_app_id" : settings.FACEBOOK_APP_ID,
         "is_logged_into_twitter" : is_logged_into_twitter,
         "is_logged_into_facebook" : is_logged_into_facebook
@@ -23,8 +26,7 @@ def social_login(request):
 def social_logout(request, site):
     social_center = SocialCenter()
     social_center.logout(site)
-    # TODO: Not hardcode the endpoint redirect
-    return redirect('/social')
+    return redirect('socialnetwork.views.social')
 
 @require_POST
 def social_post(request, site=None):
@@ -43,7 +45,6 @@ def social_post(request, site=None):
                 failed_list.append(post_attempt["site"])
         if failed_list:
             return HttpResponseServerError(json.dumps({ "error" : failed_list }))
-    # TODO: Not hardcode the endpoint redirect
     return HttpResponse("OK")
     
 def facebook_page_select(request):
@@ -70,15 +71,17 @@ def facebook_page_select(request):
         
         return render(request, "facebook.html", {
             "pages" : displayed_pages,
+            "rootURI" : reverse("socialnetwork.views.social"),
+            "facebookProcessURI" : reverse("socialnetwork.views.facebook_process")
         })
     else:
         logger.debug("No token")
-    # TODO: Not hardcode the endpoint redirect
-    return redirect('/social')    
+    return redirect('socialnetwork.views.social')
 
 @require_POST
 def facebook_process(request):
     token = request.session["fb_access_token"]
+    del request.session["fb_access_token"]
     page_id = request.POST["pageId"]
     social_center = SocialCenter()
     result = social_center.process_client_token(Sites.FACEBOOK, token, page_id=page_id)
