@@ -22,7 +22,8 @@ class SocialCenter(object):
         self.housekeep_datastore()
         self.bots = {
             Sites.FACEBOOK: FacebookBot(settings.FACEBOOK_APP_ID, settings.FACEBOOK_SECRET),
-            Sites.TWITTER: TwitterBot(settings.TWITTER_KEY, settings.TWITTER_SECRET)
+            Sites.TWITTER: TwitterBot(settings.TWITTER_KEY, settings.TWITTER_SECRET),
+            Sites.GPLUS: GPlusBot(settings.GPLUS_APP_ID, settings.GPLUS_SECRET)
         }
         for site, social_bot in self.bots.items():
             social_token = self.get_token(site)
@@ -90,3 +91,4 @@ class SocialCenter(object):
 class Sites:
     TWITTER = "twitter"
     FACEBOOK = "facebook"
+    GPLUS = "gplus"
