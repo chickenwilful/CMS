@@ -34,10 +34,12 @@ jQuery(document).ready(function() {
         postLink: postLink
         })
         .done(function() {
-            jQuery("#postStatus").text("Post successful!");
+            jQuery("#postStatus").text("Post published in all sites!");
         })
-        .fail(function() {
-            jQuery("#postStatus").text("Post failed!");
+        .fail(function(response) {
+            responseData = JSON.parse(response.responseText);
+            failedSites = responseData.error;
+            jQuery("#postStatus").text("Post failed to publish in the following sites: " + failedSites.join());
         });
   });
 });
