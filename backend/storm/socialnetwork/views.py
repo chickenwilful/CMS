@@ -76,10 +76,10 @@ def facebook_page_select(request):
     
     pages = social_center.get_pages(Sites.FACEBOOK, main_token)
         
-    return render(request, "facebook.html", {
+    return render(request, "selectPage.html", {
         "pages" : pages,
         "root_uri" : reverse("socialnetwork.views.social"),
-        "facebook_process_uri" : reverse("socialnetwork.views.facebook_process")
+        "process_uri" : reverse("socialnetwork.views.facebook_process")
     })
 
 @require_POST

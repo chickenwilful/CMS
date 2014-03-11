@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+<head><title>Facebook Login</title>
+{% load staticfiles %}
+<script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
+<script>
+jQuery.noConflict();
+jQuery(document).ready(function() {
+    jQuery("#pageForm").submit(function(event) {
+        var pageId = jQuery("#pageForm").find("select[name=page]").val();
+        jQuery.post("{{ process_uri }}", { pageId: pageId })
+            .done(function() {
+                window.location.href = "{{ root_uri }}";
+            })
+            .fail(function() {
+                console.error("Failed to submit page ID.");
+                window.location.href = "{{ root_uri }}";
+            });
+        event.preventDefault();
+    });
+});
+</script>
+</head>
+<body>
+<!-- Begin Facebook SDK Embed -->
+    <div id="fb-root"></div>
+<!-- End Facebook SDK Embed -->
+    <div>
+        {% if pages %}
+        <form id="pageForm" action="{{ process_uri }}" method="POST">
+            <label for="pageSelect">Page: </label>
+            <select id="pageSelect" name="page">
+                {% for page in pages %}
+                    <option value="{{ page.id }}">{{ page.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Submit" />
+        </form>
+        {% else %}
+        <p>Please create a page for crisis updates, then try again.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
