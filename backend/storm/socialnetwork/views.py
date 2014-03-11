@@ -144,11 +144,11 @@ def twitter_callback(request):
 def gplus_auth(request):
     
     callback_url = request.build_absolute_uri(reverse("socialnetwork.views.gplus_callback"))
-    oauth_session = OAuth2Session(settings.GPLUS_APP_ID, redirect_uri=callback_url)
     
-    gplus_auth_url, state = oauth_session.authorization_url('https://bufferapp.com/oauth2/authorize')
+    social_center = SocialCenter()
+    oauth_url, auth_data = social_center.start_authentication(Sites.GPLUS, callback_url)
     
-    return redirect(gplus_auth_url)
+    return redirect(oauth_url)
 
 @require_GET
 def gplus_callback(request):
@@ -156,14 +156,41 @@ def gplus_callback(request):
         return HttpResponseServerError("ERROR: " + request.GET["error"])
     
     gplus_auth_code = request.GET["code"]
-
-    gplus_callback_url = request.build_absolute_uri(reverse("socialnetwork.views.gplus_callback"))
+    
+    callback_url = request.build_absolute_uri(reverse("socialnetwork.views.gplus_callback"))
     
     social_center = SocialCenter()
     result = social_center.process_client_token(Sites.GPLUS, gplus_auth_code,
-                                       callback_url=gplus_callback_url)
+                                        callback_url=callback_url)
     logger.debug(result)
+    
+    if "main_token" not in result:
+        return HttpResponseServerError("Could not retrieve token")
+    
+    main_token = result["main_token"]
+    request.session["gplus_access_token"] = main_token
+    
+    pages = social_center.get_pages(Sites.GPLUS, main_token)
+        
+    return render(request, "selectPage.html", {
+        "pages" : pages,
+        "root_uri" : reverse("socialnetwork.views.social"),
+        "process_uri" : reverse("socialnetwork.views.gplus_process")
+    })
+
+@require_POST
+def gplus_process(request):
+    main_token = request.session["gplus_access_token"]
+    del request.session["gplus_access_token"]
+    
+    page_id = request.POST["pageId"]
+    
+    social_center = SocialCenter()
+    result = social_center.authenticate(Sites.GPLUS, main_token, page_id)
+    
+    logger.debug(result)
+    
     if "main_token" in result:
-        return redirect("socialnetwork.views.social")
+        return HttpResponse("OK")
     else:
-        return HttpResponseServerError(result["error"])
+        return HttpResponseServerError("Server error")

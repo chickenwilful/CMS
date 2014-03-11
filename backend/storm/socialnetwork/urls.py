@@ -12,4 +12,5 @@ urlpatterns = patterns(
     url(r'^twitter/callback$', views.twitter_callback, name="twitter_callback"),
     url(r'^gplus/auth$', views.gplus_auth, name="gplus_auth"),
     url(r'^gplus/callback$', views.gplus_callback, name="gplus_callback"),
+    url(r'^gplus/process$', views.gplus_process, name="gplus_process"),
 )

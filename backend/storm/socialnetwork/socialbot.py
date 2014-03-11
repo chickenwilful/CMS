@@ -231,8 +231,14 @@ class GPlusBot(SocialBot):
         pass
     
     def start_authentication(self, callback_url):
-        #TODO: implement OAuth
-        pass
+        auth_data = {}
+        
+        oauth_session = OAuth2Session(self.__app_id, redirect_uri=callback_url)
+        oauth_url, state = oauth_session.authorization_url('https://bufferapp.com/oauth2/authorize')
+        
+        auth_data["state"] = state
+        
+        return oauth_url, auth_data
 
     def process_token(self, client_token, **kwargs):
         callback_url = kwargs.get("callback_url")
@@ -241,8 +247,8 @@ class GPlusBot(SocialBot):
         # Buffer does not follow specification and return token_type as expected
         
         post_data = {
-            "client_id" : self.app_id,
-            "client_secret" : self.app_secret,
+            "client_id" : self.__app_id,
+            "client_secret" : self.__app_secret,
             "redirect_uri" : callback_url,
             "code" : client_token,
             "grant_type" : "authorization_code"
