@@ -216,7 +216,26 @@ class GPlusBot(SocialBot):
         return { "access_token" : access_token, "token_type" : "Bearer" }
     
     def post(self, title, content, link):
-        pass
+        message = title + '\n\n' + content
+        
+        token_dict = self.get_token_dict(self._main_token)
+        profile_id = self._sub_token
+        
+        post_data = {}
+        post_data["text"] = message
+        post_data["profile_ids[]"] = profile_id
+        post_data["now"] = True
+        post_data["media[title]"] = title
+        post_data["media[link]"] = link
+        
+        oauth_session = OAuth2Session(self.__app_id, token=token_dict)
+        response = oauth_session.post("https://api.bufferapp.com/1/updates/create.json", data=post_data)
+        
+        result = response.json()
+        if not result["success"]:
+            result["error"] = "Unable to post to Google+."
+        
+        return result
     
     def authenticate(self, token, sub_token=None):
         if not sub_token:
