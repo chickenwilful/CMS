@@ -7,8 +7,6 @@ import json
 import logging
 
 from socialcenter import SocialCenter, Sites
-import facebook
-from twython import Twython
 from requests_oauthlib import OAuth2Session
 
 logger = logging.getLogger('storm')
@@ -61,43 +59,41 @@ def social_post(request, site=None):
 @require_GET
 def facebook_page_select(request):
     #import pdb; pdb.set_trace()
-    key = settings.FACEBOOK_APP_ID
-    secret = settings.FACEBOOK_SECRET
-    user = facebook.get_user_from_cookie(request.COOKIES, key, secret)
-    displayed_pages = None
-    if user:
-        token = user["access_token"]
-        request.session["fb_access_token"] = token
+    app_id = settings.FACEBOOK_APP_ID
+    cookie_id = "fbsr_" + app_id
+    if cookie_id not in request.COOKIES:
+        return HttpResponseServerError("Facebook cookie not found")
+    fb_cookie = request.COOKIES[cookie_id]
+    
+    social_center = SocialCenter()
+    result = social_center.process_client_token(Sites.FACEBOOK, { cookie_id : fb_cookie })
+    
+    if "main_token" not in result:
+        return HttpResponseServerError("Could not retrieve token")
+    
+    main_token = result["main_token"]
+    request.session["fb_access_token"] = main_token
+    
+    pages = social_center.get_pages(Sites.FACEBOOK, main_token)
         
-        graph = facebook.GraphAPI(token)
-        pages = graph.get_object("me/accounts").get("data", None)
-        
-        if pages:
-            displayed_pages = []
-            for page in pages:
-                displayed_page = {
-                    "id" : page[u"id"],
-                    "name" : page[u"name"]
-                }
-                displayed_pages.append(displayed_page)
-        
-        return render(request, "facebook.html", {
-            "pages" : displayed_pages,
-            "root_uri" : reverse("socialnetwork.views.social"),
-            "facebook_process_uri" : reverse("socialnetwork.views.facebook_process")
-        })
-    else:
-        logger.debug("No token")
-    return redirect('socialnetwork.views.social')
+    return render(request, "facebook.html", {
+        "pages" : pages,
+        "root_uri" : reverse("socialnetwork.views.social"),
+        "facebook_process_uri" : reverse("socialnetwork.views.facebook_process")
+    })
 
 @require_POST
 def facebook_process(request):
-    token = request.session["fb_access_token"]
+    main_token = request.session["fb_access_token"]
     del request.session["fb_access_token"]
+    
     page_id = request.POST["pageId"]
+    
     social_center = SocialCenter()
-    result = social_center.process_client_token(Sites.FACEBOOK, token, page_id=page_id)
+    result = social_center.authenticate(Sites.FACEBOOK, main_token, page_id)
+    
     logger.debug(result)
+    
     if "main_token" in result:
         return HttpResponse("OK")
     else:
@@ -105,16 +101,19 @@ def facebook_process(request):
 
 @require_GET
 def twitter_auth(request):
-    twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET)
     
     callback_url = request.build_absolute_uri(reverse("socialnetwork.views.twitter_callback"))
+    
+    social_center = SocialCenter()
+    oauth_url, auth_data = social_center.start_authentication(Sites.TWITTER, callback_url)
+    
+    twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET)
     auth = twitter.get_authentication_tokens(callback_url=callback_url)
     
-    request.session["twitter_oauth_token"] = auth["oauth_token"]
-    request.session["twitter_oauth_token_secret"] = auth["oauth_token_secret"]
+    request.session["twitter_oauth_token"] = auth_data["twitter_oauth_token"]
+    request.session["twitter_oauth_token_secret"] = auth_data["twitter_oauth_token_secret"]
     
-    twitter_oauth_url = auth["auth_url"]
-    return redirect(twitter_oauth_url)
+    return redirect(oauth_url)
 
 @require_GET
 def twitter_callback(request):
@@ -134,6 +133,9 @@ def twitter_callback(request):
                                        oauth_secret=twitter_oauth_secret)
     logger.debug(result)
     if "main_token" in result:
+        social_center.authenticate(Sites.TWITTER,
+                                    result["main_token"],
+                                    result["sub_token"])
         return redirect("socialnetwork.views.social")
     else:
         return HttpResponseServerError(result["error"])
@@ -158,7 +160,6 @@ def gplus_callback(request):
     gplus_callback_url = request.build_absolute_uri(reverse("socialnetwork.views.gplus_callback"))
     
     social_center = SocialCenter()
-    import pdb; pdb.set_trace()
     result = social_center.process_client_token(Sites.GPLUS, gplus_auth_code,
                                        callback_url=gplus_callback_url)
     logger.debug(result)

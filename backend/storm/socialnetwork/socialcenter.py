@@ -28,7 +28,7 @@ class SocialCenter(object):
         for site, social_bot in self.bots.items():
             social_token = self.get_token(site)
             if social_token:
-                social_bot.set_token(social_token.main_token, social_token.sub_token)
+                social_bot.authenticate(social_token.main_token, social_token.sub_token)
     
     @staticmethod
     def housekeep_datastore():
@@ -51,7 +51,7 @@ class SocialCenter(object):
         SocialToken.objects.filter(site=site).delete()
     
     @staticmethod
-    def save_token(site, main_token, sub_token, expiry_date):
+    def save_token(site, main_token, sub_token=None, expiry_date=None):
         social_token = SocialToken(site=site, main_token=main_token, sub_token=sub_token, expiry_date = expiry_date)
         social_token.save()
     
@@ -63,13 +63,21 @@ class SocialCenter(object):
         
     def process_client_token(self, site, token, **kwargs):
         result = self.bots[site].process_token(token, **kwargs)
-        if "main_token" in result:
-            main_token = result["main_token"]
-            sub_token = result.get("sub_token", None)
-            expiry_date = result.get("expiry_date", None)
-            self.clear_token(site)
-            self.save_token(site, main_token, sub_token, expiry_date)
         return result
+    
+    def authenticate(self, site, main_token, sub_token=None):
+        result = self.bots[site].authenticate(main_token, sub_token)
+        if "main_token" in result:
+            self.save_token(site, result["main_token"],
+                            result.get("sub_token", None),
+                            result.get("expiry_date", None))
+        return result
+    
+    def start_authentication(self, site, callback_url):
+        return self.bots[site].start_authentication(callback_url)
+    
+    def get_pages(self, site, request_token):
+        return self.bots[site].get_pages(request_token)
     
     def publish(self, title, content, link, site=None):
         if site:
