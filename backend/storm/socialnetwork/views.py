@@ -135,7 +135,7 @@ def twitter_callback(request):
     if "main_token" in result:
         social_center.authenticate(Sites.TWITTER,
                                     result["main_token"],
-                                    result["sub_token"])
+                                    result.get("sub_token", None))
         return redirect("socialnetwork.views.social")
     else:
         return HttpResponseServerError(result["error"])

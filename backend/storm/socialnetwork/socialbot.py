@@ -208,16 +208,23 @@ class TwitterBot(SocialBot):
 class GPlusBot(SocialBot):
 
     def __init__(self, app_id, app_secret):
-        self.app_id = app_id
-        self.app_secret = app_secret
+        self.__app_id = app_id
+        self.__app_secret = app_secret
     
     def post(self, title, content, link):
         pass
     
     def authenticate(self, token, sub_token=None):
-            self.main_token = token
-            if sub_token:
-                self.sub_token = sub_token
+        if not sub_token:
+            raise ValueError("Google+ requires the profile ID as a sub token")
+        self._main_token = token        
+        self._sub_token = sub_token
+        
+        result = {}
+        result["main_token"] = token
+        result["sub_token"] = sub_token
+        
+        return result
         
     def refresh_token(self):
         # No known method of refreshing a Buffer token
@@ -255,7 +262,7 @@ class GPlusBot(SocialBot):
         return None
     
     def clear_token(self):
-        if hasattr(self, "main_token"):
-            del self.main_token
-        if hasattr(self, "sub_token"):
-            del self.sub_token
+        if hasattr(self, "_main_token"):
+            del self._main_token
+        if hasattr(self, "_sub_token"):
+            del self._sub_token
