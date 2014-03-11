@@ -107,9 +107,6 @@ def twitter_auth(request):
     social_center = SocialCenter()
     oauth_url, auth_data = social_center.start_authentication(Sites.TWITTER, callback_url)
     
-    twitter = Twython(settings.TWITTER_KEY, settings.TWITTER_SECRET)
-    auth = twitter.get_authentication_tokens(callback_url=callback_url)
-    
     request.session["twitter_oauth_token"] = auth_data["twitter_oauth_token"]
     request.session["twitter_oauth_token_secret"] = auth_data["twitter_oauth_token_secret"]
     

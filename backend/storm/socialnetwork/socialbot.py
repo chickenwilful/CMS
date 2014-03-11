@@ -2,7 +2,7 @@ from abc import ABCMeta, abstractmethod
 from datetime import datetime, timedelta
 
 import facebook
-from twython import Twython
+from twython import Twython, TwythonError, TwythonRateLimitError, TwythonAuthError
 from requests_oauthlib import OAuth2Session
 import requests
 
@@ -50,7 +50,7 @@ class FacebookBot(SocialBot):
     
     def post(self, title, content, link):
         message = title + '\n\n' + content
-        graph = facebook.GraphAPI(self.__main_token)
+        graph = facebook.GraphAPI(self._main_token)
         try:
             result = graph.put_object("me", "feed", message=message, link=link, name=title) 
         except facebook.GraphAPIError as e:
@@ -146,7 +146,15 @@ class TwitterBot(SocialBot):
         if len(title) > char_limit:
             status_text = title[:(char_limit-3)] + "..."
         
-        return twitter.update_status(status=status_text + " " + link)
+        try:
+            result = twitter.update_status(status=status_text + " " + link)
+        except TwythonRateLimitError as e:
+            return { "error" : e.msg }
+        except TwythonAuthError as e:
+            return { "error" : e.msg }
+        except TwythonError as e:
+            return { "error" : e.msg }
+        return result
     
     def authenticate(self, token, sub_token=None):
         if not sub_token:
