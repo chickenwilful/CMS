@@ -210,6 +210,10 @@ class GPlusBot(SocialBot):
     def __init__(self, app_id, app_secret):
         self.__app_id = app_id
         self.__app_secret = app_secret
+
+    @staticmethod
+    def get_token_dict(access_token):
+        return { "access_token" : access_token, "token_type" : "Bearer" }
     
     def post(self, title, content, link):
         pass
@@ -264,8 +268,21 @@ class GPlusBot(SocialBot):
         return result
 
     def get_pages(self, request_token):
-        #TODO: Retrieve Buffer profiles related to Google+
-        return None
+        request_token_dict = self.get_token_dict(request_token)
+        
+        oauth_session = OAuth2Session(self.__app_id, token=request_token_dict)
+        response = oauth_session.get("https://api.bufferapp.com/1/profiles.json")
+        
+        profiles = response.json()
+        pages = []
+        for profile in profiles:
+            if profile["service"] == "google" and profile["service_type"] == "page":
+                page = {}
+                page["id"] = profile["id"]
+                page["name"] = profile["formatted_username"]
+                pages.append(page)
+        
+        return pages
     
     def clear_token(self):
         if hasattr(self, "_main_token"):
