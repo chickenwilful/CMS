@@ -18,7 +18,6 @@ def social(request):
     is_logged_into_twitter = social_center.is_logged_in(Sites.TWITTER)
     is_logged_into_gplus = social_center.is_logged_in(Sites.GPLUS)
     return render(request, "base.html", {
-        "social_post_uri" : reverse('socialnetwork.views.social_post'),
         "facebook_redirect_uri" : reverse('socialnetwork.views.facebook_page_select'),
         "facebook_app_id" : settings.FACEBOOK_APP_ID,
         "twitter_auth_uri" : reverse('socialnetwork.views.twitter_auth'),
@@ -32,10 +31,10 @@ def social(request):
     })
 
 @require_GET
-def social_logout(request, site):
-    social_center = SocialCenter()
-    social_center.logout(site)
-    return redirect('socialnetwork.views.social')
+def social_post_test(request):
+    return render(request, "postTest.html", {
+        "social_post_uri" : reverse('socialnetwork.views.social_post')
+    })
 
 @require_POST
 def social_post(request, site=None):
@@ -55,6 +54,12 @@ def social_post(request, site=None):
         if failed_list:
             return HttpResponseServerError(json.dumps({ "error" : failed_list }))
     return HttpResponse("OK")
+
+@require_GET
+def social_logout(request, site):
+    social_center = SocialCenter()
+    social_center.logout(site)
+    return redirect('socialnetwork.views.social')
 
 @require_GET
 def facebook_page_select(request):

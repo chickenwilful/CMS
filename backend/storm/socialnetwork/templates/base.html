@@ -5,7 +5,6 @@
 <script>
     var settings = {
         facebookAppId: "{{ facebook_app_id }}",
-        socialPostURI: "{{ social_post_uri }}",
         facebookRedirectURI: "{{ facebook_redirect_uri }}"
     };
 </script>
@@ -31,22 +30,6 @@
         {% else %}
         <p><a href="{{ gplus_logout_uri }}">Remove Google+ Token</a></p>
         {% endif %}
-    </div>
-    <div>
-        <h2>Social Network Test</h2>
-        <form id="postForm" action="post" method="post">
-            <label for="postTitle">Title:</label>
-            <input type="text" name="postTitle" id="postTitle" />
-            <br />
-            <label for="postLink">Link:</label>
-            <input type="text" name="postLink" id="postLink" />
-            <br />
-            <label for="postContent">Content:</label>
-            <textarea id="postContent" name="postContent"></textarea>
-            <br />
-            <input type="submit" value="Submit" />
-        </form>
-        <p id="postStatus"></p>
     </div>
 </body>
 </html>

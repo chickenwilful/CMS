@@ -4,6 +4,7 @@ from socialnetwork import views
 urlpatterns = patterns(
     'socialnetwork.views',
     url(r'^$', views.social, name="social"),
+    url(r'^test$', views.social_post_test, name="social_post_test"),
     url(r'^post$', views.social_post, name="social_post"),
     url(r'^(?P<site>\w+)/logout$', views.social_logout, name="social_logout"),
     url(r'^facebook/page$', views.facebook_page_select, name="facebook_page_select"),
