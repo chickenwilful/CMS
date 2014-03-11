@@ -230,10 +230,16 @@ class GPlusBot(SocialBot):
         
         oauth_session = OAuth2Session(self.__app_id, token=token_dict)
         response = oauth_session.post("https://api.bufferapp.com/1/updates/create.json", data=post_data)
+        response_json = response.json()
         
-        result = response.json()
-        if not result["success"]:
+        result = {}
+        if not response_json["success"]:
+            result = response_json
             result["error"] = "Unable to post to Google+."
+        else:
+            result = response_json["updates"][0]
+            if result["status"] != "sent":
+                result["error"] = "Unable to post to Google+."
         
         return result
     
