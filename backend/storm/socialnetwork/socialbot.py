@@ -52,7 +52,7 @@ class FacebookBot(SocialBot):
         message = title + '\n\n' + content
         graph = facebook.GraphAPI(self.__main_token)
         try:
-            result = graph.put_object("me", "feed", message=message, link=link, name=title, description=content) 
+            result = graph.put_object("me", "feed", message=message, link=link, name=title) 
         except facebook.GraphAPIError as e:
             return { "error" : e.message }
         return result
