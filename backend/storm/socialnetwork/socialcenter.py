@@ -22,6 +22,15 @@ class Singleton(type):
         return cls._instances[cls]
 
 class SocialCenter(object):
+    """Interface to allow publishing of content to multiple websites at once.
+    
+    This interface can publish content to multiple websites with a single
+    function call. All websites must be authenticated for the function to work,
+    however.
+    
+    This class is a singleton, therefore it can be "instantiated" repeatedly,
+    and each reference will refer to the same instance.
+    """
     __metaclass__ = Singleton
     
     def __init__(self):
@@ -98,7 +107,8 @@ class SocialCenter(object):
         """Publishes content to one or all sites managed by the SocialCenter.
         
         Publishes content to one or all sites, depending on whether site is
-        set.
+        set. If a website has not been logged in prior to this function call,
+        the SocialCenter will not attempt to publish to it.
         
         @type title: str
         @type content: str
