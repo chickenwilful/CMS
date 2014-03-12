@@ -62,6 +62,14 @@ class SocialCenter(object):
         social_token = SocialToken(site=site, main_token=main_token, sub_token=sub_token, expiry_date = expiry_date)
         social_token.save()
     
+    def add_site(self, site, social_bot):
+        if not isinstance(social_bot, SocialBot):
+            raise ValueError("A SocialBot must be provided!")
+        if site and isinstance(site, str):
+            self.bots[site] = social_bot
+        else:
+            raise ValueError("A valid site name must be provided!")
+    
     def is_logged_in(self, site):
         num_of_tokens = SocialToken.objects.filter(site=site
         ).exclude(expiry_date__lte=datetime.today()
