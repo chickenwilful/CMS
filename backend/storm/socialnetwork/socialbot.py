@@ -19,14 +19,15 @@ class SocialBot(object):
     def post(self, title, content, link):
         """Posts content to the site managed by the SocialBot
         
-        Publishes content to the website. All arguments are required.
+        Publishes content to the website. The content to be posted cannot be
+        empty, i.e. either title or content must not be left blank.
         
         @type title: str
         @type content: str
         @type link: str
         
         @param title: The title of the post.
-        @param content: A string containing the main body of the post.
+        @param content: The main body of the post.
         @param link: A link to a related resource
         
         @rtype: dict
@@ -148,7 +149,12 @@ class FacebookBot(SocialBot):
         self.__app_secret = app_secret
     
     def post(self, title, content, link):
-        message = title + '\n\n' + content
+        message = title or content or None
+        if not message:
+            return {"error" : "No content in post."}
+        if title and content:
+            message += "\n\n" + content
+        
         graph = facebook.GraphAPI(self._main_token)
         try:
             result = graph.put_object("me", "feed", message=message, link=link, name=title) 
@@ -238,14 +244,17 @@ class TwitterBot(SocialBot):
         self.__app_secret = app_secret
     
     def post(self, title, content, link):
+        status_text = title or content or None
+        if not status_text:
+            return {"error" : "No content in post."}
+            
         twitter = Twython(self.__app_id, self.__app_secret,
                           self._main_token, self._sub_token)
         
         char_limit = self.__get_char_limit() - self.__get_url_length() - 1
         
-        status_text = title
-        if len(title) > char_limit:
-            status_text = title[:(char_limit-3)] + "..."
+        if len(status_text) > char_limit:
+            status_text = status_text[:(char_limit-3)] + "..."
         
         try:
             result = twitter.update_status(status=status_text + " " + link)
@@ -356,7 +365,11 @@ class GPlusBot(SocialBot):
         return response
     
     def post(self, title, content, link):
-        message = title + '\n\n' + content
+        message = title or content or None
+        if not message:
+            return {"error" : "No content in post."}
+        if title and content:
+            message += "\n\n" + content
         
         token_dict = self.__get_token_dict(self._main_token)
         profile_id = self._sub_token
