@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime, timedelta
+import json
 
 import facebook
 from twython import Twython, TwythonError, TwythonRateLimitError, TwythonAuthError
@@ -280,21 +281,17 @@ class GPlusBot(SocialBot):
     def process_token(self, client_token, **kwargs):
         callback_url = kwargs.get("callback_url")
         
-        # We use the requests API instead of OAuth to retrieve the access token
-        # Buffer does not follow specification and return token_type as expected
+        oauth_session = OAuth2Session(self.__app_id, redirect_uri=callback_url)
+        # Register the Buffer compliance hook
+        oauth_session.register_compliance_hook("access_token_response",
+                                               self.missing_token_type_compliance_hook)
+        token = oauth_session.fetch_token("https://api.bufferapp.com/1/oauth2/token.json",
+                                          code=client_token,
+                                          client_secret=self.__app_secret)
         
-        post_data = {
-            "client_id" : self.__app_id,
-            "client_secret" : self.__app_secret,
-            "redirect_uri" : callback_url,
-            "code" : client_token,
-            "grant_type" : "authorization_code"
-        }
-        
-        response = requests.post("https://api.bufferapp.com/1/oauth2/token.json", data=post_data).json()
         result = {}
-        if "access_token" in response:
-            result["main_token"] = response["access_token"]
+        if "access_token" in token:
+            result["main_token"] = token["access_token"]
         else:
             result["error"] = "Unable to retrieve access token."
         
