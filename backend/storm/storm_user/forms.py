@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import User
+from storm_user.models import UserProfile
 
 
 class UserLoginForm(forms.ModelForm):
@@ -13,10 +14,18 @@ class UserLoginForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
 
-class UserAddForm(forms.ModelForm):
+class UserProfileCreateForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+
+
+class UserCreateForm(forms.ModelForm):
     """
     A form to create a user. Include all the required fields, plus a repeated password
     """
+    name = forms.CharField(label="Name", widget=forms.TextInput )
+    phone_number = forms.CharField(label="Phone number", widget=forms.TextInput)
+
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput)
 
@@ -34,14 +43,14 @@ class UserAddForm(forms.ModelForm):
 
     def save(self, commit=True):
         #save the provided password in hashed format
-        user = super(UserAddForm, self).save(commit=False)
-        user.set_password(self.clean_data['password1'])
+        user = super(UserCreateForm, self).save(commit=False)
+        user.set_password(self.cleaned_data.get('password1'))
         if commit:
             user.save()
         return user
 
 
-class UserEditForm(forms.ModelForm):
+class UserUpdateForm(forms.ModelForm):
     """
     A form for edit profile user. Included all the fields on the user, but replaces the password field
     with password hash display field.

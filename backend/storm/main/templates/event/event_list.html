@@ -1,30 +1,62 @@
-{% block title %}
-<h2>This is post list</h2>
+{% extends "main/base.html" %}
+
+{% block navigation %}
+{% include "main/event_common.html" %}
 {% endblock %}
+
+{% block content-title %}
+    Event List
+
+<div id="spend_filter" class="btn-group">
+      <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
+  			<i class="icon-filter"></i>
+				Filter By
+				<span class="caret"></span>
+			</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+				<li>
+					<a href="0">All</a>
+				</li>
+				<li>
+					<a href="1">Haze</a>
+				</li>
+				<li>
+					<a href="2">BirdFlu</a>
+				</li>
+			</ul>
+		</div>
+{% endblock content-title %}
+
 
 {% block content %}
 <a href="{% url 'main.main_page' %}">back to main page</a>
 <br>
 
-<a href="{% url 'post.post_add' %}">Add a new post</a>
+<a href="/event/event_create/">Add a new event</a>
 <br>
+
 
 {% for event in event_list %}
-<strong>Title:</strong>
-{{event.title}}
-<br>
-<strong>content:</strong>
-{{event.description}}
-<br>
-<strong>date created:</strong>
-{{event.created_at}}
-<a href="/post/post_detail/{{post.id}}/">See more..</a>
-<br>
-<h4>----------------------------------------------------</h4>
+    <strong>Type:</strong>
+    {{event.type}}
+    <br/>
+    <strong>Title:</strong>
+    {{event.title}}
+    <br/>
+    <strong>Description:</strong>
+    {{event.description}}
+    <br/>
+    <a href="/event/event_retrieve/{{event.id}}/">See more..</a>
+    <br>
+    <h4>----------------------------------------------------</h4>
+
 {% endfor %}
+  <ul class="pager">
+    <li><a href="#">Previous</a></li>
+    <li><a href="#">Next</a></li>
+  </ul>
 
-{% endblock %}
-
+{% endblock content %}
 
 {% block action %}
 

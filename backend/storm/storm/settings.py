@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'storm_user',
     'crossdomainxhr',
     'socialnetwork',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,27 +114,25 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'simple'
-            },
         },
+    },
     'loggers': {
         'django': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
-            },
+        },
         'storm': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
-            },
-        }
+        },
     }
+}
 
-# for permission using guardian
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # default
-    'guardian.backends.ObjectPermissionBackend',
 )
 ANONYMOUS_USER_ID = -1
 

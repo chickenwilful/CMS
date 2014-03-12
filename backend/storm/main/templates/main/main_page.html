@@ -9,25 +9,11 @@
         <a href="{% url 'user.user_login' %}">Login</a>
     {% endif %}
 
-{% load guardian_tags %}
-    {% get_obj_perms request.user for post as "post_perms" %}
 
-    {% if "post_list" in post_perms %}
-        <a href="/pages/delete?target={{ flatpage.url }}">Remove page</a>
-    {% endif %}
+    <br><strong>Post</strong>
+    <a href="{% url 'post.post_list' %}">See post list..</a>
 
-{% if perms.post %}
-        <br><strong>Post</strong>
-        {% if 'post_list' in perms %}
-            <a href="{% url 'post.post_list' %}">See post list..</a>
-        {% endif %}
-    {% endif %}
-
-    {% if perms.user %}
-        <br><strong>User</strong>
-        {% if 'user_add' in perms %}
-            <a href="{% url 'user.user_add'%}">Add a new user</a>
-        {% endif %}
-    {% endif    %}
+    <br><strong>User</strong>
+    <a href="{% url 'user.user_create'%}">Add a new user</a>
 
 {% endblock content %}

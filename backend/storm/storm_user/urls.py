@@ -5,8 +5,8 @@ urlpatterns = patterns(
     '',
     url(r'^user_login/$', views.user_login, name='user.user_login'),
     url(r'^user_logout/$', views.user_logout, name='user.user_logout'),
-    url(r'^user_add/$', views.user_add, name='user.user_add'),
-    url(r'^user_detail/(?P<user_id>\d+)/$', views.user_detail, name='user.user_detail'),
-    url(r'^user_edit/(?P<user_id>\d+)/$', views.user_edit, name='user.user_edit'),
+    url(r'^user_create/$', views.user_create, name='user.user_create'),
+    url(r'^user_retrieve/(?P<user_id>\d+)/$', views.user_retrieve, name='user.user_retrieve'),
+    url(r'^user_update/(?P<user_id>\d+)/$', views.user_update, name='user.user_update'),
     url(r'^login/$', views.login, name='user.login'),
 )

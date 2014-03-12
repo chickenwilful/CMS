@@ -2,6 +2,7 @@ from abc import ABCMeta, abstractmethod
 from datetime import datetime, timedelta
 import facebook
 
+
 class SocialBot(object):
     __metaclass__ = ABCMeta
     
