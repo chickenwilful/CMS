@@ -120,7 +120,8 @@ class SocialCenter(object):
         """
         if site:
             if self.is_logged_in(site):
-                return self.bots[site].post(title, content, link)
+                result = self.bots[site].post(title, content, link)
+                return [{ "site" : site, "result" : result }]
         else:
             results = []
             for social_site, social_bot in self.bots.items():
