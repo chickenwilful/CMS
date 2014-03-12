@@ -8,6 +8,13 @@ from socialbot import FacebookBot, TwitterBot, GPlusBot
 logger = logging.getLogger('storm')
 
 class Singleton(type):
+    """Singleton metaclass
+
+    Any class that implements this metaclass will become a Singleton.
+    All instances will actually point to the same instance of the class.
+
+    Derived from: http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python
+    """
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if cls not in cls._instances:
@@ -80,6 +87,37 @@ class SocialCenter(object):
         return self.bots[site].get_pages(request_token)
     
     def publish(self, title, content, link, site=None):
+        """Publishes content to one or all sites managed by the SocialCenter.
+        
+        Publishes content to one or all sites, depending on whether site is
+        set.
+        
+        @type title: str
+        @type content: str
+        @type link: str
+        @type site: str
+        
+        @param title: The title of the post.
+        @param content: A string containing the main body of the post.
+        @param link: A link to a related resource
+        @param site: An optional argument indicating the site to publish on.
+            
+        @rtype: list
+        @return: A list of dicts containing all the returned data from the
+            website(s). If an error is returned, the dict will contain the
+            "error" key. For example:
+            [
+                {
+                    "site": "blogThis"
+                    "result":
+                        {
+                         ...
+                         "error" : "Unable to publish to website!",
+                         ...
+                        }
+                }
+            ]
+        """
         if site:
             if self.is_logged_in(site):
                 return self.bots[site].post(title, content, link)

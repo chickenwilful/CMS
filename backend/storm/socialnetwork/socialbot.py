@@ -8,34 +8,130 @@ from requests_oauthlib import OAuth2Session
 import requests
 
 class SocialBot(object):
+    """Abstract class definition for all SocialBots.
+    
+    A SocialBot is able to provide authentication and post publishing services
+    to the containing SocialCenter.
+    """
     __metaclass__ = ABCMeta
     
     @abstractmethod
     def post(self, title, content, link):
+        """Posts content to the site managed by the SocialBot
+        
+        Publishes content to the website. All arguments are required.
+        
+        @type title: str
+        @type content: str
+        @type link: str
+        
+        @param title: The title of the post.
+        @param content: A string containing the main body of the post.
+        @param link: A link to a related resource
+        
+        @rtype: dict
+        @return:
+            A dict containing all the returned data from the website. If an
+            error is returned, the dict will contain the "error" key, e.g.:
+            
+            {
+             ...
+             "error" : "Unable to publish to website!",
+             ...
+            }
+        """
         pass
     
     @abstractmethod
     def authenticate(self, token, sub_token=None):
+        """Authenticates the SocialBot with the given token(s).
+        
+        @type token: str
+        @type sub_token: str
+        
+        @param token: The main token used by the SocialBot for requests.
+        @param sub_token: The second token. May or may not be required by the
+                          implemented SocialBot.
+        
+        @rtype: dict
+        @return: A dict containing the main and sub tokens. For example:
+            {"main_token": "fQ@)NG#fa-f",
+             "sub_token": "43295t2-2"}
+        """
         pass
         
     @abstractmethod
     def refresh_token(self):
+        """Refreshes the token(s) held by the SocialBot.
+        
+        Some websites provide access tokens that expire after some time. The
+        implementing SocialBot may provide a method to refresh the token.
+        
+        @rtype: dict
+        @return: A dict containing the main and sub tokens. For example:
+            {"main_token": "fQ@)NG#fa-f",
+             "sub_token": "43295t2-2"}
+        """
         pass
     
     @abstractmethod
     def start_authentication(self, callback_url):
+        """Begins the user-based OAuth authentication process.
+        
+        @type  callback_url: str
+        @param callback_url: A URL to a suitable endpoint which can process the
+                             response from the website.
+        
+        @rtype: tuple
+        @return: A tuple containing the OAuth authorization URL, and a dict
+                 containing additional tokens to be stored in the session.
+        """
         pass
     
     @abstractmethod
     def process_token(self, client_token, **kwargs):
+        """Processes the returned token from the OAuth authentication process.
+        
+        Note that this function can take in any number of keyword arguments,
+        and will typically take in the same arguments as the tokens returned
+        by C{start_authentication}.
+        
+        @type  client_token: str
+        @param client_token: The token returned from the website.
+        
+        @keyword client_secret: The secret key for a registered app on the
+            website, which may be required for the token exchange.
+        @keyword callback_url: The callback URL specified in the beginning
+            of the OAuth process, in C{start_authentication}. May be required
+            by the website (and the SocialBot).
+        
+        @rtype: dict
+        @return: A dict containing the main token, as well as any other token
+            returned by the website.
+        """
         pass
     
     @abstractmethod
     def get_pages(self, request_token):
+        """Retrieves all pages hosted by the authenticated user..
+        
+        @type  request_token: str
+        @param request_token: The token used for requests to the website.
+        
+        @rtype: list
+        @return: A list of dicts containing page information. For example:
+            [
+                {"id": "3415", "name": "A Page",
+                 "id": "326662", "name": "Another Page"},
+                ...
+            ]
+        """
         pass
     
     @abstractmethod
     def clear_token(self):
+        """Clears all tokens stored by the SocialBot
+        """
         pass
 
 class DummyBot(SocialBot):
