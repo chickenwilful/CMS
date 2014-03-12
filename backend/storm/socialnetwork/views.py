@@ -7,7 +7,6 @@ import json
 import logging
 
 from socialcenter import SocialCenter, Sites
-from requests_oauthlib import OAuth2Session
 
 logger = logging.getLogger('storm')
 
