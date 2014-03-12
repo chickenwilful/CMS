@@ -7,15 +7,15 @@
 <script>
 jQuery.noConflict();
 jQuery(document).ready(function() {
-    jQuery("#fbPageForm").submit(function(event) {
-        var pageId = jQuery("#fbPageForm").find("select[name=fbPage]").val();
-        jQuery.post("/social/facebook_process", { pageId: pageId })
+    jQuery("#pageForm").submit(function(event) {
+        var pageId = jQuery("#pageForm").find("select[name=page]").val();
+        jQuery.post("{{ process_uri }}", { pageId: pageId })
             .done(function() {
-                window.location.href = "/social";
+                window.location.href = "{{ root_uri }}";
             })
             .fail(function() {
                 console.error("Failed to submit page ID.");
-                window.location.href = "/social";
+                window.location.href = "{{ root_uri }}";
             });
         event.preventDefault();
     });
@@ -28,9 +28,9 @@ jQuery(document).ready(function() {
 <!-- End Facebook SDK Embed -->
     <div>
         {% if pages %}
-        <form id="fbPageForm">
-            <label for="fbPageSelect">Page: </label>
-            <select id="fbPageSelect" name="fbPage">
+        <form id="pageForm" action="{{ process_uri }}" method="POST">
+            <label for="pageSelect">Page: </label>
+            <select id="pageSelect" name="page">
                 {% for page in pages %}
                     <option value="{{ page.id }}">{{ page.name }}</option>
                 {% endfor %}

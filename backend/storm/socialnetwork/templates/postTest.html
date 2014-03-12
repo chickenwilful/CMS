@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head><title>Social Network Test</title>
+<script>
+    var settings = {
+        socialPostURI: "{{ social_post_uri }}"
+    };
+</script>
+</head>
+<body>
+    <div>
+        <h2>Social Network Test</h2>
+        <form id="postForm" action="post" method="post">
+            <label for="postTitle">Title:</label>
+            <input type="text" name="postTitle" id="postTitle" />
+            <br />
+            <label for="postLink">Link:</label>
+            <input type="text" name="postLink" id="postLink" />
+            <br />
+            <label for="postContent">Content:</label>
+            <textarea id="postContent" name="postContent"></textarea>
+            <br />
+            <input type="submit" value="Submit" />
+        </form>
+        <p id="postStatus"></p>
+    </div>
+</body>
+</html>
+
+{% load staticfiles %}
+<script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
+<script src="{% static 'Javascript/postTest.js' %}"></script>
+
+
