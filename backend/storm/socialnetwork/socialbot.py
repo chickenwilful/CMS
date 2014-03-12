@@ -140,6 +140,8 @@ class DummyBot(SocialBot):
         pass
 
 class FacebookBot(SocialBot):
+    """A SocialBot that can interface with the Facebook Graph API.
+    """
 
     def __init__(self, app_id, app_secret):
         self.__app_id = app_id
@@ -220,13 +222,15 @@ class FacebookBot(SocialBot):
             del self._main_token
 
 class TwitterBot(SocialBot):
+    """A SocialBot that can interface with the Twitter REST API.
+    """
 
     @staticmethod
-    def get_char_limit():
+    def __get_char_limit():
         return 140
 
     @staticmethod
-    def get_url_length():
+    def __get_url_length():
         return 23
 
     def __init__(self, app_id, app_secret):
@@ -237,7 +241,7 @@ class TwitterBot(SocialBot):
         twitter = Twython(self.__app_id, self.__app_secret,
                           self._main_token, self._sub_token)
         
-        char_limit = self.get_char_limit() - self.get_url_length() - 1
+        char_limit = self.__get_char_limit() - self.__get_url_length() - 1
         
         status_text = title
         if len(title) > char_limit:
@@ -311,19 +315,50 @@ class TwitterBot(SocialBot):
 # Even though this bot is meant to post updates to G+, it will post them to the Buffer API instead.
 # Google has yet to release an API for Pages publicly, so we have to do it from a 3rd party API.
 class GPlusBot(SocialBot):
+    """A SocialBot that can interface with the Google+ Page API.
+    """
 
     def __init__(self, app_id, app_secret):
         self.__app_id = app_id
         self.__app_secret = app_secret
 
     @staticmethod
-    def get_token_dict(access_token):
+    def __get_token_dict(access_token):
+        """Generates a token valid for use with OAuth2Sessions
+        
+        @type  access_token: str
+        @param access_token: The access token string for the session.
+        
+        @rtype: dict
+        @return: A dict containing both the access token, and the required
+                 token_type as follows:
+                 {"access_token": 'anf@_(QRNF2',
+                 "token_type": "Bearer"}
+        """
         return { "access_token" : access_token, "token_type" : "Bearer" }
+    
+    @staticmethod
+    def __missing_token_type_compliance_hook(response):
+        """OAuthlib compliance hook for Buffer
+        
+        Buffer does not return a token_type with its access token, so we must
+        insert the token_type into the response.
+        
+        @type  response: HttpResponse
+        @param response: Response retrieved from the server.
+        
+        @rtype: HttpResponse
+        @return: The same response but modified to fit the OAuth specification.
+        """
+        token = json.loads(response.text)
+        token['token_type'] = 'Bearer'
+        response._content = json.dumps(token).encode('UTF-8')
+        return response
     
     def post(self, title, content, link):
         message = title + '\n\n' + content
         
-        token_dict = self.get_token_dict(self._main_token)
+        token_dict = self.__get_token_dict(self._main_token)
         profile_id = self._sub_token
         
         post_data = {}
@@ -380,7 +415,7 @@ class GPlusBot(SocialBot):
         oauth_session = OAuth2Session(self.__app_id, redirect_uri=callback_url)
         # Register the Buffer compliance hook
         oauth_session.register_compliance_hook("access_token_response",
-                                               self.missing_token_type_compliance_hook)
+                                               self.__missing_token_type_compliance_hook)
         token = oauth_session.fetch_token("https://api.bufferapp.com/1/oauth2/token.json",
                                           code=client_token,
                                           client_secret=self.__app_secret)
@@ -394,7 +429,7 @@ class GPlusBot(SocialBot):
         return result
 
     def get_pages(self, request_token):
-        request_token_dict = self.get_token_dict(request_token)
+        request_token_dict = self.__get_token_dict(request_token)
         
         oauth_session = OAuth2Session(self.__app_id, token=request_token_dict)
         response = oauth_session.get("https://api.bufferapp.com/1/profiles.json")
