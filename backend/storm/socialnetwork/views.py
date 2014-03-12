@@ -30,7 +30,7 @@ def social(request):
     })
 
 @require_GET
-def social_post_test(request):
+def social_test(request):
     return render(request, "postTest.html", {
         "social_post_uri" : reverse('socialnetwork.views.social_post')
     })
