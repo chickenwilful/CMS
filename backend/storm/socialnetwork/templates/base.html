@@ -1,23 +1,27 @@
 <!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
 
 <html>
-<head><title>Social Network Login</title>
+<head><title>Social Network Manager</title>
+<script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 </head>
 <body>
-    <div>
-        <h2>Social Network Login</h2>
+    <div class="container">
+        <div class="page-header">
+            <h1>Social Network Manager</h1>
+        </div>
+        {% bootstrap_messages %}
+        
         {% for site in sites.values %}
         {% if site.is_logged_in %}
-        <p>Posting on {{ site.name }} as <a href="{{ site.account_url }}">{{ site.account_name }}</a>. <a href="{{ site.logout_uri }}">Remove Token</a></p>
+        <p>Posting on {{ site.name }} as <a href="{{ site.account_url }}">{{ site.account_name }}</a>. <a class="btn btn-danger" href="{{ site.logout_uri }}"><span class="glyphicon glyphicon-remove"></span></a></p>
         {% else %}
-        <p><a href="{{ site.auth_uri }}">Login with {{ site.name }}</a></p>
+        <p><a class="btn btn-primary" href="{{ site.auth_uri }}">Login with {{ site.name }}</a></p>
         {% endif %}
         {% endfor %}
     </div>
 </body>
 </html>
-
-{% load staticfiles %}
-<script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
-
-

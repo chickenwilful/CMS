@@ -1,35 +1,48 @@
 <!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
 
 <html>
 <head><title>Social Network Test</title>
+<script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
 <script>
     var settings = {
         socialPostURI: "{{ social_post_uri }}"
     };
 </script>
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<script src="{% static 'Javascript/postTest.js' %}"></script>
 </head>
 <body>
-    <div>
+    <div class="container">
         <h2>Social Network Test</h2>
-        <form id="postForm" action="post" method="post">
-            <label for="postTitle">Title:</label>
-            <input type="text" name="postTitle" id="postTitle" />
-            <br />
-            <label for="postLink">Link:</label>
-            <input type="text" name="postLink" id="postLink" />
-            <br />
-            <label for="postContent">Content:</label>
-            <textarea id="postContent" name="postContent"></textarea>
-            <br />
-            <input type="submit" value="Submit" />
+        <div id="alerts">
+            <div class="alert alert-danger fade in" id="errorAlert" style="display:none;">
+                <button type="button" class="close">x</button>
+                <span>Your error message goes here...</span>
+            </div>
+            <div class="alert alert-success fade in" id="successAlert" style="display:none;">
+                <button type="button" class="close">x</button>
+                <span>Your error message goes here...</span>
+            </div>
+        </div>
+        <form role="form" id="postForm" action="post" method="post">
+            <div class="form-group">
+                <label for="postTitle">Title:</label>
+                <input type="text" name="postTitle" id="postTitle" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="postLink">Link:</label>
+                <input type="text" name="postLink" id="postLink" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="postContent">Content:</label>
+                <textarea id="postContent" name="postContent" class="form-control"></textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" data-loading-text="Publishing..." value="Publish" />
         </form>
         <p id="postStatus"></p>
     </div>
 </body>
 </html>
-
-{% load staticfiles %}
-<script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
-<script src="{% static 'Javascript/postTest.js' %}"></script>
-
-

@@ -1,14 +1,18 @@
 <!DOCTYPE html>
+{% load bootstrap3 %}
+{% load staticfiles %}
 
 <html>
-<head><title>Facebook Login</title>
-{% load staticfiles %}
+<head><title>Social Network Page Selection</title>
 <script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
+{% bootstrap_css %}
+{% bootstrap_javascript %}
 <script>
 jQuery.noConflict();
 jQuery(document).ready(function() {
     jQuery("#pageForm").submit(function(event) {
         var pageId = jQuery("#pageForm").find("select[name=page]").val();
+        jQuery("#pageForm input[type=submit]").button("loading");
         jQuery.post("{{ process_uri }}", { pageId: pageId })
             .done(function() {
                 window.location.href = "{{ root_uri }}";
@@ -23,22 +27,24 @@ jQuery(document).ready(function() {
 </script>
 </head>
 <body>
-<!-- Begin Facebook SDK Embed -->
-    <div id="fb-root"></div>
-<!-- End Facebook SDK Embed -->
-    <div>
+    <div class="container">
+        <div class="page-header">
+            <h1>Social Network Page Selection</h1>
+        </div>
         {% if pages %}
-        <form id="pageForm" action="{{ process_uri }}" method="POST">
-            <label for="pageSelect">Page: </label>
-            <select id="pageSelect" name="page">
-                {% for page in pages %}
-                    <option value="{{ page.id }}">{{ page.name }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Submit" />
+        <form id="pageForm" class="form-inline" role="form" action="{{ process_uri }}" method="POST">
+            <div class="form-group">
+                <label for="pageSelect">Page: </label>
+                <select id="pageSelect" name="page" class="form-control">
+                    {% for page in pages %}
+                        <option value="{{ page.id }}">{{ page.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Submit" data-loading-text="Loading" />
         </form>
         {% else %}
-        <p>Please create a page for crisis updates, then try again.</p>
+        <div class="alert alert-danger">Please create a page for crisis updates, then try again.</div>
         {% endif %}
     </div>
 </body>
