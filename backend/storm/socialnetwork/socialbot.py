@@ -237,8 +237,14 @@ class FacebookBot(SocialBot):
         if hasattr(self, "_page_name"):
             return self._page_name
         elif hasattr(self, "_main_token"):
-            # TODO: Retrieve page name
-            return "To be retrieved"
+            graph = facebook.GraphAPI(self._main_token)
+            #import pdb; pdb.set_trace()
+            page_info = graph.get_object("me")
+            if "name" in page_info:
+                self._page_name = page_info["name"]
+                return self._page_name
+            else:
+                return "Unknown"
         return "Unauthorized"
     
     def post(self, title, content, link):
@@ -369,8 +375,16 @@ class TwitterBot(SocialBot):
         if hasattr(self, "_account_name"):
             return self._account_name
         elif hasattr(self, "_main_token"):
-            # TODO: Retrieve Twitter account name
-            return "To be retrieved"
+            twitter = Twython(self.__app_id, self.__app_secret,
+                              self._main_token, self._sub_token)
+            
+            user_info = twitter.verify_credentials()
+            
+            if "screen_name" in user_info:
+                self._account_name = user_info["screen_name"]
+                return self._account_name
+            else:
+                return "Unknown"
         return "Unauthorized"
     
     def post(self, title, content, link):
@@ -499,8 +513,16 @@ class GPlusBot(SocialBot):
         if hasattr(self, "_page_name"):
             return self._page_name
         elif hasattr(self, "_main_token"):
-            # TODO: Retrieve Google+ account name
-            return "To be retrieved"
+            page_id = self._sub_token
+            token_dict = self._get_token_dict(self._main_token)
+            oauth_session = OAuth2Session(self.__app_id, token=token_dict)
+            #import pdb; pdb.set_trace()
+            page_info = oauth_session.get("https://api.bufferapp.com/1/profiles/%s.json" % page_id).json()
+            if "formatted_username" in page_info:
+                self._page_name = page_info["formatted_username"]
+                return self._page_name
+            else:
+                return "Unknown"
         return "Unauthorized"
     
     def post(self, title, content, link):
