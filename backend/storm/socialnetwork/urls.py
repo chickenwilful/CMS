@@ -10,11 +10,4 @@ urlpatterns = patterns(
     url(r'^(?P<site>\w+)/auth$', views.social_auth, name="social_auth"),
     url(r'^(?P<site>\w+)/callback$', views.social_callback, name="social_callback"),
     url(r'^(?P<site>\w+)/page$', views.social_page_select, name="social_page_select"),
-    url(r'^facebook/page$', views.facebook_page_select, name="facebook_page_select"),
-    url(r'^facebook/process$', views.facebook_process, name="facebook_process"),
-    url(r'^twitter/auth$', views.twitter_auth, name="twitter_auth"),
-    url(r'^twitter/callback$', views.twitter_callback, name="twitter_callback"),
-    url(r'^gplus/auth$', views.gplus_auth, name="gplus_auth"),
-    url(r'^gplus/callback$', views.gplus_callback, name="gplus_callback"),
-    url(r'^gplus/process$', views.gplus_process, name="gplus_process"),
 )
