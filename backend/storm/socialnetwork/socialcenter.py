@@ -2,6 +2,7 @@ from django.conf import settings
 from models import SocialToken
 from datetime import datetime
 import logging
+import re
 
 from socialbot import SocialBot, FacebookBot, TwitterBot, GPlusBot
 
@@ -45,6 +46,15 @@ class SocialCenter(object):
             social_token = self.get_token(site)
             if social_token:
                 social_bot.authenticate(social_token.main_token, social_token.sub_token)
+    
+    @staticmethod
+    def __parse_localhost_url(url):
+        localhost_url = "yoogle.com"
+        localhost_regex = r"(?:^|(?<=\w://))localhost(?=(?:(?::\d+)?/.*)?$)"
+        
+        new_url = re.sub(localhost_regex, localhost_url, url, re.IGNORECASE)
+        
+        return new_url
     
     @staticmethod
     def housekeep_datastore():
@@ -169,6 +179,10 @@ class SocialCenter(object):
                 }
             ]
         """
+        if link:
+            # Remove all references to localhost URLs
+            # Some online services cannot handle localhost links.
+            link = self.__parse_localhost_url(link)
         if site:
             if self.is_logged_in(site):
                 result = self.bots[site].post(title, content, link)
