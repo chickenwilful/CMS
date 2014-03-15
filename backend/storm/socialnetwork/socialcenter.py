@@ -79,6 +79,7 @@ class SocialCenter(object):
             site_info["name"] = bot.get_site_name()
             if site_info["is_logged_in"]:
                 site_info["account_name"] = bot.get_account_name()
+                site_info["account_url"] = bot.get_account_url()
             sites[id] = site_info
         return sites
     
@@ -110,6 +111,9 @@ class SocialCenter(object):
     
     def get_account_name(self, site):
         return self.bots[site].get_account_name()
+    
+    def get_account_url(self, site):
+        return self.bots[site].get_account_url()
         
     def process_client_token(self, site, token, auth_data):
         result = self.bots[site].process_token(token, auth_data)

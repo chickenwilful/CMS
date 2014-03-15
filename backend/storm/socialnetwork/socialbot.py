@@ -85,6 +85,18 @@ class SocialBot(object):
         pass
     
     @abstractmethod
+    def get_account_url(self):
+        """The account/page URL on which the SocialBot is publishing posts on.
+        
+        @rtype: str
+        @return: The SocialBot will publish posts on the URL returned by this
+                 method. If the SocialBot does not allow selection of pages,
+                 this will be the account URL. Otherwise, this will be a page
+                 URL.
+        """
+        pass
+    
+    @abstractmethod
     def post(self, title, content, link):
         """Posts content to the site managed by the SocialBot
         
@@ -221,6 +233,20 @@ class FacebookBot(SocialBot):
         self.__app_id = app_id
         self.__app_secret = app_secret
     
+    def __retrieve_account_details(self):
+        graph = facebook.GraphAPI(self._main_token)
+        #import pdb; pdb.set_trace()
+        page_info = graph.get_object("me")
+        
+        if "name" in page_info:
+            page_name = page_info["name"]
+            page_url = page_info["link"]
+            self._page_name = page_name
+            self._page_url = page_url
+            return page_name, page_url
+        else:
+            return None, None
+    
     def must_refresh_token(self):
         return False
     
@@ -237,14 +263,19 @@ class FacebookBot(SocialBot):
         if hasattr(self, "_page_name"):
             return self._page_name
         elif hasattr(self, "_main_token"):
-            graph = facebook.GraphAPI(self._main_token)
-            #import pdb; pdb.set_trace()
-            page_info = graph.get_object("me")
-            if "name" in page_info:
-                self._page_name = page_info["name"]
-                return self._page_name
+            page_name, page_url = self.__retrieve_account_details()
+            if page_name:
+                return page_name
             else:
                 return "Unknown"
+        return "Unauthorized"
+    
+    def get_account_url(self):
+        if hasattr(self, "_page_url"):
+            return self._page_url
+        elif hasattr(self, "_main_token"):
+            page_name, page_url = self.__retrieve_account_details()
+            return page_url
         return "Unauthorized"
     
     def post(self, title, content, link):
@@ -359,6 +390,21 @@ class TwitterBot(SocialBot):
     def __get_url_length():
         return 23
     
+    def __retrieve_account_details(self):
+        twitter = Twython(self.__app_id, self.__app_secret,
+                          self._main_token, self._sub_token)
+        
+        user_info = twitter.verify_credentials()
+        
+        if "screen_name" in user_info:
+            account_name = user_info["screen_name"]
+            account_url = "https://twitter.com/%s" % account_name
+            self._account_name = account_name
+            self._account_url = account_url
+            return account_name, account_url
+        else:
+            return None, None
+    
     def must_refresh_token(self):
         return False
     
@@ -375,16 +421,20 @@ class TwitterBot(SocialBot):
         if hasattr(self, "_account_name"):
             return self._account_name
         elif hasattr(self, "_main_token"):
-            twitter = Twython(self.__app_id, self.__app_secret,
-                              self._main_token, self._sub_token)
+            username, account_url = self.__retrieve_account_details()
             
-            user_info = twitter.verify_credentials()
-            
-            if "screen_name" in user_info:
-                self._account_name = user_info["screen_name"]
-                return self._account_name
+            if username:
+                return username
             else:
                 return "Unknown"
+        return "Unauthorized"
+    
+    def get_account_url(self):
+        if hasattr(self, "_account_url"):
+            return self._account_url
+        elif hasattr(self, "_main_token"):
+            page_name, account_url = self.__retrieve_account_details()
+            return account_url
         return "Unauthorized"
     
     def post(self, title, content, link):
@@ -497,6 +547,22 @@ class GPlusBot(SocialBot):
         response._content = json.dumps(token).encode('UTF-8')
         return response
     
+    def __retrieve_account_details(self):
+        page_id = self._sub_token
+        token_dict = self._get_token_dict(self._main_token)
+        oauth_session = OAuth2Session(self.__app_id, token=token_dict)
+        
+        page_info = oauth_session.get("https://api.bufferapp.com/1/profiles/%s.json" % page_id).json()
+        if "formatted_username" in page_info:
+            page_name = page_info["formatted_username"]
+            
+            page_url = "https://plus.google.com/%s/" % page_info["service_id"]
+            self._page_name = page_name
+            self._page_url = page_url
+            return page_name, page_url
+        else:
+            return None, None
+    
     def must_refresh_token(self):
         return False
     
@@ -513,16 +579,20 @@ class GPlusBot(SocialBot):
         if hasattr(self, "_page_name"):
             return self._page_name
         elif hasattr(self, "_main_token"):
-            page_id = self._sub_token
-            token_dict = self._get_token_dict(self._main_token)
-            oauth_session = OAuth2Session(self.__app_id, token=token_dict)
-            #import pdb; pdb.set_trace()
-            page_info = oauth_session.get("https://api.bufferapp.com/1/profiles/%s.json" % page_id).json()
-            if "formatted_username" in page_info:
-                self._page_name = page_info["formatted_username"]
-                return self._page_name
+            page_name, page_url = self.__retrieve_account_details()
+            
+            if page_name:
+                return page_name
             else:
                 return "Unknown"
+        return "Unauthorized"
+    
+    def get_account_url(self):
+        if hasattr(self, "_page_url"):
+            return self._page_url
+        elif hasattr(self, "_main_token"):
+            page_name, page_url = self.__retrieve_account_details()
+            return page_url
         return "Unauthorized"
     
     def post(self, title, content, link):

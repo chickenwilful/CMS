@@ -8,7 +8,7 @@
         <h2>Social Network Login</h2>
         {% for site in sites.values %}
         {% if site.is_logged_in %}
-        <p>Posting on {{ site.name }} as {{ site.account_name }}. <a href="{{ site.logout_uri }}">Remove Token</a></p>
+        <p>Posting on {{ site.name }} as <a href="{{ site.account_url }}">{{ site.account_name }}</a>. <a href="{{ site.logout_uri }}">Remove Token</a></p>
         {% else %}
         <p><a href="{{ site.auth_uri }}">Login with {{ site.name }}</a></p>
         {% endif %}
