@@ -2,40 +2,22 @@
 
 <html>
 <head><title>Social Network Login</title>
-<script>
-    var settings = {
-        facebookAppId: "{{ facebook_app_id }}",
-        facebookRedirectURI: "{{ facebook_redirect_uri }}"
-    };
-</script>
 </head>
 <body>
-<!-- Begin Facebook SDK Embed -->
-    <div id="fb-root"></div>
-<!-- End Facebook SDK Embed -->
     <div>
         <h2>Social Network Login</h2>
-        {% if not is_logged_into_twitter %}
-        <p><a href="{{ twitter_auth_uri }}">Login with Twitter</a></p>
+        {% for site in sites.values %}
+        {% if site.is_logged_in %}
+        <p>Posting on {{ site.name }} as {{ site.account_name }}. <a href="{{ site.logout_uri }}">Remove Token</a></p>
         {% else %}
-        <p><a href="{{ twitter_logout_uri }}">Remove Twitter Token</a></p>
+        <p><a href="{{ site.auth_uri }}">Login with {{ site.name }}</a></p>
         {% endif %}
-        {% if not is_logged_into_facebook %}
-        <p><a id="facebook-login" href="javascript:;">Login with Facebook</a></p>
-        {% else %}
-        <p><a href="{{ facebook_logout_uri }}">Remove Facebook Token</a></p>
-        {% endif %}
-        {% if not is_logged_into_gplus %}
-        <p><a href="{{ gplus_auth_uri }}">Login with Google+</a></p>
-        {% else %}
-        <p><a href="{{ gplus_logout_uri }}">Remove Google+ Token</a></p>
-        {% endif %}
+        {% endfor %}
     </div>
 </body>
 </html>
 
 {% load staticfiles %}
 <script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
-<script src="{% static 'Javascript/socialLogin.js' %}"></script>
 
 

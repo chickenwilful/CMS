@@ -71,6 +71,17 @@ class SocialCenter(object):
         social_token = SocialToken(site=site, main_token=main_token, sub_token=sub_token, expiry_date = expiry_date)
         social_token.save()
     
+    def get_sites(self):
+        sites = {}
+        for id, bot in self.bots.items():
+            site_info = {}
+            site_info["is_logged_in"] = self.is_logged_in(id)
+            site_info["name"] = bot.get_site_name()
+            if site_info["is_logged_in"]:
+                site_info["account_name"] = bot.get_account_name()
+            sites[id] = site_info
+        return sites
+    
     def add_site(self, site, social_bot):
         if not isinstance(social_bot, SocialBot):
             raise ValueError("A SocialBot must be provided!")
@@ -79,14 +90,29 @@ class SocialCenter(object):
         else:
             raise ValueError("A valid site name must be provided!")
     
+    def has_site(self, site):
+        return site in self.bots
+    
     def is_logged_in(self, site):
         num_of_tokens = SocialToken.objects.filter(site=site
         ).exclude(expiry_date__lte=datetime.today()
         ).count()
         return num_of_tokens > 0
+    
+    def must_select_page(self, site):
+        return self.bots[site].must_select_page()
+    
+    def get_site_name(self, site):
+        return self.bots[site].get_site_name()
+    
+    def get_client_token_name(self, site):
+        return self.bots[site].get_client_token_name()
+    
+    def get_account_name(self, site):
+        return self.bots[site].get_account_name()
         
-    def process_client_token(self, site, token, **kwargs):
-        result = self.bots[site].process_token(token, **kwargs)
+    def process_client_token(self, site, token, auth_data):
+        result = self.bots[site].process_token(token, auth_data)
         return result
     
     def authenticate(self, site, main_token, sub_token=None):
@@ -98,7 +124,10 @@ class SocialCenter(object):
         return result
     
     def start_authentication(self, site, callback_url):
-        return self.bots[site].start_authentication(callback_url)
+        if site in self.bots:
+            return self.bots[site].start_authentication(callback_url)
+        else:
+            return None, None
     
     def get_pages(self, site, request_token):
         return self.bots[site].get_pages(request_token)

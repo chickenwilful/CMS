@@ -15,6 +15,74 @@ class SocialBot(object):
     to the containing SocialCenter.
     """
     __metaclass__ = ABCMeta
+
+    @staticmethod
+    def _get_token_dict(access_token):
+        """Generates a token valid for use with OAuth2Sessions
+        
+        @type  access_token: str
+        @param access_token: The access token string for the session.
+        
+        @rtype: dict
+        @return: A dict containing both the access token, and the required
+                 token_type as follows:
+                 {"access_token": 'anf@_(QRNF2',
+                 "token_type": "Bearer"}
+        """
+        return { "access_token" : access_token, "token_type" : "Bearer" }
+    
+    @abstractmethod
+    def must_refresh_token(self):
+        """Whether the SocialBot needs its tokens refreshed every so often.
+        
+        @rtype: bool
+        @return: True if the tokens need to be refreshed.
+        """
+        pass
+    
+    @abstractmethod
+    def must_select_page(self):
+        """Whether the SocialBot requires that a page be selected.
+        
+        @rtype: bool
+        @return: True if a page needs to be selected.
+        """
+        pass
+    
+    @abstractmethod
+    def get_site_name(self):
+        """The site name represented by the SocialBot.
+        
+        @rtype: str
+        @return: The full name of the site represented.
+        """
+        pass
+    
+    @abstractmethod
+    def get_client_token_name(self):
+        """The client token name returned in the OAuth callback.
+        
+        OAuth services return an authorization code in the callback from their
+        login page, but the name of this code differs among different services.
+        This name will be one of the keys in the GET request of the callback,
+        if the user authorization was successful.
+        
+        @rtype: str
+        @return: The name of the authorization code.
+        """
+        pass
+    
+    @abstractmethod
+    def get_account_name(self):
+        """The account/page name on which the SocialBot is publishing posts on.
+        
+        @rtype: str
+        @return: The SocialBot will publish posts on the name returned by this
+                 method. If the SocialBot does not allow selection of pages,
+                 this will be the account name. Otherwise, this will be a page
+                 name.
+        """
+        pass
     
     @abstractmethod
     def post(self, title, content, link):
@@ -91,21 +159,22 @@ class SocialBot(object):
         pass
     
     @abstractmethod
-    def process_token(self, client_token, **kwargs):
+    def process_token(self, client_token, auth_data):
         """Processes the returned token from the OAuth authentication process.
         
         Note that this function can take in any number of keyword arguments,
         and will typically take in the same arguments as the tokens returned
         by C{start_authentication}.
         
-        @type  client_token: str
-        @param client_token: The token returned from the website.
+        The returned token may be used in C{authenticate} immediately, or be
+        used in more refined requests first.
         
-        @keyword client_secret: The secret key for a registered app on the
-            website, which may be required for the token exchange.
-        @keyword callback_url: The callback URL specified in the beginning
-            of the OAuth process, in C{start_authentication}. May be required
-            by the website (and the SocialBot).
+        @type  client_token: str
+        @type auth_data: dict
+        
+        @param client_token: The token returned from the website.
+        @param auth_data: All the session authentication information returned
+                          by C{start_authentication}.
         
         @rtype: dict
         @return: A dict containing the main token, as well as any other token
@@ -144,10 +213,33 @@ class DummyBot(SocialBot):
 class FacebookBot(SocialBot):
     """A SocialBot that can interface with the Facebook Graph API.
     """
+    
+    __client_token_name = "code"
+    __permissions = ["manage_pages","status_update"]
 
     def __init__(self, app_id, app_secret):
         self.__app_id = app_id
         self.__app_secret = app_secret
+    
+    def must_refresh_token(self):
+        return False
+    
+    def must_select_page(self):
+        return True
+    
+    def get_site_name(self):
+        return "Facebook"
+    
+    def get_client_token_name(self):
+        return self.__client_token_name
+    
+    def get_account_name(self):
+        if hasattr(self, "_page_name"):
+            return self._page_name
+        elif hasattr(self, "_main_token"):
+            # TODO: Retrieve page name
+            return "To be retrieved"
+        return "Unauthorized"
     
     def post(self, title, content, link):
         message = title or content or None
@@ -188,15 +280,28 @@ class FacebookBot(SocialBot):
         pass
     
     def start_authentication(self, callback_url):
-        # Authentication is handled by the Facebook Javascript SDK
-        pass
-
-    def process_token(self, client_token, **kwargs):
-        if isinstance(client_token, dict):
-            user = facebook.get_user_from_cookie(client_token, self.__app_id, self.__app_secret)
-            client_token = user["access_token"]
+        auth_data = {}
+        auth_data["callback_url"] = callback_url
         
-        graph = facebook.GraphAPI(client_token)
+        oauth_url = facebook.auth_url(self.__app_id, callback_url,
+                                      perms = self.__permissions)
+        
+        return oauth_url, auth_data
+
+    def process_token(self, client_token, auth_data):
+        callback_url = auth_data["callback_url"]
+        
+        auth_response = facebook.get_access_token_from_code(client_token,
+                                                           callback_url,
+                                                           self.__app_id,
+                                                           self.__app_secret)
+        
+        if "access_token" not in auth_response:
+            return { "error" : "Unable to authenticate code." }
+        
+        access_token = auth_response["access_token"]
+        
+        graph = facebook.GraphAPI(access_token)
         extension_response = graph.extend_access_token(self.__app_id, self.__app_secret)
         
         extended_token = extension_response.get("access_token")
@@ -227,10 +332,18 @@ class FacebookBot(SocialBot):
     def clear_token(self):
         if hasattr(self, "_main_token"):
             del self._main_token
+        if hasattr(self, "_page_name"):
+            del self._page_name
 
 class TwitterBot(SocialBot):
     """A SocialBot that can interface with the Twitter REST API.
     """
+    
+    __client_token_name = "oauth_verifier"
+
+    def __init__(self, app_id, app_secret):
+        self.__app_id = app_id
+        self.__app_secret = app_secret
 
     @staticmethod
     def __get_char_limit():
@@ -239,10 +352,26 @@ class TwitterBot(SocialBot):
     @staticmethod
     def __get_url_length():
         return 23
-
-    def __init__(self, app_id, app_secret):
-        self.__app_id = app_id
-        self.__app_secret = app_secret
+    
+    def must_refresh_token(self):
+        return False
+    
+    def must_select_page(self):
+        return False
+    
+    def get_site_name(self):
+        return "Twitter"
+    
+    def get_client_token_name(self):
+        return self.__client_token_name
+    
+    def get_account_name(self):
+        if hasattr(self, "_account_name"):
+            return self._account_name
+        elif hasattr(self, "_main_token"):
+            # TODO: Retrieve Twitter account name
+            return "To be retrieved"
+        return "Unauthorized"
     
     def post(self, title, content, link):
         status_text = title or content or None
@@ -289,15 +418,15 @@ class TwitterBot(SocialBot):
         twitter = Twython(self.__app_id, self.__app_secret)
         auth = twitter.get_authentication_tokens(callback_url=callback_url)
         
-        auth_data["twitter_oauth_token"] = auth["oauth_token"]
-        auth_data["twitter_oauth_token_secret"] = auth["oauth_token_secret"]
+        auth_data["oauth_token"] = auth["oauth_token"]
+        auth_data["oauth_token_secret"] = auth["oauth_token_secret"]
         oauth_url = auth["auth_url"]
         
         return oauth_url, auth_data
 
-    def process_token(self, client_token, **kwargs):
-        twitter_oauth_token = kwargs["oauth_token"]
-        twitter_oauth_secret = kwargs["oauth_secret"]
+    def process_token(self, client_token, auth_data):
+        twitter_oauth_token = auth_data["oauth_token"]
+        twitter_oauth_secret = auth_data["oauth_token_secret"]
         twitter = Twython(self.__app_id, self.__app_secret,
                           twitter_oauth_token, twitter_oauth_secret)
         
@@ -314,38 +443,27 @@ class TwitterBot(SocialBot):
         return result
 
     def get_pages(self, request_token):
-        return None
+        raise NotImplementedError("This SocialBot has no pages.")
         
     def clear_token(self):
         if hasattr(self, "_main_token"):
             del self._main_token
         if hasattr(self, "_sub_token"):
             del self._sub_token
+        if hasattr(self, "_account_name"):
+            del self._account_name
 
 # Even though this bot is meant to post updates to G+, it will post them to the Buffer API instead.
 # Google has yet to release an API for Pages publicly, so we have to do it from a 3rd party API.
 class GPlusBot(SocialBot):
     """A SocialBot that can interface with the Google+ Page API.
     """
+    
+    __client_token_name = "code"
 
     def __init__(self, app_id, app_secret):
         self.__app_id = app_id
         self.__app_secret = app_secret
-
-    @staticmethod
-    def __get_token_dict(access_token):
-        """Generates a token valid for use with OAuth2Sessions
-        
-        @type  access_token: str
-        @param access_token: The access token string for the session.
-        
-        @rtype: dict
-        @return: A dict containing both the access token, and the required
-                 token_type as follows:
-                 {"access_token": 'anf@_(QRNF2',
-                 "token_type": "Bearer"}
-        """
-        return { "access_token" : access_token, "token_type" : "Bearer" }
     
     @staticmethod
     def __missing_token_type_compliance_hook(response):
@@ -365,6 +483,26 @@ class GPlusBot(SocialBot):
         response._content = json.dumps(token).encode('UTF-8')
         return response
     
+    def must_refresh_token(self):
+        return False
+    
+    def must_select_page(self):
+        return True
+    
+    def get_site_name(self):
+        return "Google+"
+    
+    def get_client_token_name(self):
+        return self.__client_token_name
+    
+    def get_account_name(self):
+        if hasattr(self, "_page_name"):
+            return self._page_name
+        elif hasattr(self, "_main_token"):
+            # TODO: Retrieve Google+ account name
+            return "To be retrieved"
+        return "Unauthorized"
+    
     def post(self, title, content, link):
         message = title or content or None
         if not message:
@@ -372,7 +510,7 @@ class GPlusBot(SocialBot):
         if title and content:
             message += "\n\n" + content
         
-        token_dict = self.__get_token_dict(self._main_token)
+        token_dict = self._get_token_dict(self._main_token)
         profile_id = self._sub_token
         
         post_data = {}
@@ -419,12 +557,13 @@ class GPlusBot(SocialBot):
         oauth_session = OAuth2Session(self.__app_id, redirect_uri=callback_url)
         oauth_url, state = oauth_session.authorization_url('https://bufferapp.com/oauth2/authorize')
         
-        auth_data["state"] = state
+        # auth_data["state"] = state
+        auth_data["callback_url"] = callback_url
         
         return oauth_url, auth_data
 
-    def process_token(self, client_token, **kwargs):
-        callback_url = kwargs.get("callback_url")
+    def process_token(self, client_token, auth_data):
+        callback_url = auth_data["callback_url"]
         
         oauth_session = OAuth2Session(self.__app_id, redirect_uri=callback_url)
         # Register the Buffer compliance hook
@@ -443,7 +582,7 @@ class GPlusBot(SocialBot):
         return result
 
     def get_pages(self, request_token):
-        request_token_dict = self.__get_token_dict(request_token)
+        request_token_dict = self._get_token_dict(request_token)
         
         oauth_session = OAuth2Session(self.__app_id, token=request_token_dict)
         response = oauth_session.get("https://api.bufferapp.com/1/profiles.json")
@@ -464,3 +603,5 @@ class GPlusBot(SocialBot):
             del self._main_token
         if hasattr(self, "_sub_token"):
             del self._sub_token
+        if hasattr(self, "_page_name"):
+            del self._page_name
