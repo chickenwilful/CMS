@@ -7,6 +7,18 @@
 <script src="{% static 'Javascript/jquery-2.1.0.min.js' %}"></script>
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+<style>
+#sitesTable th,
+#sitesTable td
+{
+    padding: 2px 0px;
+}
+#sitesTable tr td:last-child
+{
+    text-align: right;
+    padding-left: 10px;
+}
+</style>
 </head>
 <body>
     <div class="container">
@@ -15,13 +27,21 @@
         </div>
         {% bootstrap_messages %}
         
-        {% for site in sites.values %}
+        <table id="sitesTable">
+        <tbody>
+        {% for site_id, site in sites.items %}
+        <tr id="{{ site_id }}Site">
         {% if site.is_logged_in %}
-        <p>Posting on {{ site.name }} as <a href="{{ site.account_url }}">{{ site.account_name }}</a>. <a class="btn btn-danger" href="{{ site.logout_uri }}"><span class="glyphicon glyphicon-remove"></span></a></p>
+            <td>Posting on {{ site.name }} as <a href="{{ site.account_url }}">{{ site.account_name }}</a>.</td>
+            <td><a class="btn btn-danger logoutButton" href="{{ site.logout_uri }}"><span class="glyphicon glyphicon-remove"></span></a></td>
         {% else %}
-        <p><a class="btn btn-primary" href="{{ site.auth_uri }}">Login with {{ site.name }}</a></p>
+            <td>Not logged into {{ site.name }}.</td>
+            <td><a class="btn btn-primary loginButton" href="{{ site.auth_uri }}">Login</a></td>
         {% endif %}
+        </tr>
         {% endfor %}
+        </tbody>
+        </table>
     </div>
 </body>
 </html>
