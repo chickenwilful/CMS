@@ -20,13 +20,13 @@ def social(request):
         site["auth_uri"] = reverse("socialnetwork.views.social_auth", kwargs={ "site": site_id })
         site["logout_uri"] = reverse("socialnetwork.views.social_logout", kwargs={ "site": site_id })
     
-    return render(request, "base.html", {
+    return render(request, "socialnetwork-main.html", {
         "sites" : sites
     })
 
 @require_GET
 def social_test(request):
-    return render(request, "postTest.html", {
+    return render(request, "socialnetwork-post-test.html", {
         "social_post_uri" : reverse('socialnetwork.views.social_post')
     })
 
@@ -105,7 +105,7 @@ def social_callback(request, site):
         pages = social_center.get_pages(site, main_token)
         request.session[main_token_key] = main_token
             
-        return render(request, "selectPage.html", {
+        return render(request, "socialnetwork-select-page.html", {
             "pages" : pages,
             "root_uri" : reverse("socialnetwork.views.social"),
             "process_uri" : reverse("socialnetwork.views.social_page_select", kwargs={ "site" : site })

@@ -32,7 +32,7 @@
         {% for site_id, site in sites.items %}
         <tr id="{{ site_id }}Site">
         {% if site.is_logged_in %}
-            <td>Posting on {{ site.name }} as <a href="{{ site.account_url }}">{{ site.account_name }}</a>.</td>
+            <td>Posting on {{ site.name }} as <a href="{{ site.account_url|default_if_none:"javascript:;" }}">{{ site.account_name }}</a>.</td>
             <td><a class="btn btn-danger logoutButton" href="{{ site.logout_uri }}"><span class="glyphicon glyphicon-remove"></span></a></td>
         {% else %}
             <td>Not logged into {{ site.name }}.</td>
