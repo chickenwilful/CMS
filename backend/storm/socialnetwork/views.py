@@ -67,6 +67,8 @@ def social_auth(request, site):
     social_center = SocialCenter()
     if not social_center.has_site(site):
         return HttpResponseNotFound("Site not found")
+    if social_center.is_logged_in(site):
+        return redirect("socialnetwork.views.social")
     
     oauth_url, auth_data = social_center.start_authentication(site, callback_url)
     

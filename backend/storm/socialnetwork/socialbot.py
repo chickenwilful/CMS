@@ -236,7 +236,10 @@ class FacebookBot(SocialBot):
     def __retrieve_account_details(self):
         graph = facebook.GraphAPI(self._main_token)
         #import pdb; pdb.set_trace()
-        page_info = graph.get_object("me")
+        try:
+            page_info = graph.get_object("me")
+        except facebook.GraphAPIError as e:
+            return None, None
         
         if "name" in page_info:
             page_name = page_info["name"]
@@ -276,7 +279,7 @@ class FacebookBot(SocialBot):
         elif hasattr(self, "_main_token"):
             page_name, page_url = self.__retrieve_account_details()
             return page_url
-        return "Unauthorized"
+        return None
     
     def post(self, title, content, link):
         message = title or content or None
@@ -394,7 +397,10 @@ class TwitterBot(SocialBot):
         twitter = Twython(self.__app_id, self.__app_secret,
                           self._main_token, self._sub_token)
         
-        user_info = twitter.verify_credentials()
+        try:
+            user_info = twitter.verify_credentials()
+        except TwythonAuthError as e:
+            return None, None
         
         if "screen_name" in user_info:
             account_name = user_info["screen_name"]
@@ -435,7 +441,7 @@ class TwitterBot(SocialBot):
         elif hasattr(self, "_main_token"):
             page_name, account_url = self.__retrieve_account_details()
             return account_url
-        return "Unauthorized"
+        return None
     
     def post(self, title, content, link):
         status_text = title or content or None
@@ -593,7 +599,7 @@ class GPlusBot(SocialBot):
         elif hasattr(self, "_main_token"):
             page_name, page_url = self.__retrieve_account_details()
             return page_url
-        return "Unauthorized"
+        return None
     
     def post(self, title, content, link):
         message = title or content or None
