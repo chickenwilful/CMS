@@ -49,6 +49,8 @@ class SocialCenter(object):
     
     @staticmethod
     def __parse_localhost_url(url):
+        # Remove all references to localhost URLs
+        # Some online services cannot handle localhost links.
         localhost_url = "yoogle.com"
         localhost_regex = r"(?:^|(?<=\w://))localhost(?=(?:(?::\d+)?/.*)?$)"
         
@@ -98,8 +100,17 @@ class SocialCenter(object):
             raise ValueError("A SocialBot must be provided!")
         if site and isinstance(site, str):
             self.bots[site] = social_bot
+            # Authenticate the bot if an entry exists in the datastore
+            social_token = self.get_token(site)
+            if social_token:
+                social_bot.authenticate(social_token.main_token,
+                                        social_token.sub_token)
         else:
             raise ValueError("A valid site name must be provided!")
+    
+    def remove_site(self, site):
+        if site in self.bots:
+            del self.bots[site]
     
     def has_site(self, site):
         return site in self.bots
@@ -180,8 +191,6 @@ class SocialCenter(object):
             ]
         """
         if link:
-            # Remove all references to localhost URLs
-            # Some online services cannot handle localhost links.
             link = self.__parse_localhost_url(link)
         if site:
             if self.is_logged_in(site):
