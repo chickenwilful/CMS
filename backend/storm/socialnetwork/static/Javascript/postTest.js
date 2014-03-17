@@ -23,9 +23,14 @@ jQuery(document).ready(function() {
             successAlert.show();
         })
         .fail(function(response) {
-            responseData = JSON.parse(response.responseText);
-            failedSites = responseData.error;
-            errorAlert.find("span").text("Post failed to publish in the following sites: " + failedSites.join());
+            failedSites = JSON.parse(response.responseText);
+            failedSiteNames = [];
+            for (id in failedSites) {
+                if (failedSites.hasOwnProperty(id)) {
+                    failedSiteNames.push(failedSites[id].name);
+                }
+            }
+            errorAlert.find("span").text("Post failed to publish in the following sites: " + failedSiteNames.join(", "));
             errorAlert.show();
         })
         .always(function() {

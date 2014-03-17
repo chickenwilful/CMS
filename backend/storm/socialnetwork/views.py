@@ -54,14 +54,16 @@ def social_post(request, site=None):
     social_center = SocialCenter()
     results = social_center.publish(title, content, link, site=site)
     logger.debug(results)
-    if isinstance(results, list):
-        failed_list = []
-        for post_attempt in results:
-            result = post_attempt["result"]
-            if "error" in result:
-                failed_list.append(post_attempt["site"])
-        if failed_list:
-            return HttpResponseServerError(json.dumps({ "error" : failed_list }))
+    
+    failed_sites = {}
+    for site, result in results.items():
+        if "error" in result:
+            failed_site = {}
+            failed_site["error"] = result["error"]
+            failed_site["name"] = result["name"]
+            failed_sites[site] = failed_site
+    if failed_sites:
+        return HttpResponseServerError(json.dumps(failed_sites))
     return HttpResponse("OK")
 
 @require_GET

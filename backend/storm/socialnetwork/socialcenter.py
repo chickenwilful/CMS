@@ -195,13 +195,20 @@ class SocialCenter(object):
         if site:
             if self.is_logged_in(site):
                 result = self.bots[site].post(title, content, link)
-                return [{ "site" : site, "result" : result }]
+                result["name"] = self.get_site_name(site)
+                return result
         else:
-            results = []
+            results = {}
             for social_site, social_bot in self.bots.items():
+                results[social_site] = {
+                    "logged_in" : self.is_logged_in(social_site),
+                    "name"      : self.get_site_name(social_site)
+                }
                 if self.is_logged_in(social_site):
-                    result = social_bot.post(title, content, link)
-                    results.append({ "site" : social_site, "result" : result })
+                    result = { "error": "Test error" }
+                    #result = social_bot.post(title, content, link)
+                    # merge results from individual bots with existing values
+                    results[social_site] = dict(result.items() + results[social_site].items())
             return results
         return None
         
