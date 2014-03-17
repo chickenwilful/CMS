@@ -1,16 +1,29 @@
-from django.conf import settings
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseServerError, HttpResponseNotFound
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET, require_POST
+from django.http import HttpResponse, HttpResponseServerError, HttpResponseNotFound, HttpResponseForbidden
+from django.core.exceptions import PermissionDenied
 import json
 import logging
 
-from socialcenter import SocialCenter, Sites
+from socialcenter import SocialCenter
+from utils import has_socialnetwork_perms
 
 logger = logging.getLogger('storm')
 
+def user_has_socialtoken_perms(func):
+    # Function decorator to ensure only the user/group with proper SocialToken
+    # permissions can access any view within this app.
+    def checker(request):
+        user = request.user
+        if has_socialnetwork_perms(user):
+            return func(request)
+        else:
+            raise PermissionDenied
+    return checker
+
 @require_GET
+@user_has_socialtoken_perms
 def social(request):
     social_center = SocialCenter()
     
@@ -25,12 +38,14 @@ def social(request):
     })
 
 @require_GET
+@user_has_socialtoken_perms
 def social_test(request):
     return render(request, "socialnetwork-post-test.html", {
         "social_post_uri" : reverse('socialnetwork.views.social_post')
     })
 
 @require_POST
+@user_has_socialtoken_perms
 def social_post(request, site=None):
     logger.debug(request.POST)
     title = request.POST["postTitle"]
@@ -50,6 +65,7 @@ def social_post(request, site=None):
     return HttpResponse("OK")
 
 @require_GET
+@user_has_socialtoken_perms
 def social_logout(request, site):
     social_center = SocialCenter()
     if not social_center.has_site(site):
@@ -59,6 +75,7 @@ def social_logout(request, site):
     return redirect('socialnetwork.views.social')
 
 @require_GET
+@user_has_socialtoken_perms
 def social_auth(request, site):
     
     callback_url = request.build_absolute_uri(reverse('socialnetwork.views.social_callback', kwargs={ "site" : site }))
@@ -77,6 +94,7 @@ def social_auth(request, site):
     return redirect(oauth_url)
 
 @require_GET
+@user_has_socialtoken_perms
 def social_callback(request, site):
     social_center = SocialCenter()
     
@@ -119,6 +137,7 @@ def social_callback(request, site):
         return redirect("socialnetwork.views.social")
 
 @require_POST
+@user_has_socialtoken_perms
 def social_page_select(request, site):
     social_center = SocialCenter()
     
