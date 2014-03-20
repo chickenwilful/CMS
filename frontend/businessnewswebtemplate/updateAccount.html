@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<title>Blakletterpress Website Template</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+<script>
+function validateForm()
+{
+	var x = document.forms["form1"]["postalCode"].value;
+	
+	var a = document.getElementById("postalCode").value;
+	var b = document.getElementById("address").value;
+	var c = document.getElementById("userName").value;
+	var d = document.getElementById("oldPwd").value;
+	var e = document.getElementById("newPwd").value;
+	
+    if (c.length == 0)
+	{
+	alert("Please do not leave the Username blank!")
+	return false
+	}
+	
+	 
+	 
+	 if (d.length == 0)
+	{
+	alert("Please do not leave the Old Password blank!")
+	return false
+	}
+	 if (e.length == 0)
+	{
+	alert("Please do not leave the New Password blank!")
+	return false
+	}
+
+	if (b.length == 0)
+	{
+	alert("Please do not leave the Address blank!")
+	return false
+	}
+
+	if (a.length == 0)
+	{
+	alert("Please do not leave the Postal Code blank!")
+	return false
+	}
+
+    if(/\D/.test(x))
+        {
+        alert("Please only enter numeric characters only for the Postal Code");
+	return false
+        }
+}
+</script>
+<body>
+	<div id="page">
+		<div id="header">
+			<div id="motto">
+			  <p><a href="index.html"><img src="images/CMSLogo3.png" alt="LOGO" height="100" width="668" align="middle"></a></p>
+		  </div>
+			<div id="logo"></div>
+			<div id="searchbar">
+				<form action="#" method="post">
+				</form>
+			</div>
+		</div>
+	  <div id="contents">
+		<div id="main">
+		  <div class="body">Update Account Page
+          <p>&nbsp;</p>
+          <form name="form1" action = "updateAccount.html" onsubmit ="return validateForm()" method = "post" action = "">
+          <table width="533" style="width: 800px">
+			<tr>
+  			<td width = "194" height="50" > Username: 
+  			  <br>  			  <input type="text" name="userName" id="userName" size="20" height="30" style="font-size: 15pt">
+  			  <br>
+  			  <br></td>
+  			<td width="594">&nbsp;</td> 
+  				
+			
+			<tr>
+  				<td width = "194" height="52">Old Password:<br>  				  <input type="password" name="oldPwd" id="oldPwd" size="20" height="30" style="font-size: 15pt">
+			      <br>
+		        <br></td>
+			  <td>&nbsp;</td> 
+  				
+			</tr>
+            <tr>
+  				<td height="50">New Password:<br>  				  <input type="password" name="newPwd" id="newPwd" size="20" height="30" style="font-size: 15pt">
+			    <br>
+			    <br></td>
+			  <td>&nbsp;</td> 
+  				
+			</tr>
+            
+            <tr>
+  				<td height="49">Address:
+			    <input type="text" name="address" id="address" size="45" height="30" style="font-size: 15pt">
+			    <br>
+			    <br></td>
+			  <td>&nbsp;</td> 
+  				
+			</tr>
+            <tr>
+  				<td>Postal code:<br>  				  <input type="text" name="postalCode" id="postalCode" size="30" height="30" style="font-size: 15pt"></td>
+  				<td>&nbsp;</td> 
+  				
+			</tr>
+            
+            
+		</table>
+              <p>&nbsp;</p>
+	          <input name="btnUpdate" type="submit" class="btn" id="btnUpdate" value="Update" width="10" height="100">
+             
+	          <br>
+		    
+	      </div>
+		</div>
+		<div id="sidebar">
+		  <div id="navigation">
+					<div>
+						<ul>
+							<li class="selected"><a href="index.html">Home</a>
+							</li>
+							
+							<li><a href="index.html">nEWS</a><a href="news.html"> </a>
+							</li>
+							<li>
+								<a href="about.html">about us</a>
+							</li>
+                            <li>
+								<a href="login.html">Log in</a>
+							</li>
+                            
+					  </ul>
+					</div>
+		  </div>
+				<div class="section">
+					<div id="connect">
+						<h2>Connect with us:</h2>
+<a href="https://twitter.com/CMSSocialBot" target="_blank" class="twitter"></a> <a href="https://www.facebook.com/pages/CMS-Alerts/738126479553549" target="_blank" class="facebook"></a> <a href="https://plus.google.com/116253498383005615682/" target="_blank" class="googleplus"></a>
+					</div>
+				</div>
+				<div class="section">
+					<div id="posts">
+						<h2>Placeholder</h2>
+						<ul>
+							<li>
+								<h5>Title Sample One</h5>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
+								</p>
+								<a href="news.html" class="more">Read more</a>
+							</li>
+							<li>
+								<h5>Title Sample One</h5>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
+								</p>
+								<a href="news.html" class="more">Read more</a>
+							</li>
+						</ul>
+					  <a href="news.html" class="btn2">View More</a>
+				  </div>
+			  </div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>
