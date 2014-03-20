@@ -4,36 +4,42 @@
 {% include "main/post_common.html" %}
 {% endblock %}
 
+{% block map %}
+{% endblock %}
 {% block content-title %}
-    Post List
+    NEWS
 {% endblock content-title %}
 
 
 {% block content %}
-<a href="{% url 'main.main_page' %}">back to main page</a>
-<br>
+<p>
+    <a href="{% url 'main.main_page' %}">Back to home</a>
+    <br/>
+    <a href="{% url 'post.post_create' %}">Create a new post</a>
 
-<a href="{% url 'post.post_create' %}">Add a new post</a>
-<br>
+<!--  <button type="button" class="btn btn-primary btn-lg" onclick="window.location='/main/';">Back to home</button>
+  <button type="button" class="btn btn-default btn-lg" onclick="window.location='/post/post_create/';">Add a new post</button>
+-->
+</p>
 
+<ul id="list">
 {% for post in post_list %}
-    <strong>Title:</strong>
-    {{post.title}}
-    <br>
-    <strong>content:</strong>
-    {{post.content}}
-    <br>
-    <strong>date created:</strong>
-    {{post.created_at}}
+        <li>
+            <span class="time">{{post.created_at}}</span>
+            <h3>{{post.title}}</h3>
+            <p>
+    {{post.content|safe}}
     <a href="/post/post_retrieve/{{post.id}}/">See more..</a>
-    <br>
-    <h4>----------------------------------------------------</h4>
+    </p>
+            <a href="/post/post_retrieve/{{post.id}}/" class="more">Read more &gt;&gt;</a>
+</li>
 
 {% endfor %}
-  <ul class="pager">
-    <li><a href="#">Previous</a></li>
-    <li><a href="#">Next</a></li>
+<div id="pagination">
+<a href="news.html">&lt;&lt;</a> <a href="news.html">First</a> <a href="news.html">1</a> <a href="news.html">2</a> <a href="news.html">3</a> <a href="news.html">4</a> <a href="news.html">5</a> <a href="news.html">6</a> <a href="news.html">7</a> <a href="news.html">8</a> <a href="news.html">9</a> <a href="news.html">10</a> <a href="news.html">11</a> <a href="news.html">12</a> <a href="news.html">13</a> <a href="news.html">14</a> <a href="news.html">15</a> <a href="news.html">16</a> <a href="news.html">17</a> <a href="news.html">18</a> <a href="news.html">19</a> <a href="news.html">20</a> <a href="news.html">Last</a> <a href="news.html">&gt;&gt;</a>
+					</div>
   </ul>
+
 
 {% endblock content %}
 

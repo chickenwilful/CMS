@@ -3,7 +3,6 @@ from event import views
 
 urlpatterns = patterns(
     '',
-    url(r'^$', views.index),
     url(r'^map/$', views.map),
     url(r'^event_list/$', views.event_list, name="event.event_list"),
     url(r'^event_list/(?P<emergency_situation_id>\d+)$', views.event_list, name="event.event_list"),

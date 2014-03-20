@@ -1,6 +1,5 @@
 {% extends 'main/base.html' %}
 
-
 {% block content %}
     <p>This is the main page</p>
     {% if user.is_authenticated %}
@@ -8,7 +7,6 @@
     {% else %}
         <a href="{% url 'user.user_login' %}">Login</a>
     {% endif %}
-
 
     <br><strong>Post</strong>
     <a href="{% url 'post.post_list' %}">See post list..</a>

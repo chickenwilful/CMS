@@ -1,178 +1,138 @@
 
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Blog Template for Bootstrap</title>
-
-    <!-- Custom styles for this template -->
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Blakletterpress Website Template</title>
     {% load staticfiles %}
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+	<link rel="stylesheet" href='{% static "main/css/style.css" %}' type="text/css">
 
-  </head>
+    <script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+    <script>
+            tinymce.init({selector:'textarea'});
+    </script>
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<div id="motto">
+              {% load staticfiles %}
+			  <p><a href="index.html"><img src='{% static "main/images/CMSLogo3.png" %}' alt="LOGO"/></a></p>
+		  </div>
+			<div id="logo"></div>
+			<div id="searchbar">
+				<form action="#" method="post">
+				</form>
+			</div>
+		</div>
+		<div id="contents">
+			<div id="main">
 
-  <body>
-{% block navigation %}
-    <div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-          <a class="blog-nav-item active" href="/main/">Home</a>
-          <a class="blog-nav-item" href="#">Event</a>
-          <a class="blog-nav-item" href="/post/post_list">Post</a>
-          <a class="blog-nav-item" href="/user/user_retrieve">User</a>
-          <a class="blog-nav-item" href="#">Map</a>
-          <a class="blog-nav-item" href="#">ContactUs</a>
-        </nav>
-      </div>
-    </div>
-{% endblock navigation %}
-
-    <div class="container">
-
-      <div class="blog-header">
-        <h1 class="blog-title">Crisis Management System</h1>
-        <p class="lead blog-description">The official website for manage crisis situations.</p>
-      </div>
-
-      <div class="row">
-
+{% block map %}
+				<div id="gallery">
+					<div>
+						<img src='{% static "main/images/team-large.jpg" %}' alt="Img"/>
+					</div>
+					<ul>
+						<li>
+							<img src='{% static "main/images/smiling.jpg" %}' alt="Img"/>
+						</li>
+						<li>
+							<img src='{% static "main/images/ecofriends.jpg" %}' alt="Img"/>
+						</li>
+						<li>
+							<img src='{% static "main/images/team.jpg" %}' alt="Img">
+						</li>
+						<li>
+							<img src='{% static "main/images/smiling.jpg" %}' alt="Img">
+						</li>
+						<li>
+							<img src='{% static "main/images/ecofriends.jpg" %}' alt="Img">
+						</li>
+						<li>
+							<img src='{% static "main/images/team.jpg" %}'  alt="Img">
+						</li>
+					</ul>
+				</div>
+                {% endblock %}
 <h2>
 {% block content-title %}
 {% endblock content-title %}
 </h2>
 
+				<div class="body">
+                    {% block content %}
+					<h1>This website template has been designed by <a href="http://www.freewebsitetemplates.com/">Free Website Templates</a> for you, for <em>free</em>.</h1>
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius fermentum. Nullam porta hendrerit metus id hendrerit. Maecenas consequat neque sed tellus commodo ultrices et et est. Maecenas non justo vitae dui vulputate rutrum sed a lacus. Pellentesque dapibus, felis eget ornare ultrices, est est imperdiet magna, id ultrices odio leo sed erat. Maecenas nec est egestas ipsum bibendum iaculis. Nulla accumsan posuere nisl. Cras eu consectetur turpis. Etiam condimentum, lorem ac imperdiet ultricies, velit arcu feugiat nunc, vel tristique sapien diam quis velit. Maecenas non metus augue, sit amet tristique libero. In placerat urna quis orci hendrerit pretium. Donec luctus, magna rhoncus pretium tempor, odio orci consequat turpis, id rutrum elit tellus eu odio. Nunc sapien libero, faucibus quis vehicula quis, interdum eu mauris.
+					</p>
+					<p>
+						Cras eu consectetur turpis. Etiam condimentum, lorem ac imperdiet ultricies, velit arcu feugiat nunc, vel tristique sapien diam quis velit. Maecenas non metus augue, sit amet tristique libero. In placerat urna quis orci hendrerit pretium. Donec luctus, magna rhoncus pretium tempor, odio orci consequat turpis, id rutrum elit tellus eu odio. Nunc sapien libero, faucibus quis vehicula quis, interdum eu mauris.
+					</p>
+                    {% endblock content %}
+				</div>
 
-        <div class="col-sm-8 blog-main">
-{% block content %}
+			</div>
+			<div id="sidebar">
+			  <div id="navigation">
+					<div>
+						<ul>
+							<li class="selected">
+								<a href="/main/">Home</a>
+							</li>
 
-          <div class="blog-post">
-            <h2 class="blog-post-title">Sample blog post</h2>
-            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+							<li>
+								<a href="/post/post_list/">News</a>
+							</li>
+							<li>
+								<a href="/event/event_list/">Events</a>
+							</li>
+                            <li>
+								<a href="Contact.html">Contact us</a>
+							</li>
+                            <li>
+								<a href="/user/user_login/" class="globe">Log in</a><
+							</li>
 
-            <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-            <hr>
-            <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            <blockquote>
-              <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </blockquote>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-            <h2>Heading</h2>
-            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <h3>Sub-heading</h3>
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            <pre><code>Example code block</code></pre>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-            <h3>Sub-heading</h3>
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <ul>
-              <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-              <li>Donec id elit non mi porta gravida at eget metus.</li>
-              <li>Nulla vitae elit libero, a pharetra augue.</li>
-            </ul>
-            <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-            <ol>
-              <li>Vestibulum id ligula porta felis euismod semper.</li>
-              <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-              <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-            </ol>
-            <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-          </div><!-- /.blog-post -->
-
-          <div class="blog-post">
-            <h2 class="blog-post-title">Another blog post</h2>
-            <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-
-            <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-            <blockquote>
-              <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            </blockquote>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-          </div><!-- /.blog-post -->
-
-          <div class="blog-post">
-            <h2 class="blog-post-title">New feature</h2>
-            <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
-
-            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <ul>
-              <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-              <li>Donec id elit non mi porta gravida at eget metus.</li>
-              <li>Nulla vitae elit libero, a pharetra augue.</li>
-            </ul>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-            <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-          </div><!-- /.blog-post -->
-
-          <ul class="pager">
-            <li><a href="#">Previous</a></li>
-            <li><a href="#">Next</a></li>
-          </ul>
-{% endblock content %}
-        </div><!-- /.blog-main -->
-
-
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-          </div>
-          <div class="sidebar-module">
-            <h4>Archives</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
-              <li><a href="#">March 2013</a></li>
-              <li><a href="#">February 2013</a></li>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>Elsewhere</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
-
-      </div><!-- /.row -->
-
-    </div><!-- /.container -->
-
-    <div class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
-    </div>
-
-  </body>
+					  </ul>
+					</div>
+				</div>
+				<div class="section">
+					<div id="connect">
+						<h2>Connect with us:</h2>
+						<a href="https://twitter.com/CMSSocialBot" target="_blank" class="twitter"></a> <a href="https://www.facebook.com/pages/CMS-Alerts/738126479553549" target="_blank" class="facebook"></a> <a href="https://plus.google.com/116253498383005615682/" target="_blank" class="googleplus"></a>
+					</div>
+				</div>
+				<div class="section">
+					<div id="posts">
+						<h2>Placeholder</h2>
+						<ul>
+							<li>
+								<h5>Title Sample One</h5>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
+								</p>
+								<a href="news.html" class="more">Read more</a>
+							</li>
+							<li>
+								<h5>Title Sample One</h5>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
+								</p>
+								<a href="news.html" class="more">Read more</a>
+							</li>
+						</ul>
+						<a href="news.html" class="btn2">View More</a>
+				  </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>
 
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 

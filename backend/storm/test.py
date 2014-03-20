@@ -1,4 +1,3 @@
-from event.models import Event
-
-event = Event.objects.get(pk=1)
-print event.related_to.all()
+from django.contrib.auth.models import User
+user = User.objects.get(username="admin")
+user.set_password("admin")

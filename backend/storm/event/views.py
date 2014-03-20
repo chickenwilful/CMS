@@ -1,3 +1,4 @@
+import json
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
@@ -8,22 +9,25 @@ from event.models import Event
 from jsonutil import json_success
 
 
-def index(request):
-    events = Event.objects.all()
-    json_data = {}
-    for event in events:
-        json_data[event.id] = {
-            'id': event.id,
-            'title': event.title,
-            'created_by': event.created_by.username,
-            'created_at': formats.date_format(event.created_at, "SHORT_DATETIME_FORMAT"),
-            'description': event.description,
-        }
-    return json_success(request, {'events': json_data})
-
-
 def map(request):
-    return render(request, 'map.html')
+    event_list = Event.objects.all()
+    json_data = {}
+
+    for event in event_list:
+        if event.type.name not in json_data:
+            json_data[event.type.name] = []
+        json_data[event.type.name].append({
+            "postal_code": event.postal_code,
+            "reporter": event.caller_name,
+            "time": event.created_at.strftime('%Y-%m-%d %H:%M'),
+            "description": event.description,
+            "address": event.address,
+        })
+
+    with open('data.json', 'w') as f:
+        json.dump(json_data, f)
+
+    return json_success(request, {'events': json_data})
 
 
 def event_create(request):
@@ -32,7 +36,7 @@ def event_create(request):
     """
     if not (request.POST or request.GET):
         form = EventCreateForm()
-        return render(request, 'event/event_create.html', {'form': form, 'action': ""})
+        return render(request, 'event/event_create.html', {'form': form})
     else:
         #Form POST request is submitted
         form = EventCreateForm(request.POST)
@@ -56,6 +60,9 @@ def event_list(request, emergency_situation_id=0):
         event_list = Event.objects.all()
     else:
         event_list = Event.objects.filter(type=emergency_situation_id)
+
+    for event in event_list:
+        event.description = event.description[:250]
     return render(request, "event/event_list.html", {'event_list': event_list})
 
 

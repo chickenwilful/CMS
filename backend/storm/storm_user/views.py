@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from storm_user.forms import UserLoginForm, UserCreateForm, UserProfileCreateForm
+from storm_user.forms import UserLoginForm, UserCreateForm, UserUpdateForm, UserProfileUpdateForm
 from storm_user.models import UserProfile
 
 
@@ -31,7 +33,7 @@ def user_login(request):
             else:
                 #log in is fail
                 return render(request, 'storm_user/user_login.html',
-                            {'form': form, 'message': "Account is not correct. Try again!"})
+                        {'form': form, 'message': "Account is not correct. Try again!"})
         except KeyError:
             return render(request, 'storm_user/user_login.html',
                           {'form': form, 'message': "Error occurs!"})
@@ -44,7 +46,9 @@ def user_logout(request):
 
 def user_retrieve(request, user_id):
     try:
-        userprofile = UserProfile.objects.filter(user=user_id)
+        user = User.objects.get(pk=user_id)
+        userprofile = UserProfile.objects.get(user=user)
+        print userprofile.name
     except (KeyError, UserProfile.DoesNotExist):
         return HttpResponse("404 NOT FOUND")
     else:
@@ -54,23 +58,38 @@ def user_retrieve(request, user_id):
 def user_create(request):
     if not (request.POST or request.GET):
         form = UserCreateForm()
-        return render(request, 'storm_user/user_create.html', {'form': form, 'action': ''})
+        return render(request, 'storm_user/user_create.html', {'form': form})
     else:
         #Form is submitted
         form = UserCreateForm(request.POST)
         if form.is_valid():
             model_instance = form.save(commit=False)
-            userprofile = UserProfile(user = model_instance)
-
-            form.save()
-            userprofileform.save()
-            return render(request, 'storm_user/user_create.html',
-                          {'message': 'Add new user successfully!', 'form': form, 'action': ''})
+            model_instance.save()
+            userprofile = UserProfile(name=form.cleaned_data.get('name'),
+                                      phone_number=form.cleaned_data.get('phone_number'),
+                                      user=model_instance)
+            userprofile.save()
+            return render(request, 'main/main_page.html')
         else:
             return render(request, 'storm_user/user_create.html',
-                          {'message': 'Add new user fail!', 'form': form, 'action': ''})
+                          {'message': 'Add new user fail!', 'form': form})
 
 
-def user_update():
-    #TODO: user_update implement
-    pass
+def user_update(request, user_id):
+    if not (request.POST or request.GET):
+        user = get_object_or_404(User, pk=user_id)
+        form = UserUpdateForm(instance=user)
+        return render(request, 'storm_user/user_update.html', {'form': form})
+    else:
+        form = UserUpdateForm(request.POST)
+        if form.is_valid():
+            model_instance = form.save(commit=False)
+            model_instance.save()
+            userprofile = UserProfile.objects.get(user=model_instance)
+            userprofile.name = form.clean_data.get('name')
+            userprofile.phone_number = form.clean_data.get('phone_number')
+            userprofile.save()
+            return HttpResponseRedirect(reverse('user.user_retrieve', args=(user_id,)))
+        else:
+            return render(request, 'storm_user/user_update.html/',
+                          {'message': 'update user fail!', 'form': form})
