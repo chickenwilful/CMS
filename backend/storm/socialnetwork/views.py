@@ -14,10 +14,10 @@ logger = logging.getLogger('storm')
 def user_has_socialtoken_perms(func):
     # Function decorator to ensure only the user/group with proper SocialToken
     # permissions can access any view within this app.
-    def checker(request):
+    def checker(request, *args, **kwargs):
         user = request.user
         if has_socialnetwork_perms(user):
-            return func(request)
+            return func(request, *args, **kwargs)
         else:
             raise PermissionDenied
     return checker
