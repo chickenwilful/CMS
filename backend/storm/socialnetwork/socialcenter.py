@@ -205,8 +205,7 @@ class SocialCenter(object):
                     "name"      : self.get_site_name(social_site)
                 }
                 if self.is_logged_in(social_site):
-                    result = { "error": "Test error" }
-                    #result = social_bot.post(title, content, link)
+                    result = social_bot.post(title, content, link)
                     # merge results from individual bots with existing values
                     results[social_site] = dict(result.items() + results[social_site].items())
             return results
