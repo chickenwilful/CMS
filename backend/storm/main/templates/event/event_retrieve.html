@@ -4,6 +4,8 @@
 {% include "main/event_common.html" %}
 {% endblock %}
 
+{% block map %}
+{% endblock %}
 
 {% block content-title %}
     This is Event detail
@@ -22,7 +24,7 @@
 {{event.title}}
 <br>
 <strong>Description:</strong>
-{{event.description}}
+{{event.description|safe}}
 <br>
 <strong>Created_by :</strong>
 {{event.created_by}}

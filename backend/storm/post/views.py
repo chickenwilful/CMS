@@ -4,10 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from post.forms import PostCreateForm, PostUpdateForm
 from post.models import Post
-
-
-def create(request):
-    return render(request, "post/create.html")
+from socialnetwork.socialcenter import SocialCenter
 
 
 def post_retrieve(request, post_id):
@@ -17,6 +14,8 @@ def post_retrieve(request, post_id):
 
 def post_list(request):
     post_list = Post.objects.all()
+    for post in post_list:
+        post.content = post.content[:280]
     return render(request, "post/post_list.html", {'post_list': post_list})
 
 
@@ -35,6 +34,10 @@ def post_create(request):
             model_instance.created_by_id = request.user.id
             model_instance.created_at = timezone.now()
             model_instance.save()
+            social_center = SocialCenter()
+            social_center.publish(model_instance.title,
+                                  model_instance.content,
+                                  request.build_absolute_uri("/post/post_retrieve/%d" % model_instance.id))
             return redirect("post.post_list")
         else:
             return render(request, 'post/post_create.html', {'form': form})

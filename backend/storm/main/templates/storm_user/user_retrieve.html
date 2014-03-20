@@ -1,13 +1,22 @@
 {% extends 'main/base.html' %}
-
+{% block navigation %}
+{% include 'main/user_common.html'%}
+{% endblock %}
 {% block content-title %}
     This is user detail
 {% endblock %}
 
 {% block content %}
-
-    <strong>User Name:</strong>
+    <strong>Username:</strong>
     {{userprofile.user.username}}
     <br>
-
+    <strong>Password:</strong>
+    <br>
+    <strong>User name:</strong>
+    {{userprofile.name}}
+    <br>
+    <strong>User phone_number:</strong>
+    {{userprofile.phone_number}}
+    <br>
+    <a href="/user/user_update/{{user.id}}" >Edit this profile</a>
 {% endblock %}

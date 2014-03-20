@@ -8,6 +8,12 @@ class UserLoginForm(forms.ModelForm):
     """
     A form for a user to login
     """
+    def __init__(self, *args, **kwargs):
+        super(UserLoginForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username']:
+            self.fields[fieldname].help_text = None
+
     class Meta:
         model = User
         fields = ('username',)
@@ -23,7 +29,13 @@ class UserCreateForm(forms.ModelForm):
     """
     A form to create a user. Include all the required fields, plus a repeated password
     """
-    name = forms.CharField(label="Name", widget=forms.TextInput )
+    def __init__(self, *args, **kwargs):
+        super(UserCreateForm, self).__init__(*args, **kwargs)
+
+        for fieldname in ['username', 'groups']:
+            self.fields[fieldname].help_text = None
+
+    name = forms.CharField(label="Name", widget=forms.TextInput)
     phone_number = forms.CharField(label="Phone number", widget=forms.TextInput)
 
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
@@ -31,7 +43,7 @@ class UserCreateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'groups')
+        fields = ('username', 'email', 'groups')
 
     def clean_password2(self):
         #Check that the 2 password match
@@ -55,7 +67,10 @@ class UserUpdateForm(forms.ModelForm):
     A form for edit profile user. Included all the fields on the user, but replaces the password field
     with password hash display field.
     """
+    username = forms.CharField(widget=forms.TextInput(attrs={"readonly": "readonly"}))
     password = ReadOnlyPasswordHashField()
+    name = forms.CharField(label="Name", widget=forms.TextInput)
+    phone_number = forms.CharField(label="Phone number", widget=forms.TextInput)
 
     class Meta:
         model = User
@@ -68,3 +83,8 @@ class UserUpdateForm(forms.ModelForm):
         does not have access to the initial value
         """
         return self.initial['password']
+
+
+class UserProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile

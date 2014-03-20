@@ -154,3 +154,14 @@ FACEBOOK_SECRET = '3885761cc214d22bbae1aee273b789be'
 
 GPLUS_APP_ID = '531d584d9536407631000074'
 GPLUS_SECRET = '2ec5211f312e30f87fdc47b730e65aad'
+
+
+BOOTSTRAP3 = {
+    'jquery_url': '//code.jquery.com/jquery.min.js',
+    'base_url': '//netdna.bootstrapcdn.com/bootstrap/3.0.3/',
+    'css_url': None,
+    'theme_url': None,
+    'javascript_url': None,
+    'horizontal_label_class': 'col-md-2',
+    'horizontal_field_class': 'col-md-6',
+}

@@ -4,6 +4,9 @@
 {% include "main/event_common.html" %}
 {% endblock %}
 
+{% block map %}
+{% endblock %}
+
 {% block content-title %}
     Event List
 
@@ -36,25 +39,32 @@
 <br>
 
 
+<ul id="list">
 {% for event in event_list %}
-    <strong>Type:</strong>
-    {{event.type}}
-    <br/>
-    <strong>Title:</strong>
-    {{event.title}}
-    <br/>
-    <strong>Description:</strong>
+        <li>
+            <span class="time">{{event.created_at}}</span>
+            <h3>{{event.title}}</h3>
+            <p>
     {{event.description}}
-    <br/>
     <a href="/event/event_retrieve/{{event.id}}/">See more..</a>
-    <br>
-    <h4>----------------------------------------------------</h4>
+    </br/>
+    <strong>Type: </strong> {{event.type}}
+    <br/>
+    <strong>Related to: </strong>
+    {% for user in event.related_to.all %}
+    {{user.username}}
+    {% endfor %}
+
+    </p>
+            <a href="/event/event_retrieve/{{event.id}}/" class="more">Read more &gt;&gt;</a>
+        </li>
 
 {% endfor %}
-  <ul class="pager">
-    <li><a href="#">Previous</a></li>
-    <li><a href="#">Next</a></li>
+<div id="pagination">
+<a href="news.html">&lt;&lt;</a> <a href="news.html">First</a> <a href="news.html">1</a> <a href="news.html">2</a> <a href="news.html">3</a> <a href="news.html">4</a> <a href="news.html">5</a> <a href="news.html">6</a> <a href="news.html">7</a> <a href="news.html">8</a> <a href="news.html">9</a> <a href="news.html">10</a> <a href="news.html">11</a> <a href="news.html">12</a> <a href="news.html">13</a> <a href="news.html">14</a> <a href="news.html">15</a> <a href="news.html">16</a> <a href="news.html">17</a> <a href="news.html">18</a> <a href="news.html">19</a> <a href="news.html">20</a> <a href="news.html">Last</a> <a href="news.html">&gt;&gt;</a>
+					</div>
   </ul>
+
 
 {% endblock content %}
 

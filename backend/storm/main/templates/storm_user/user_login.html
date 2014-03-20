@@ -1,10 +1,11 @@
 {% extends 'main/base_form.html' %}
 
-{% block TITLE %}
-<h1>Login</h1>
-<span style="color: darkblue">{{message}}</span>
-{% endblock TITLE %}
-
-{% block LINKTOGO %}
-    <a href="{% url 'main.main_page'%}">Back to main page</a>
+{% block content-title %}
+LOGIN
+<span style="color: blue"> {{message}}</span>
 {% endblock %}
+
+{% block linktogo %}
+<a href="{% url 'main.main_page'%}">Back to main page</a>
+{% endblock %}
+

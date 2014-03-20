@@ -1,23 +1,26 @@
+
 {% extends 'main/base.html' %}
 
+{% block map %}
+{% endblock %}
 {% block content-title %}
-    This is post detail
+This is post detail
 {% endblock %}
 
 {% block content %}
     <a href="{% url 'post.post_list' %}">back to post list</a>
     <br>
-
-    <strong>Title:</strong>
-    {{post.title}}
-    <br>
-    <strong>content:</strong>
-    {{post.content}}
-    <br>
-    <strong>date created:</strong>
-    {{post.created_at}}
-    <br>
-    <a href="/post/post_update/{{post.id}}" >Edit this post</a>
+<ul id="list">
+        <li>
+            <h3>{{post.title|safe}}</h3>
+            <br/>
+            <img height="200px" alt="img" src="{{post.imageLink}}"/>
+            <p>{{post.content|safe}}</p>
+            <br/>
+            <p><strong>created at: </strong>{{post.created_at}}</p>
+        </li>
+</ul>
+<a href="/post/post_update/{{post.id}}" >Edit this post</a>
     <a href="#" onclick="confirmDeletePost()">Delete this post</a>
     <script type="text/javascript">
         function confirmDeletePost() {

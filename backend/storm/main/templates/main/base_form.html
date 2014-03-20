@@ -1,5 +1,9 @@
 {% extends 'main/base.html' %}
 {% load bootstrap3 %}
+{% load my_custom_tags %}
+{% block map %}
+
+{% endblock %}
 
 {% block content-title %}
     Forms
@@ -14,3 +18,17 @@
     </form>
 
 {% endblock %}
+
+    {# Include the hidden fields #}
+        {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+        {% endfor %}
+    {# Include the visible fields #}
+        {% for field in form.visible_fields %}
+            <div class="fieldWrapper">
+                {% if field.field.widget %}
+                {% endif %}
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
