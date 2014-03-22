@@ -14,7 +14,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/storm$permissions.coverage" NAME="permissions Coverage Results" MODIFIED="1391872219386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm" />
     <SUITE FILE_PATH="coverage/storm$permissions__1_.coverage" NAME="permissions (1) Coverage Results" MODIFIED="1391873873559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm_user" />
-    <SUITE FILE_PATH="coverage/storm$manage.coverage" NAME="manage Coverage Results" MODIFIED="1395297855089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/storm$manage.coverage" NAME="manage Coverage Results" MODIFIED="1395501482418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/storm$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1391871803422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -29,97 +29,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/storm_user/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/storm_user/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2121">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/post/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="126">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/post/admin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="189">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/post/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="693">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data.json" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/data.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="1126" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.38666666" vertical-offset="94" max-vertical-offset="2562">
-              <folding>
-                <marker date="1395298626531" expanded="true" signature="1265:1285" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/post/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="420">
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/post/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="14" selection-start="1272" selection-end="1272" vertical-scroll-proportion="21.0" vertical-offset="1155" max-vertical-offset="1512">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/event/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="756">
-              <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="37" selection-start="800" selection-end="800" vertical-scroll-proportion="-7.56" vertical-offset="105" max-vertical-offset="1911">
+            <state line="97" column="0" selection-start="3344" selection-end="3498" vertical-scroll-proportion="0.0" vertical-offset="2136" max-vertical-offset="2709">
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/storm_user/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="88" column="23" selection-start="3437" selection-end="3437" vertical-scroll-proportion="2.9027305" vertical-offset="0" max-vertical-offset="2457">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_permissions_tags.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templatetags/user_permissions_tags.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="1092">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="post_permission_tags.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templatetags/post_permission_tags.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="31" selection-start="0" selection-end="1000" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="945">
               <folding />
             </state>
           </provider>
@@ -135,22 +77,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/main/templates/post/create.html" />
-        <option value="$PROJECT_DIR$/main/static/main/css/main.css" />
-        <option value="$PROJECT_DIR$/setupDB.sql" />
-        <option value="$PROJECT_DIR$/manage.py" />
-        <option value="$PROJECT_DIR$/socialnetwork/socialbot.py" />
-        <option value="$PROJECT_DIR$/main/views.py" />
-        <option value="$PROJECT_DIR$/main/templates/event/event_create.html" />
-        <option value="$PROJECT_DIR$/main/templates/event/event_update.html" />
-        <option value="$PROJECT_DIR$/storm_user/urls.py" />
-        <option value="$PROJECT_DIR$/main/templates/main/post_common.html" />
         <option value="$PROJECT_DIR$/main/templates/main/event_common.html" />
-        <option value="$PROJECT_DIR$/storm_user/models.py" />
         <option value="$PROJECT_DIR$/main/templates/main/user_common.html" />
-        <option value="$PROJECT_DIR$/main/templates/storm_user/user_retrieve.html" />
-        <option value="$PROJECT_DIR$/storm_user/views.py" />
-        <option value="$PROJECT_DIR$/main/templates/storm_user/user_update.html" />
         <option value="$PROJECT_DIR$/post/permissions.py" />
         <option value="$PROJECT_DIR$/bootstrap_remix/forms.py" />
         <option value="$PROJECT_DIR$/main/html.py" />
@@ -159,33 +87,47 @@
         <option value="$PROJECT_DIR$/main/exceptions.py" />
         <option value="$PROJECT_DIR$/main/icons.py" />
         <option value="$PROJECT_DIR$/main/forms.py" />
-        <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/storm/settings.py" />
         <option value="$PROJECT_DIR$/main/templates/main/main_page.html" />
         <option value="$PROJECT_DIR$/main/templates/post/post_create.html" />
         <option value="$PROJECT_DIR$/main/static/main/css/style.css" />
-        <option value="$PROJECT_DIR$/post/urls.py" />
-        <option value="$PROJECT_DIR$/post/views.py" />
-        <option value="$PROJECT_DIR$/main/templates/main/base.html" />
         <option value="$PROJECT_DIR$/jsonutil/__init__.py" />
         <option value="$PROJECT_DIR$/event/urls.py" />
-        <option value="$PROJECT_DIR$/main/templates/event/event_list.html" />
-        <option value="$PROJECT_DIR$/main/templates/post/post_list.html" />
         <option value="$PROJECT_DIR$/main/templates/storm_user/user_add.html" />
         <option value="$PROJECT_DIR$/main/templates/storm_user/user_create.html" />
-        <option value="$PROJECT_DIR$/storm_user/forms.py" />
         <option value="$PROJECT_DIR$/main/templates/storm_user/user_login.html" />
-        <option value="$PROJECT_DIR$/main/templates/post/post_retrieve.html" />
         <option value="$PROJECT_DIR$/todo.py" />
-        <option value="$PROJECT_DIR$/main/templates/event/event_retrieve.html" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="E:/Python27/Lib/site-packages/django/forms/__init__.py" />
-        <option value="$PROJECT_DIR$/main/templatetags/my_custom_tags.py" />
         <option value="$PROJECT_DIR$/main/templates/main/base_form.html" />
-        <option value="$PROJECT_DIR$/event/models.py" />
-        <option value="$PROJECT_DIR$/event/forms.py" />
         <option value="$PROJECT_DIR$/data.json" />
+        <option value="$PROJECT_DIR$/post/models.py" />
+        <option value="$PROJECT_DIR$/main/templates/post/post_retrieve.html" />
+        <option value="$PROJECT_DIR$/event/models.py" />
+        <option value="$PROJECT_DIR$/main/templates/post/post_list.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/base_list.html" />
+        <option value="$PROJECT_DIR$/post/urls.py" />
+        <option value="$PROJECT_DIR$/main/templates/main/base.html" />
+        <option value="$PROJECT_DIR$/storm_user/urls.py" />
+        <option value="$PROJECT_DIR$/main/templates/storm_user/user_update.html" />
+        <option value="$PROJECT_DIR$/main/templates/storm_user/user_list.html" />
+        <option value="$PROJECT_DIR$/main/templates/storm_user/user_retrieve.html" />
+        <option value="$PROJECT_DIR$/event/forms.py" />
+        <option value="$PROJECT_DIR$/storm_user/models.py" />
+        <option value="$PROJECT_DIR$/event/permissions.py" />
+        <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/event/permission.py" />
+        <option value="$PROJECT_DIR$/main/templatetags/my_custom_tags.py" />
+        <option value="$PROJECT_DIR$/main/templates/event/event_retrieve.html" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/main/templates/main/no_permission.html" />
+        <option value="$PROJECT_DIR$/main/templates/event/event_list.html" />
+        <option value="$PROJECT_DIR$/main/templatetags/permission_tags.py" />
+        <option value="$PROJECT_DIR$/main/templatetags/post_permission_tags.py" />
         <option value="$PROJECT_DIR$/event/views.py" />
+        <option value="$PROJECT_DIR$/post/views.py" />
+        <option value="$PROJECT_DIR$/storm_user/forms.py" />
+        <option value="$PROJECT_DIR$/main/templatetags/user_permissions_tags.py" />
+        <option value="$PROJECT_DIR$/storm_user/views.py" />
       </list>
     </option>
   </component>
@@ -208,10 +150,12 @@
           <State>
             <id>JavaScript</id>
           </State>
-          <State>
-            <id>JavaScript validity issuesJavaScript</id>
-          </State>
         </expanded-state>
+        <selected-state>
+          <State>
+            <id>JSPrimitiveTypeWrapperUsage</id>
+          </State>
+        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -512,9 +456,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
-      <method />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -536,6 +477,9 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -640,27 +584,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42833877" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3251634" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42810458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32410422" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21072507" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23187311" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37785017" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.38599348" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48039216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3257329" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3267974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -678,9 +622,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18731117" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3267974" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -702,294 +646,322 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="336" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jsonutil/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="18" selection-start="312" selection-end="312" vertical-scroll-proportion="0.48306596" vertical-offset="44" max-vertical-offset="609" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/event/event_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="56" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.53046596" vertical-offset="922" max-vertical-offset="1785" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="100" selection-end="100" vertical-scroll-proportion="-3.36" vertical-offset="0" max-vertical-offset="378" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm_UI_del/js/event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="462" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm_UI_del/event.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="609" />
-      </provider>
-    </entry>
-    <entry file="file://E:/Python27/Lib/site-packages/bootstrap3/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="59" selection-start="5953" selection-end="5957" vertical-scroll-proportion="-6.36" vertical-offset="2529" max-vertical-offset="5019" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="189" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setupDB.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="189" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="174" selection-end="174" vertical-scroll-proportion="0.32142857" vertical-offset="0" max-vertical-offset="588" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
+    <entry file="file://$PROJECT_DIR$/main/fixtures/initial_data2.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_add.html">
+    <entry file="file://E:/Python27/Lib/site-packages/MySQLdb/connections.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="25" selection-start="97" selection-end="97" vertical-scroll-proportion="-2.8" vertical-offset="0" max-vertical-offset="231" />
+        <state line="35" column="0" selection-start="1070" selection-end="1070" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="7014" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/post/post_create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="12" selection-start="554" selection-end="554" vertical-scroll-proportion="-12.3" vertical-offset="9" max-vertical-offset="567" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/post/post_retrieve.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="26" selection-start="331" selection-end="331" vertical-scroll-proportion="0.6280374" vertical-offset="0" max-vertical-offset="840" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="24" selection-start="93" selection-end="93" vertical-scroll-proportion="0.15107913" vertical-offset="0" max-vertical-offset="556" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/post/post_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="972" selection-end="972" vertical-scroll-proportion="0.45683452" vertical-offset="502" max-vertical-offset="1281" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_retrieve.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="12" selection-start="625" selection-end="625" vertical-scroll-proportion="0.7176259" vertical-offset="0" max-vertical-offset="588" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/todo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/event/event_retrieve.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="24" selection-start="441" selection-end="441" vertical-scroll-proportion="-7.7" vertical-offset="315" max-vertical-offset="1197" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/post/permissions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="586" />
-      </provider>
-    </entry>
-    <entry file="file://E:/Python27/Lib/site-packages/django/forms/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0" vertical-offset="71" max-vertical-offset="399" />
-      </provider>
-    </entry>
-    <entry file="file://E:/Python27/Lib/site-packages/django/db/models/fields/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.8719512" vertical-offset="8" max-vertical-offset="30030" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/post/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="510" selection-end="511" vertical-scroll-proportion="0.5973597" vertical-offset="8" max-vertical-offset="336" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/post/tests.py">
+    <entry file="file://$PROJECT_DIR$/event/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565" />
       </provider>
     </entry>
-    <entry file="file://E:/Python27/Lib/site-packages/django/contrib/admin/helpers.py">
+    <entry file="file://$PROJECT_DIR$/main/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="41" selection-end="41" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7623" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="189" />
       </provider>
     </entry>
-    <entry file="file://E:/Python27/Lib/site-packages/django/contrib/auth/models.py">
+    <entry file="file://$PROJECT_DIR$/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11193" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="303" />
       </provider>
     </entry>
-    <entry file="file://E:/Python27/Lib/site-packages/django/db/models/query.py">
+    <entry file="file://$PROJECT_DIR$/main/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="330" selection-end="330" vertical-scroll-proportion="0.78223497" vertical-offset="0" max-vertical-offset="36477" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="189" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates.py">
+    <entry file="file://$PROJECT_DIR$/post/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="3" selection-start="266" selection-end="266" vertical-scroll-proportion="0.06363636" vertical-offset="84" max-vertical-offset="1218" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templatetags/my_custom_tags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="481" selection-end="481" vertical-scroll-proportion="0.5811966" vertical-offset="153" max-vertical-offset="504" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/base_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="61" selection-start="386" selection-end="386" vertical-scroll-proportion="0.55451715" vertical-offset="158" max-vertical-offset="840" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="24" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.06542056" vertical-offset="903" max-vertical-offset="3402" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="44" selection-end="85" vertical-scroll-proportion="0.05982906" vertical-offset="0" max-vertical-offset="351" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="35" selection-start="684" selection-end="684" vertical-scroll-proportion="1.1595092" vertical-offset="0" max-vertical-offset="1029" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templatetags/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="586" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm_user/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm_user/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm_user/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="262" selection-end="455" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="2016">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm_user/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm_user/permissions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
+        <state line="13" column="0" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="693">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storm_user/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="189" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socialnetwork/socialbot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="188" column="53" selection-start="6438" selection-end="6438" vertical-scroll-proportion="0.0" vertical-offset="3570" max-vertical-offset="14784" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/event_common.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/post/post_create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="571" selection-end="571" vertical-scroll-proportion="-14.7" vertical-offset="0" max-vertical-offset="567" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/post/post_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="252" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/main_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/post/post_retrieve.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="74" selection-start="979" selection-end="1054" vertical-scroll-proportion="0.60215056" vertical-offset="315" max-vertical-offset="882" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storm/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/post/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="609" selection-end="609" vertical-scroll-proportion="-10.08" vertical-offset="0" max-vertical-offset="378" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="21" selection-start="84" selection-end="84" vertical-scroll-proportion="0.11731844" vertical-offset="0" max-vertical-offset="537" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storm_user/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567">
-          <folding />
-        </state>
+        <state line="5" column="65" selection-start="170" selection-end="170" vertical-scroll-proportion="0.18650089" vertical-offset="0" max-vertical-offset="563" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storm_user/views.py">
+    <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1995">
-          <folding />
-        </state>
+        <state line="9" column="30" selection-start="211" selection-end="211" vertical-scroll-proportion="0.33870968" vertical-offset="0" max-vertical-offset="714" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/post/__init__.py">
+    <entry file="file://$PROJECT_DIR$/main/templates/post/post_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="328">
-          <folding />
-        </state>
+        <state line="9" column="0" selection-start="137" selection-end="269" vertical-scroll-proportion="0.33870968" vertical-offset="0" max-vertical-offset="1155" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/post/admin.py">
+    <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_retrieve.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="328">
-          <folding />
-        </state>
+        <state line="21" column="47" selection-start="491" selection-end="491" vertical-scroll-proportion="0.7903226" vertical-offset="0" max-vertical-offset="714" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/post/models.py">
+    <entry file="file://$PROJECT_DIR$/storm_user/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="693">
-          <folding />
-        </state>
+        <state line="2" column="0" selection-start="73" selection-end="73" vertical-scroll-proportion="0.074600354" vertical-offset="0" max-vertical-offset="563" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/post/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="420">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="399">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="24" selection-start="108" selection-end="108" vertical-scroll-proportion="0.07777778" vertical-offset="0" max-vertical-offset="540">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socialnetwork/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socialnetwork/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socialnetwork/socialcenter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4767">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/socialnetwork/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12453">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templatetags/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templatetags/my_custom_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="0.6737968" vertical-offset="0" max-vertical-offset="561">
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#27#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/post/views.py">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="14" selection-start="1272" selection-end="1272" vertical-scroll-proportion="21.0" vertical-offset="1155" max-vertical-offset="1512">
+        <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="668" selection-end="668" vertical-scroll-proportion="0.486631" vertical-offset="0" max-vertical-offset="561">
+          <folding>
+            <element signature="e#0#42#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="25" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.6702317" vertical-offset="107" max-vertical-offset="1008">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/event/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="693">
+        <state line="16" column="65" selection-start="594" selection-end="594" vertical-scroll-proportion="0.44919786" vertical-offset="0" max-vertical-offset="693">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_retrieve.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="13" selection-start="566" selection-end="566" vertical-scroll-proportion="0.25" vertical-offset="533" max-vertical-offset="1113">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="95" column="63" selection-start="3697" selection-end="3697" vertical-scroll-proportion="-7.9333334" vertical-offset="1757" max-vertical-offset="3087">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storm_user/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="0" selection-start="2353" selection-end="2353" vertical-scroll-proportion="0.6847826" vertical-offset="1134" max-vertical-offset="2163">
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event/views.py">
+    <entry file="file://$PROJECT_DIR$/post/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="37" selection-start="800" selection-end="800" vertical-scroll-proportion="-7.56" vertical-offset="105" max-vertical-offset="1911">
+        <state line="86" column="24" selection-start="3148" selection-end="3148" vertical-scroll-proportion="1.4076087" vertical-offset="882" max-vertical-offset="1932">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data.json">
+    <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="1126" selection-start="1126" selection-end="1126" vertical-scroll-proportion="0.38666666" vertical-offset="94" max-vertical-offset="2562">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="336">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templatetags/event_permission_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="0" selection-end="1007" vertical-scroll-proportion="0.35836178" vertical-offset="0" max-vertical-offset="819">
           <folding>
-            <marker date="1395298626531" expanded="true" signature="1265:1285" placeholder="..." />
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/base_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="9" selection-start="0" selection-end="884" vertical-scroll-proportion="0.30215827" vertical-offset="0" max-vertical-offset="840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/base_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="46" selection-start="679" selection-end="679" vertical-scroll-proportion="0.30215827" vertical-offset="273" max-vertical-offset="903">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/no_permission.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="51" selection-start="178" selection-end="178" vertical-scroll-proportion="0.37769786" vertical-offset="0" max-vertical-offset="556">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="0" selection-start="2106" selection-end="2106" vertical-scroll-proportion="1.8360958" vertical-offset="389" max-vertical-offset="1638">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="0" selection-start="3344" selection-end="3498" vertical-scroll-proportion="0.0" vertical-offset="2136" max-vertical-offset="2709">
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templatetags/post_permission_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="31" selection-start="0" selection-end="1000" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="945">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templatetags/user_permissions_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="1092">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storm_user/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="88" column="23" selection-start="3437" selection-end="3437" vertical-scroll-proportion="2.9027305" vertical-offset="0" max-vertical-offset="2457">
+          <folding />
         </state>
       </provider>
     </entry>

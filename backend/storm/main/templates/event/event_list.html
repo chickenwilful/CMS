@@ -1,13 +1,11 @@
-{% extends "main/base.html" %}
+{% extends "main/base_list.html" %}
 
-{% block navigation %}
-{% include "main/event_common.html" %}
-{% endblock %}
+{% block content-title-list %}
+    EMERGENCY REPORTS
+{% endblock content-title-list %}
 
-{% block map %}
-{% endblock %}
 
-{% block content-title %}
+{% block content-title-extra %}
     Event List
 
 <div id="spend_filter" class="btn-group">
@@ -28,7 +26,7 @@
 				</li>
 			</ul>
 		</div>
-{% endblock content-title %}
+{% endblock %}
 
 
 {% block content %}
@@ -38,13 +36,14 @@
 <a href="/event/event_create/">Add a new event</a>
 <br>
 
-
 <ul id="list">
 {% for event in event_list %}
         <li>
             <span class="time">{{event.created_at}}</span>
             <h3>{{event.title}}</h3>
             <p>
+    <strong>Created by:</strong> {{event.created_by}}
+    <br/>
     {{event.description}}
     <a href="/event/event_retrieve/{{event.id}}/">See more..</a>
     </br/>

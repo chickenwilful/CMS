@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+
+{% block map %}
+
+{% endblock %}
+
+{% block content-title %}
+{% block content-title-list %}
+{% endblock content-title-list %}
+{% block filter %}
+    <br/>
+    <select id="FilterDropDown" onchange="FilterDropDown()">
+        <option value="0">Select content page</option>
+        <option value="1">Dengue</option>
+        <option value="2">Gas Leak</option>
+        <option value="3">Fire</option>
+        <option value="4">Bird Flu</option>
+    </select>
+    <p style="display: none" id="filter_id" value="{{filter_id}}"></p>
+    <script type="text/javascript">
+        $('document').ready(function() {
+            console.log(window.location.href);
+
+            $("#FilterDropDown").find("option").each(function(){
+                if( $(this).attr('value') == $("#filter_id").attr("value")) {
+                    $(this).attr("selected","selected");
+                }
+            });
+        });
+        function FilterDropDown() {
+            window.location.href = document.getElementById('FilterDropDown').value;
+        }
+    </script>
+
+{% endblock filter%}
+{% endblock content-title %}
+

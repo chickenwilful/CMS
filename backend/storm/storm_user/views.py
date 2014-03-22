@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from main.templatetags.user_permissions_tags import can_retrieve_user, can_create_user, can_list_user, can_update_user
 from storm_user.forms import UserLoginForm, UserCreateForm, UserUpdateForm, UserProfileUpdateForm
 from storm_user.models import UserProfile
 
@@ -45,6 +46,9 @@ def user_logout(request):
 
 
 def user_retrieve(request, user_id):
+    #Check permission
+    if not can_retrieve_user(request.user, User.objects.get(pk=user_id)):
+        return render(request, "main/no_permission.html")
     try:
         user = User.objects.get(pk=user_id)
         userprofile = UserProfile.objects.get(user=user)
@@ -56,6 +60,10 @@ def user_retrieve(request, user_id):
 
 
 def user_create(request):
+    #Check permission
+    if not can_create_user(request.user):
+        return render(request, "main/no_permission.html")
+
     if not (request.POST or request.GET):
         form = UserCreateForm()
         return render(request, 'storm_user/user_create.html', {'form': form})
@@ -76,6 +84,11 @@ def user_create(request):
 
 
 def user_update(request, user_id):
+
+    #Check permission
+    if not can_update_user(request.user, User.objects.get(pk=user_id)):
+        return render(request, "main/no_permission.html")
+
     if not (request.POST or request.GET):
         user = get_object_or_404(User, pk=user_id)
         form = UserUpdateForm(instance=user)
@@ -93,3 +106,13 @@ def user_update(request, user_id):
         else:
             return render(request, 'storm_user/user_update.html/',
                           {'message': 'update user fail!', 'form': form})
+
+
+def user_list(request):
+
+    #Check permission
+    if not can_list_user(request.user):
+        return render(request, "main/no_permission.html")
+
+    user_list = UserProfile.objects.all()
+    return render(request, "storm_user/user_list.html", {'user_list': user_list})

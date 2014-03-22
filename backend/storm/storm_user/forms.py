@@ -67,6 +67,13 @@ class UserUpdateForm(forms.ModelForm):
     A form for edit profile user. Included all the fields on the user, but replaces the password field
     with password hash display field.
     """
+
+    def __init__(self, *args, **kwargs):
+        super(UserUpdateForm, self).__init__(*args, **kwargs)
+
+        for fieldname in self.fields:
+            self.fields[fieldname].help_text = None
+
     username = forms.CharField(widget=forms.TextInput(attrs={"readonly": "readonly"}))
     password = ReadOnlyPasswordHashField()
     name = forms.CharField(label="Name", widget=forms.TextInput)
@@ -74,7 +81,7 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['username', 'first_name', 'last_name', 'email', 'groups']
 
     def clean_password(self):
         """

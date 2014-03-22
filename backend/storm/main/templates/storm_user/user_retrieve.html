@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
-{% block navigation %}
-{% include 'main/user_common.html'%}
+
+{% block map %}
 {% endblock %}
 {% block content-title %}
     This is user detail
@@ -18,5 +18,12 @@
     <strong>User phone_number:</strong>
     {{userprofile.phone_number}}
     <br>
+    <strong>User group:</strong>
+    {% for group in userprofile.user.groups.all %}
+    {{group.name}}
+    {% endfor %}
+    <br>
+
     <a href="/user/user_update/{{user.id}}" >Edit this profile</a>
+    <a href="#">Delete this profile</a>
 {% endblock %}
