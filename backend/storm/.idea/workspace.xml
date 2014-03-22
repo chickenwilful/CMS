@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64f5d948-942d-4047-8ad0-3a84aa6dea8b" name="Default" comment="" />
+    <list default="true" id="64f5d948-942d-4047-8ad0-3a84aa6dea8b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/storm.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/base_form.html" afterPath="$PROJECT_DIR$/main/templates/main/base_form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templatetags/my_custom_tags.py" afterPath="$PROJECT_DIR$/main/templatetags/my_custom_tags.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/views.py" afterPath="$PROJECT_DIR$/event/views.py" />
+    </list>
     <ignored path="storm.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,39 +42,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/event/views.py">
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="0" selection-start="3344" selection-end="3498" vertical-scroll-proportion="0.0" vertical-offset="2136" max-vertical-offset="2709">
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/storm_user/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="23" selection-start="3437" selection-end="3437" vertical-scroll-proportion="2.9027305" vertical-offset="0" max-vertical-offset="2457">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="user_permissions_tags.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/templatetags/user_permissions_tags.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="1092">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="post_permission_tags.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/templatetags/post_permission_tags.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="31" selection-start="0" selection-end="1000" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="945">
+            <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="0.03583618" vertical-offset="0" max-vertical-offset="586">
               <folding />
             </state>
           </provider>
@@ -74,10 +58,13 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="SYNC_SETTING" value="DONT" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/main/templates/main/event_common.html" />
         <option value="$PROJECT_DIR$/main/templates/main/user_common.html" />
         <option value="$PROJECT_DIR$/post/permissions.py" />
         <option value="$PROJECT_DIR$/bootstrap_remix/forms.py" />
@@ -98,7 +85,6 @@
         <option value="$PROJECT_DIR$/main/templates/storm_user/user_login.html" />
         <option value="$PROJECT_DIR$/todo.py" />
         <option value="E:/Python27/Lib/site-packages/django/forms/__init__.py" />
-        <option value="$PROJECT_DIR$/main/templates/main/base_form.html" />
         <option value="$PROJECT_DIR$/data.json" />
         <option value="$PROJECT_DIR$/post/models.py" />
         <option value="$PROJECT_DIR$/main/templates/post/post_retrieve.html" />
@@ -116,18 +102,20 @@
         <option value="$PROJECT_DIR$/event/permissions.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/event/permission.py" />
-        <option value="$PROJECT_DIR$/main/templatetags/my_custom_tags.py" />
         <option value="$PROJECT_DIR$/main/templates/event/event_retrieve.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/main/templates/main/no_permission.html" />
         <option value="$PROJECT_DIR$/main/templates/event/event_list.html" />
         <option value="$PROJECT_DIR$/main/templatetags/permission_tags.py" />
         <option value="$PROJECT_DIR$/main/templatetags/post_permission_tags.py" />
-        <option value="$PROJECT_DIR$/event/views.py" />
         <option value="$PROJECT_DIR$/post/views.py" />
         <option value="$PROJECT_DIR$/storm_user/forms.py" />
         <option value="$PROJECT_DIR$/main/templatetags/user_permissions_tags.py" />
         <option value="$PROJECT_DIR$/storm_user/views.py" />
+        <option value="$PROJECT_DIR$/event/views.py" />
+        <option value="$PROJECT_DIR$/main/templates/main/base_form.html" />
+        <option value="$PROJECT_DIR$/main/templatetags/my_custom_tags.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -159,7 +147,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -267,8 +255,8 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="editor" />
-    <property name="last_opened_file_path" value="E:/backend" />
+    <property name="options.lastSelected" value="vcs.Git" />
+    <property name="last_opened_file_path" value="E:/Program Files/Git/bin/git.exe" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -646,16 +634,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main/fixtures/initial_data2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
-      </provider>
-    </entry>
-    <entry file="file://E:/Python27/Lib/site-packages/MySQLdb/connections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1070" selection-end="1070" vertical-scroll-proportion="0.0" vertical-offset="540" max-vertical-offset="7014" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/event/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565" />
@@ -726,11 +704,6 @@
     <entry file="file://$PROJECT_DIR$/main/templates/post/post_retrieve.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="31" column="74" selection-start="979" selection-end="1054" vertical-scroll-proportion="0.60215056" vertical-offset="315" max-vertical-offset="882" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/event/event_create.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storm/urls.py">
@@ -822,15 +795,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templatetags/my_custom_tags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="0.6737968" vertical-offset="0" max-vertical-offset="561">
-          <folding>
-            <element signature="e#0#27#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="13" selection-start="13" selection-end="13" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="565">
@@ -844,13 +808,6 @@
           <folding>
             <element signature="e#0#42#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="25" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.6702317" vertical-offset="107" max-vertical-offset="1008">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -898,22 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templatetags/event_permission_tags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="0" selection-end="1007" vertical-scroll-proportion="0.35836178" vertical-offset="0" max-vertical-offset="819">
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/base_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="9" selection-start="0" selection-end="884" vertical-scroll-proportion="0.30215827" vertical-offset="0" max-vertical-offset="840">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/main/base_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="46" selection-start="679" selection-end="679" vertical-scroll-proportion="0.30215827" vertical-offset="273" max-vertical-offset="903">
@@ -935,32 +876,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event/views.py">
+    <entry file="file://$PROJECT_DIR$/event/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="0" selection-start="3344" selection-end="3498" vertical-scroll-proportion="0.0" vertical-offset="2136" max-vertical-offset="2709">
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
+        <state line="24" column="25" selection-start="1018" selection-end="1018" vertical-scroll-proportion="0.8242321" vertical-offset="0" max-vertical-offset="1008">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templatetags/post_permission_tags.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="31" selection-start="0" selection-end="1000" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="945">
+        <state line="6" column="16" selection-start="104" selection-end="116" vertical-scroll-proportion="0.21501707" vertical-offset="0" max-vertical-offset="945">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templatetags/user_permissions_tags.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="1092">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.21501707" vertical-offset="126" max-vertical-offset="1092">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storm_user/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="23" selection-start="3437" selection-end="3437" vertical-scroll-proportion="2.9027305" vertical-offset="0" max-vertical-offset="2457">
+        <state line="88" column="23" selection-start="3437" selection-end="3437" vertical-scroll-proportion="1.9351536" vertical-offset="567" max-vertical-offset="2457">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="62" selection-start="2927" selection-end="2927" vertical-scroll-proportion="3.0052357" vertical-offset="0" max-vertical-offset="2688">
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templatetags/my_custom_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="586">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/Python27/Lib/site-packages/bootstrap3/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="0" selection-start="3061" selection-end="3061" vertical-scroll-proportion="0.92670155" vertical-offset="1170" max-vertical-offset="6804">
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templatetags/event_permission_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="0" selection-end="1007" vertical-scroll-proportion="0.35836178" vertical-offset="0" max-vertical-offset="819">
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/base_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="35" selection-start="338" selection-end="338" vertical-scroll-proportion="0.41546762" vertical-offset="105" max-vertical-offset="924">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="20" selection-start="20" selection-end="20" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="567">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="0.03583618" vertical-offset="0" max-vertical-offset="586">
           <folding />
         </state>
       </provider>

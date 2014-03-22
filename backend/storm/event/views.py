@@ -1,5 +1,6 @@
 from itertools import chain
 import json
+from django.db.models import Q
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
@@ -79,9 +80,7 @@ def event_list(request, emergency_situation_id=0):
         temp = Event.objects.filter(type=emergency_situation_id)
 
     if not "CMSAdmin" in request.user.groups.all():
-        list1 = temp.filter(created_by=request.user)
-        list2 = temp.filter(related_to=request.user)
-        event_list = list(chain(list1, list2))
+        event_list = temp.filter(Q(created_by=request.user) | Q(related_to=request.user))
     else:
         event_list = temp
 

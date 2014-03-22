@@ -7,9 +7,11 @@ register = template.Library()
 def klass(ob):
     return ob.__class__.__name__
 
+
 @register.filter(name='is_checkbox')
 def is_checkbox(field):
     return field.field.widget.__class__.__name__ == CheckboxInput().__class__.__name__
+
 
 @register.filter(name='is_textinput')
 def is_textinput(field):
