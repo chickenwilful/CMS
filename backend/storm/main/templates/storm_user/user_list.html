@@ -1,0 +1,29 @@
+{% extends 'main/base_list.html' %}
+
+{% block content-title %}
+    USER LIST
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'main.main_page' %}">Back to home</a>
+    <br/>
+    <a href="{% url 'user.user_create' %}">Create a new user</a>
+    </br>
+
+{% for userprofile in user_list %}
+    <strong>Username:</strong>
+    {{userprofile.user.username}}
+    <br>
+    <strong>Password:</strong>
+    <br>
+    <strong>User name:</strong>
+    {{userprofile.name}}
+    <br>
+    <strong>User phone_number:</strong>
+    {{userprofile.phone_number}}
+    <br>
+    <a href="/user/user_retrieve/{{userprofile.user.id}}" >See detail</a>
+    </br>
+    <p>--------------------------------------------------</p>
+{% endfor %}
+{% endblock %}

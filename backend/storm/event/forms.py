@@ -1,30 +1,32 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.forms import ModelChoiceField
+from django.forms import ModelMultipleChoiceField
 from event.models import Event
+from storm_user.models import UserProfile
 
 
-class MyModelChoiceField(ModelChoiceField):
+class MyModelChoiceField(ModelMultipleChoiceField):
     def label_from_instance(self, user):
-        #userprofile = UserProfile.objects.get(user=user)
-        return "%s" % user.email
+        userprofile = UserProfile.objects.get(user=user)
+        return "%s" % userprofile.name
 
 
 class EventCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventCreateForm, self).__init__(*args, **kwargs)
-    related_to = MyModelChoiceField(queryset=User.objects.filter(groups__name="Rescue Agency"))
+    related_to = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"))
 
     class Meta:
         model = Event
         exclude = ['related_to']
 
+    def save(self, commit=True):
+        event = super(EventCreateForm, self).save(commit=False)
+        event.related_to = self.cleaned_data.get('related_to')
+        if commit:
+            event.save()
+        return event
 
-class EventUpdateForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
-        super(EventUpdateForm, self).__init__(*args, **kwargs)
-        for fieldname in ['related_to']:
-            self.fields[fieldname].help_text = None
 
-    class Meta:
-        model = Event
+class EventUpdateForm(EventCreateForm):
+    pass

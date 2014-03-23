@@ -95,7 +95,7 @@ function initialize() {
             infowindow.open(map, marker);
         });
     }
-   var legend = document.createElement('div');
+   /*var legend = document.createElement('div');
     legend.id = 'legend';
     var content = [];
     content.push('<h4>Legend</h4>');
@@ -108,7 +108,7 @@ function initialize() {
     }
     legend.innerHTML = content.join('');
     legend.index = 1;
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);*/
     //testing
     google.maps.event.addListener(map, "click", function(event)
     {

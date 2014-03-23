@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.signals import post_save
 
 import logging
 log = logging.getLogger(__name__)
@@ -8,11 +7,7 @@ log = logging.getLogger(__name__)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    phone_number = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
 
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        profile, created = UserProfile.objects.get_or_create(user=instance)
-    post_save.connect(create_user_profile, sender=User)

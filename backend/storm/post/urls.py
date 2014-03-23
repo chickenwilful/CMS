@@ -4,6 +4,7 @@ from post import views
 urlpatterns = patterns(
     '',
     url(r'^post_list/$', views.post_list, name='post.post_list'),
+    url(r'^post_list/(?P<emergency_situation_id>\d+)$', views.post_list, name='post.post_list'),
     url(r'^post_retrieve/(?P<post_id>\d+)/$', views.post_retrieve, name='post.post_retrieve'),
     url(r'^post_create/$', views.post_create, name='post.post_create'),
     url(r'^post_update/(?P<post_id>\d+)/$', views.post_update, name='post.post_update'),
