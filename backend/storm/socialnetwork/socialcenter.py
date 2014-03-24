@@ -4,7 +4,7 @@ from datetime import datetime
 import logging
 import re
 
-from socialbot import SocialBot, FacebookBot, TwitterBot, GPlusBot
+from socialbot import SocialBot, FacebookBot, TwitterBot, GPlusBot, TumblrBot
 
 logger = logging.getLogger('storm')
 
@@ -40,7 +40,8 @@ class SocialCenter(object):
         self.bots = {
             Sites.FACEBOOK: FacebookBot(settings.FACEBOOK_APP_ID, settings.FACEBOOK_SECRET),
             Sites.TWITTER: TwitterBot(settings.TWITTER_KEY, settings.TWITTER_SECRET),
-            Sites.GPLUS: GPlusBot(settings.GPLUS_APP_ID, settings.GPLUS_SECRET)
+            Sites.GPLUS: GPlusBot(settings.GPLUS_APP_ID, settings.GPLUS_SECRET),
+            Sites.TUMBLR: TumblrBot(settings.TUMBLR_APP_ID, settings.TUMBLR_SECRET)
         }
         for site, social_bot in self.bots.items():
             social_token = self.__get_token(site)
@@ -219,3 +220,4 @@ class Sites:
     TWITTER = "twitter"
     FACEBOOK = "facebook"
     GPLUS = "gplus"
+    TUMBLR = "tumblr"
