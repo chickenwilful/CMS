@@ -5,12 +5,16 @@
 {% endblock %}
 
 {% block content-title %}
+<h1><b><u>
 {% block content-title-list %}
 {% endblock content-title-list %}
+</u></b><br>
+<br>
+</h1>
 {% block filter %}
     <br/>
     <select id="FilterDropDown" onchange="FilterDropDown()">
-        <option value="0">Select content page</option>
+        <option value="0">Show all</option>
         <option value="1">Dengue</option>
         <option value="2">Gas Leak</option>
         <option value="3">Fire</option>

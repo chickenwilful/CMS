@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
+from django.http import request
 
 
 class EmergencySituation(models.Model):
@@ -33,11 +35,6 @@ class Event(models.Model):
             ("event_list", "STORM - event list"),
         )
 
-
-# class EventResponse(models.Model):
-#     content = models.TextField()
-#     created_by = models.ForeignKey(User)
-#     created_at = models.DateTimeField()
 
 
 

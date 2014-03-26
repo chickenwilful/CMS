@@ -4,6 +4,28 @@
     NEWS
 {% endblock content-title-list %}
 
+{% block sidebar %}
+			  <div id="navigation">
+					<div>
+						<ul>
+							<li class="selected">
+								<a href="main/">Home</a>
+							</li>
+
+							<li>
+								<a href="/post/post_list/"><font color="#FFFFFF">NEWS</font></a>
+							</li>
+							<li>
+								<a href="/about">about us</a>
+							</li>
+                            <li>
+								<a href="/contact">Contact us</a>
+							</li>
+
+					  </ul>
+					</div>
+				</div>
+{% endblock sidebar %}
 
 {% block content %}
 <p>
@@ -18,13 +40,17 @@
 
 <ul id="list">
 {% for post in post_list %}
-        <li>
-            <span class="time">{{post.created_at}}</span>
-            <h3>{{post.title}}</h3>
-            <p>
-    {{post.content|safe}}
-    <a href="/post/post_retrieve/{{post.id}}/">See more..</a>
-    </p>
+<li>
+
+						  <h3>{{post.title}}</h3>
+						  <span class="time">{{post.created_at}}<br>
+					      </span>
+						  <p>
+						    <br>
+                              {{post.content|safe}}
+                            <a href="/post/post_retrieve/{{post.id}}/">See more..</a>
+                           </p>
+
             <a href="/post/post_retrieve/{{post.id}}/" class="more">Read more &gt;&gt;</a>
 </li>
 

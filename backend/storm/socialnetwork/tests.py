@@ -13,6 +13,7 @@ import socialnetwork.views as sn_views
 from socialnetwork.socialbot import SocialBot
 from socialnetwork.socialcenter import SocialCenter
 
+
 class TestBot(SocialBot):
     """Implementation of SocialBot stub for tests
     """

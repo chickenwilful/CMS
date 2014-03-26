@@ -1,4 +1,5 @@
 from django import template
+from django.contrib.auth.models import Group
 
 register = template.Library()
 
@@ -28,12 +29,12 @@ def can_create_post(user):
 @register.filter(name='can_update_post')
 def can_update_post(user, post):
     ans = "post.post_create" in user.get_all_permissions()
-    return ans and (user == post.created_by or user.groups.all()[0].name == "CMSAdmin")
+    return ans and (user == post.created_by or (Group.objects.get(name="CMSAdmin") in user.groups.all()))
 
 
 @register.filter(name='can_delete_post')
 def can_delete_post(user, post):
     ans = "post.post_delete" in user.get_all_permissions()
-    return ans and (user == post.created_by or user.groups.all()[0].name == "CMSAdmin")
+    return ans and (user == post.created_by or (Group.objects.get(name="CMSAdmin") in user.groups.all()))
 
 

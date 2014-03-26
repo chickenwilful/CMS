@@ -1,5 +1,5 @@
-from itertools import chain
 import json
+from django.contrib.auth.models import Group
 from django.db.models import Q
 from django.utils import timezone
 from django.core.urlresolvers import reverse
@@ -75,14 +75,12 @@ def event_list(request, emergency_situation_id=0):
 
     #Query database
     if int(emergency_situation_id) == 0:
-        temp = Event.objects.all()
+        event_list = Event.objects.all()
     else:
-        temp = Event.objects.filter(type=emergency_situation_id)
+        event_list = Event.objects.filter(type=emergency_situation_id)
 
-    if not "CMSAdmin" in request.user.groups.all():
-        event_list = temp.filter(Q(created_by=request.user) | Q(related_to=request.user))
-    else:
-        event_list = temp
+    if not Group.objects.get(name="CMSAdmin") in request.user.groups.all():
+        event_list = event_list.filter(Q(created_by=request.user) | Q(related_to=request.user))
 
     # Make Response
     for event in event_list:

@@ -51,12 +51,10 @@ def user_retrieve(request, user_id):
         return render(request, "main/no_permission.html")
     try:
         user = User.objects.get(pk=user_id)
-        userprofile = UserProfile.objects.get(user=user)
-        print userprofile.name
-    except (KeyError, UserProfile.DoesNotExist):
+    except (KeyError, User.DoesNotExist):
         return HttpResponse("404 NOT FOUND")
     else:
-        return render(request, 'storm_user/user_retrieve.html', {"userprofile": userprofile})
+        return render(request, 'storm_user/user_retrieve.html', {"user": user})
 
 
 def user_create(request):
@@ -79,8 +77,7 @@ def user_create(request):
             userprofile.save()
             return render(request, 'main/main_page.html')
         else:
-            return render(request, 'storm_user/user_create.html',
-                          {'message': 'Add new user fail!', 'form': form})
+            return render(request, 'storm_user/user_create.html', {'form': form})
 
 
 def user_update(request, user_id):
@@ -92,6 +89,8 @@ def user_update(request, user_id):
     if not (request.POST or request.GET):
         user = get_object_or_404(User, pk=user_id)
         form = UserUpdateForm(instance=user)
+        form.phone_number = user.get_user_model().phone_number
+        form.name = user.get_user_model().name
         return render(request, 'storm_user/user_update.html', {'form': form})
     else:
         form = UserUpdateForm(request.POST)
