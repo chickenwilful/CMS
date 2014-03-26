@@ -2,9 +2,15 @@
 <!-- Website template by freewebsitetemplates.com -->
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.js"></script>
+<script type="text/javascript" src="weather.js"></script>
+<script type="text/javascript" src="psi.js"></script>
 	<meta charset="UTF-8">
-	<title>Blakletterpress Website Template</title>
+	<title>Crisis Management System</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
+    
      <style>
         #map_canvas{ 
             margin: 0; 
@@ -25,7 +31,11 @@
         #legend img{
             vertical-align: middle;
         }
-    </style>
+    #page #contents #sidebar .section #posts ul font {
+	font-size: 3px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=weather"></script>
@@ -43,6 +53,9 @@
 			<div id="logo"></div>
 			<div id="searchbar">
 				<form action="#" method="post">
+				  <p><br>
+				    You are not logged in
+			      <a href="Login.html">|Login|</a></p>
 				</form>
 			</div>
 		</div>
@@ -70,17 +83,25 @@
                 <div>
                 &nbsp;
                 </div>
-                <select name="selectType" style="width: 150px"size="1" id="selectType">
-	          <option>Show All</option>
-	          <option>Haze</option>
-	          <option>Bird Flu</option>
-	          <option>Fire</option>
-            </select>
+                
+               
 
 			  
 			  
 					<div class = "body">
-					<ul id="list"><li>
+					  <h1><u>Events</u></h1>
+					  <br>
+                      <select name="selectType" style="width: 150px"size="1"  id="selectType">
+                        <option>Show All</option>
+                        <option>Haze</option>
+                        <option>Bird Flu</option>
+                        <option>Fire</option>
+                      </select>
+                    <ul id="list">
+                    
+					  <li>
+                      
+   
 					  <h3>EVENTS TITLE ONE<br>
 					    <span class="time">01-01-2012</span></h3>
                       <p></p>
@@ -131,7 +152,7 @@
 					<div>
 						<ul>
 							<li class="selected">
-								<a href="index.html"><font color="#FFFFFF">Home</font></a>
+								<a href="index.html"><font color="#FFFFFF">events</font></a>
 							</li>
 							
 							<li>
@@ -143,8 +164,7 @@
                             <li>
 								<a href="Contact.html">Contact us</a>
 							</li>
-                            <li>
-								<a href="login.html" class="globe">Log in</a></li>
+                       
                             
 					  </ul>
 					</div>
@@ -157,24 +177,17 @@
 				</div>
 				<div class="section">
 					<div id="posts">
-						<h2>Placeholder</h2>
+						<h2>Weather & PSI</h2>
+                        
 						<ul>
-							<li>
-								<h5>Title Sample One</h5>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
-								</p>
-								<a href="news.html" class="more">Read more</a>
+                        <h4><u>Singapore Weather</u></h4>
+							<li id="weather">
 							</li>
-							<li>
-								<h5>Title Sample One</h5>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
-								</p>
-								<a href="news.html" class="more">Read more</a>
-							</li>
+							 <h4><u>Singapore PSI</u></h4>
+							
+                            <li id="psi">
+                            </li></font>
 						</ul>
-						<p><a href="news.html" class="btn2">View More</a> </p>
 				  </div>
 			  </div>
 			</div>

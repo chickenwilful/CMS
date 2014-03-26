@@ -2,6 +2,14 @@
 <!-- Website template by freewebsitetemplates.com -->
 <html>
 <head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.js"></script>
+<script type="text/javascript" src="weather.js"></script>
+<script type="text/javascript" src="psi.js"></script>
+	<meta charset="UTF-8">
+	<title>Crisis Management System</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
 <script>
 function validateForm()
 {
@@ -26,6 +34,8 @@ if (re.test(x) == false){
 			<div id="logo"></div>
 			<div id="searchbar">
 				<form action="#" method="post">
+				  <p><br>
+			      You are not logged in <a href="Login.html">|Login|</a></p>
 				</form>
 			</div>
 		</div>
@@ -62,7 +72,7 @@ if (re.test(x) == false){
 		  <div id="navigation">
 					<div>
 						<ul>
-							<li class="selected"><a href="index.html">Home</a>
+							<li class="selected"><a href="index.html">EVENTS</a>
 							</li>
 							
 							<li><a href="index.html">nEWS</a><a href="news.html"> </a>
@@ -71,11 +81,7 @@ if (re.test(x) == false){
 								<a href="about.html">about us</a>
 							</li>
                             <li>
-								<a href="Contact.html">Contact us</a>
-							</li>
-                            <li>
-								<a href="login.html"><font color="#FFFFFF">Log in</font></a>
-							</li>
+							<a href="Contact.html">Contact us</a></li>
                             
 					  </ul>
 					</div>
@@ -88,28 +94,22 @@ if (re.test(x) == false){
 				</div>
 				<div class="section">
 					<div id="posts">
-						<h2>Placeholder</h2>
+						<h2>Weather & PSI</h2>
+                        
 						<ul>
-							<li>
-								<h5>Title Sample One</h5>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
-								</p>
-								<a href="news.html" class="more">Read more</a>
+                        <h4><u>Singapore Weather</u></h4>
+							<li id="weather">
 							</li>
-							<li>
-								<h5>Title Sample One</h5>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
-								</p>
-								<a href="news.html" class="more">Read more</a>
-							</li>
+							 <h4><u>Singapore PSI</u></h4>
+							
+                            <li id="psi">
+                            </li></font>
 						</ul>
-					  <a href="news.html" class="btn2">View More</a>
 				  </div>
 			  </div>
-		</div>
+			</div>
 		</div>
 	</div>
 </body>
+</html>
 </html>

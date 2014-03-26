@@ -151,7 +151,7 @@ a.sitename {
 	margin: 0;
 }
 #contents p {
-	color: #666;
+	color: #525252;
 	font-size: 14px;
 	line-height: 24px;
 	margin: 0;
@@ -303,7 +303,6 @@ a.sitename {
 	background-position: 24px -162px;
 	color: #0040ff;
 	font-family: "Arial Black";
-	font-size: 26px;
 }
 /** connect **/
 #connect {
@@ -362,31 +361,4 @@ a.sitename {
 	font-weight: normal;
 	line-height: 24px;
 	margin: 0;
-}
-#posts p {
-	color: #8f5e08;
-	font-size: 12px;
-	padding-bottom: 6px;
-	text-align: left;
-}
-#posts a.more {
-	color: #199209;
-	font-size: 12px;
-}
-#posts a.more:hover {
-	color: #bb8528;
-}
-
-#page #header #searchbar form p a {
-	font-size: 24px;
-}
-
-#form p label {
-	font-family: Verdana, Geneva, sans-serif;
-	color: #F00;
-}
-#error {
-	font-family: Verdana, Geneva, sans-serif;
-	font-size: 14px;
-	color: #F00;
 }

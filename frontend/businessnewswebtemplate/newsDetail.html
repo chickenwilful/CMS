@@ -2,8 +2,13 @@
 <!-- Website template by freewebsitetemplates.com -->
 <html>
 <head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.js"></script>
+<script type="text/javascript" src="weather.js"></script>
+<script type="text/javascript" src="psi.js"></script>
 	<meta charset="UTF-8">
-	<title>News - Blakletterpress Website Template</title>
+	<title>Crisis Management System</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
@@ -15,6 +20,8 @@
 			<div id="logo"></div>
 			<div id="searchbar">
 				<form action="#" method="post">
+				  <p><br>
+			      You are not logged in <a href="Login.html">|Login|</a></p>
 				</form>
 			</div>
 		</div>
@@ -47,14 +54,11 @@
 					<div>
 						<ul>
 							<li>
-								<a href="index.html">Home</a>
+								<a href="index.html">EVENTS</a>
 							</li>
 							<li> <a href="news.html"><font color="#FFFFFF">News</font></a></li>
 							<li class="selected"> <a href="about.html">about us</a></li>
 							<li> <a href="Contact.html">Contact us</a></li>
-                            <li>
-								<a href="login.html">Log in</a>
-							</li>
 						</ul>
 					</div>
 				</div>
@@ -64,30 +68,24 @@
 						<a href="http://freewebsitetemplates.com/go/twitter/" target="_blank" class="twitter"></a> <a href="http://freewebsitetemplates.com/go/facebook/" target="_blank" class="facebook"></a> <a href="http://freewebsitetemplates.com/go/googleplus/" target="_blank" class="googleplus"></a>
 					</div>
 				</div>
-				<div class="section">
+			<div class="section">
 					<div id="posts">
-						<h2>Weather</h2>
+						<h2>Weather & PSI</h2>
+                        
 						<ul>
-							<li>
-								<h5>Title Sample One</h5>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
-								</p>
-								<a href="news.html" class="more">Read more</a>
+                        <h4><u>Singapore Weather</u></h4>
+							<li id="weather">
 							</li>
-							<li>
-								<h5>Title Sample One</h5>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
-								</p>
-								<a href="news.html" class="more">Read more</a>
-							</li>
+							 <h4><u>Singapore PSI</u></h4>
+							
+                            <li id="psi">
+                            </li></font>
 						</ul>
-						<a href="news.html" class="btn2">View More</a>
-					</div>
-				</div>
+				  </div>
+			  </div>
 			</div>
 		</div>
 	</div>
 </body>
+</html>
 </html>

@@ -2,8 +2,13 @@
 <!-- Website template by freewebsitetemplates.com -->
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Blakletterpress Website Template</title>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/json2/20130526/json2.js"></script>
+<script type="text/javascript" src="weather.js"></script>
+<script type="text/javascript" src="psi.js"></script>
+	<meta charset="UTF-8">
+	<title>Crisis Management System</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
@@ -15,6 +20,8 @@
 			<div id="logo"></div>
 			<div id="searchbar">
 				<form action="#" method="post">
+				  <p><br>
+			      Welcome <a href="index.html">|Logout|</a></p>
 				</form>
 			</div>
 		</div>
@@ -25,26 +32,37 @@
 		      <p>
 		        
 		        <input type="text" name="title" id="title3" size="30" height="30" style="font-size: 15pt">
-	          </p>
+                <label id ="error">error</label>
+		      </p>
               Name:
 	          <p>
 		        
 		        <input type="text" name="title" id="title3" size="30" height="30" style="font-size: 15pt">
+                <label id="error">error</label>
               </p>
                 Related to:
               
                <p>
-                   <select name="cars" size="4" multiple>
-  <option value="scdf">SCDF</option>
-  <option value="spf">SPF</option>
-  <option value="nea">NEA</option>
-  <option value="moh">MOH</option>
-</select>
+                 <label>
+                   <input type="checkbox" name="CheckboxGroup1" value="SCDF" id="CheckboxGroup1_0">
+                 SCDF</label>
+                   <input type="checkbox" name="CheckboxGroup1_" value="SPF" id="CheckboxGroup1_1">
+                   <label>SPF</label>
+                   <input type="checkbox" name="CheckboxGroup1_2" value="NEA" id="CheckboxGroup1_2">
+NEA
+<label>
+  <input type="checkbox" name="CheckboxGroup1_3" value="MOH" id="CheckboxGroup1_3">
+  MOH</label>
+<br>
+<label id="error">error</label>
+  <br>
               </p>
                 Post:
               <p>
                 <label for="textarea"></label>
 		        <textarea name="textarea" id="textarea" class="posttext"></textarea>
+                <br>
+                <label id="error">error</label>
               </p>
               <p>
                 <input type="checkbox" name="isPublished" id="isPublished">
@@ -59,7 +77,7 @@
 		  <div id="navigation">
 					<div>
 						<ul>
-							<li class="selected"><a href="index.html">Home</a>
+							<li class="selected"><a href="index.html">events</a>
 							</li>
 							
 							<li><a href="index.html">nEWS</a><a href="news.html"> </a>
@@ -70,9 +88,7 @@
                             <li>
 								<a href="Contact.html">Contact us</a>
 							</li>
-                            <li>
-								<a href="login.html">Log in</a>
-							</li>
+                            
                             
 					  </ul>
 					</div>
@@ -83,29 +99,22 @@
 						<a href="https://twitter.com/CMSSocialBot" target="_blank" class="twitter"></a> <a href="https://www.facebook.com/pages/CMS-Alerts/738126479553549" target="_blank" class="facebook"></a> <a href="https://plus.google.com/116253498383005615682/" target="_blank" class="googleplus"></a>
 					</div>
 				</div>
-				<div class="section">
+			<div class="section">
 					<div id="posts">
-						<h2>Placeholder</h2>
+						<h2>Weather & PSI</h2>
+                        
 						<ul>
-							<li>
-								<h5>Title Sample One</h5>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
-								</p>
-								<a href="news.html" class="more">Read more</a>
+                        <h4><u>Singapore Weather</u></h4>
+							<li id="weather">
 							</li>
-							<li>
-								<h5>Title Sample One</h5>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eleifend ligula vel velit varius
-								</p>
-								<a href="news.html" class="more">Read more</a>
-							</li>
+							 <h4><u>Singapore PSI</u></h4>
+							
+                            <li id="psi">
+                            </li></font>
 						</ul>
-					  <a href="news.html" class="btn2">View More</a>
 				  </div>
 			  </div>
-		</div>
+			</div>
 		</div>
 	</div>
 </body>
