@@ -1,15 +1,17 @@
 var map;
 var geocoder;
-var iconBase = "http://localhost:8080/CMS/";
-//"file:///C:/Users/Desmond%20Teo/Dropbox/CZ%203003%20Front%20End%20Team/Front%20End%20Page/businessnewswebtemplate/Map UI/";
-var jsonBase = "http://localhost:8080/CMS/";
-//"file:///C:/Users/Desmond%20Teo/Dropbox/CZ%203003%20Front%20End%20Team/Front%20End%20Page/businessnewswebtemplate/Map UI/";
-
+var iconBase = "http://localhost:8000/static/MapUI/";
+var jsonBase = "http://localhost:8000/event/map/";
+//var singaporeBound = "1.1679031235897843, 103.59146118164062|1.4569047431701578, 104.02507781982422";
+var southWest = new google.maps.LatLng(1.1679031235897843, 103.59146118164062);
+var northEast = new google.maps.LatLng(1.4569047431701578, 104.02507781982422);
+var bound = new google.maps.LatLngBounds(southWest, northEast);
 infowindow = new google.maps.InfoWindow();
+var currentTime = new Date();
 function initialize() {
     geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById('map_canvas'), {
-      zoom: 11,
+      zoom: 12,
       center: new google.maps.LatLng(1.3667,103.81),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -21,98 +23,125 @@ function initialize() {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
     
     
+    
     var icons = {
           Fire: {
             name: 'Fire',
-            icon: iconBase + 'fire.png'
+            icon: iconBase + 'Fire.png'
           },
           Dengue: {
             name: 'Dengue',
-            icon: iconBase + 'dengue.png'
+            icon: iconBase + 'Dengue.png'
           },
-          Gas_leak: {
+          Gas_Leak: {
             name: 'Gas leaking',
-            icon: iconBase + 'gas_leak.png'
+            icon: iconBase + 'Gas_Leak.png'
           },
-    /*      Earthquake:{
-            name:'Earthquake',
-            icon: iconBase + 'earthquake.png'
-          },
-          Tsunami:{
-            name:'Tsunami',
-            icon: iconBase + 'tsunami.png'
-          },
-          Treedown:{
-            name:'Tree down',
-            icon: iconBase + 'treedown.png'
-          },
-          Tornado:{
-            name:'Tornado',
-            icon: iconBase + 'tornado.png'
-          }
-		  */
+          Accident:{
+            name:'Accident',
+            icon: iconBase + 'Accident.png'
+        }
         };
 
-    loadEvent("fire.png", "fire.json");
-    loadEvent("dengue.png", "dengue.json");
-    loadEvent("gas_leak.png","gas_leak.json");
-
-    function loadEvent(iconName, jsonName)
+    loadEvent("data.json");
+    function loadEvent(jsonName)
     {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', jsonBase+jsonName, true);
         xhr.onload = function() {
-          loadMarker(this.responseText, iconName);
+          loadMarker(this.responseText);
         };
         xhr.send(); 
     }
-    function loadMarker(results, iconName)
+    function loadMarker(results)
     {
         var json = JSON.parse(results);
-        var location;
-        for (var i = 0; i < json.length; i++) {
-            var postalCode = json[i].postal_code;
-            var data = json[i];
-            var stt = data.status;
-            (function(postalCode, stt){
-                geocoder.geocode({ 'address': postalCode}, function(results, status) {
-                    addMarker(stt, results[0].geometry.location, iconName);
-                });
-            })(postalCode,stt);
+        for(var key in json)
+        {
+            for (var i = 0; i < json[key].length; i++) {
+                var data = json[key][i];
+                var postalCode = data.postal_code;
+                var reporter = data.reporter;
+                var addr = data.address;
+                var time = data.time;
+                var des = data.description;
+                if(postalCode!==''){
+                    (function(postalCode, des, reporter, addr, time, key){
+                        geocoder.geocode({ 'address': postalCode}, function(results, status) {
+                            addMarker(des, reporter, addr, time, results[0].geometry.location, key);
+                        });
+                    })(postalCode,des,reporter, addr, time, key);
+                }
+                else{
+                    (function(postalCode, des, reporter, addr, time, key){
+                        geocoder.geocode({ 'address': addr, 'bounds':bound}, function(results, status) {
+                            addMarker(des, reporter, addr, time, results[0].geometry.location, key);
 
+                        });
+                    })(postalCode,des,reporter, addr, time, key);
+                }
+
+            }
         }
    }
 
-    function addMarker(status, location, iconName)
+    function addMarker(description, reporter, addr, time, location, key)
     {
+
+        var eventTime = new Date(time);
+        var diff = Math.round((currentTime - eventTime)/3600000);
         var marker = new google.maps.Marker({
             map: map,
             position: location,
-            icon: iconBase + iconName 
+            icon: iconBase + key + ".png",
+            animation: google.maps.Animation.DROP
         });
+        if(diff<3)
+            marker.setAnimation(google.maps.Animation.BOUNCE)
+//        google.maps.event.addListener(marker, 'click', toggleBounce);
+        var content = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">'+icons[key].name+'</h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>Name of reporter: </b>' + reporter + 
+      '<p><b>Venue: </b>' + addr +
+      '<p><b>Time reported: </b>'+ time+
+      '<p><b>Description: </b>' + description + 
+      '</div>'+
+      '</div>';
         google.maps.event.addListener(marker, 'click', function () {
-            infowindow.setContent(status);
+            infowindow.setContent(content);
             infowindow.open(map, marker);
         });
     }
-   /*var legend = document.createElement('div');
-    legend.id = 'legend';
-    var content = [];
-    content.push('<h4>Legend</h4>');
-    for(var key in icons)
-    {
-        var type = icons[key];
-        var name = type.name;
-        var icon = type.icon;
-        content.push('<br> <div> <img src="' + icon + '">'+ name+'</div>');
-    }
-    legend.innerHTML = content.join('');
-    legend.index = 1;
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);*/
-    //testing
-    google.maps.event.addListener(map, "click", function(event)
-    {
-         alert("Latitude: " + event.latLng.lat()+ ", Longitude: "+event.latLng.lng());
-    });
-    }
+//    function toggleBounce()
+//    {
+//        if(marker.getAnimation()!= null)
+//            marker.setAnimation(null);
+//        else
+//            marker.setAnimation(google.maps.Animation.Bounce);
+//    }
+    //create legend
+//   var legend = document.createElement('div');
+//    legend.id = 'legend';
+//    var content = [];
+//    content.push('<h3>Legend</h3>');
+//    for(var key in icons)
+//    {
+//        var type = icons[key];
+//        var name = type.name;
+//        var icon = type.icon;
+//        content.push('<p> <div> <img src="' + icon + '">'+ name+'</div></p>');
+//    }
+//    legend.innerHTML = content.join('');
+//    legend.index = 1;
+//    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+    //testing: get lat long
+//    google.maps.event.addListener(map, "click", function(event)
+//    {
+//         alert("Latitude: " + event.latLng.lat()+ ", Longitude: "+event.latLng.lng());
+//    });
+//    }
+}
 google.maps.event.addDomListener(window, 'load', initialize);

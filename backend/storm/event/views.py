@@ -20,7 +20,7 @@ def map(request):
             json_data[event.type.name] = []
         json_data[event.type.name].append({
             "postal_code": event.postal_code,
-            "reporter": event.caller_name,
+            "reporter": event.reporter_name,
             "time": event.created_at.strftime('%Y-%m-%d %H:%M'),
             "description": event.description,
             "address": event.address,
@@ -49,7 +49,7 @@ def event_create(request):
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.created_by_id = request.user.id
-            model_instance.created_at = timezone.now()
+            #model_instance.created_at = timezone.now()
             model_instance.save()
             return redirect("event.event_list")
         else:

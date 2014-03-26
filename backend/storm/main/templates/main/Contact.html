@@ -1,21 +1,49 @@
 {% extends 'main/base.html' %}
 
 {% block map %}
+    <div id="gallery">
+            {% load staticfiles %}
+        <div align="center"><img src='{% static "images/imgCrisis2.jpg" %}'  alt="Img" width="316" height="202" border = 5></div>
+    </div>
+
 {% endblock map %}
 
 {% block content %}
-				<div id="gallery">
-					<div align="center"><img src="images/imgCrisis.jpg"  alt="Img" width="316" height="202" border = 5></div>
-                </div>
 				<div class="body"><br>
-                <h1><b><u>About Us</u></b></h1>
+                <h1><b><u> Contact Information </u></b></h1>
                 <br>
-                <p>STORM is a business enterprise solutions that helps to provide applications for the business and agencies. For more information regarding STORM, please visit us at <a href="url">www.stormsolutions.com.sg</a> </p>
-				  <p>Crisis Management System (CMS) aims to achieve to provide the public with the latest and updated information of any emergency situation that happens in singapore. This website combines all related government agency efforts to provide the latest news to the public through different social media platform.</p>
+				  <h4><u>Singapore Civil Defence Force (SCDF) </u></h4>
+				  <p> The SCDF has a 24-hour Emergency Ambulance Services (EAS), which has medical personnel that are well equipped with the necessary skills to handle all emergency situations.
+                    <br>
+                    <br>
+More information can be found here: <br>
+<a href="http://www.scdf.gov.sg/content/scdf_internet/en/general/information/information_on_scdfand1777ambulanceservices.html">SCDF Ambulance services</a> <br>
+<br>
+In the event of fire-fighting, gas leak control and resue and evacation, please call <b>995</b>.</p>
+                    <h4><u>Singapore Police Force (SPF) </u></h4>
+				  <p> The SPF has a 24-hr hotline that handle the calls of the public to alert them regarding any crime situations.
+                  </p>
+					<p> More information can be found here:
+                    <br>
+                    <a href = "http://www.spf.gov.sg/">SPF Website </a>
+                    <br>
+                    <br>
+                    In the event of any crime situation, please call <b>999</b>.
+                    <h4><u>National Environment Agency (NEA)</u> </h4>
+				  <p> NEA is the public organization that is in charge of the environmental issues.
+                    <br>
+                    <br>
+                    More information can be found here: <br>
+<a href="http://app2.nea.gov.sg/">NEA Website</a> </p>
+                    <p>In the event of any pollution and damages to the environment, please call <b>1800-2255 632</b>.</p>
 
-                  <p> On top of that, CMS has useful information about the weather, PSI readings and useful contacts for the public. </p>
-
-                  <p> In the event of any technical situation encountered in using CMS, please contact the adminstrators at: <b> 1800-3003-3003 </b> </p>
+                    <h4><u>Ministry of Health (MOH) </u></h4>
+				  <p> The MOH promotes good health, maintain healthcare system and reducing illness.
+                    <br>
+                    <br>
+                    More information can be found here: <br>
+                  <a href="https://www.moh.gov.sg/content/moh_web/home.html">MOH website</a> </p>
+                    <p>In the event of any health-related issues, please call <b>6325 9220</b>.</p>
 
 				</div>
 

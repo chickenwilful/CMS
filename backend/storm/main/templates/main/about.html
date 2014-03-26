@@ -1,12 +1,14 @@
 {% extends 'main/base.html' %}
 
 {% block map %}
+    <div id="gallery">
+    {% load staticfiles %}
+        <div align="center"><img src='{% static "images/imgCrisis.jpg" %}'  alt="Img" width="316" height="202" border = 5></div>
+    </div>
+
 {% endblock map %}
 
 {% block content %}
-				<div id="gallery">
-					<div align="center"><img src="images/imgCrisis.jpg"  alt="Img" width="316" height="202" border = 5></div>
-                </div>
 				<div class="body"><br>
                 <h1><b><u>About Us</u></b></h1>
                 <br>

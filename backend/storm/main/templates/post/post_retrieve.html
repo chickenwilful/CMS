@@ -4,25 +4,30 @@
 {% block map %}
 {% endblock %}
 {% block content-title %}
-This is post detail
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'post.post_list' %}">back to post list</a>
-    <br>
-<ul id="list">
+<div class="body">
+    <ul id="list">
         <li>
-            <h3>{{post.title|safe}}</h3>
-            <br/>
-            <img height="200px" alt="img" src="{{post.imageLink}}"/>
-            <p>{{post.content|safe}}</p>
-            <br/>
-            <p><strong>created at: </strong>{{post.created_at}}</p>
-            <p><strong>created by: </strong>{{post.created_by}}</p>
-            <p><strong>type: </strong>{{post.type}}</p>
+          <h3>{{post.title}}</h3>
+          <br>
+          <p>By {{post.created_by}} </p>
+          <p>{{post.created_at}}</p>
+          <p>Type: {{post.type}}</p>
+          <p>&nbsp;</p>
+            <p>{{post.content}}</p>
+            <p>&nbsp;</p>
+            <p><font color="#000000">Related to: {% for user in post.related_to.all %} {{user}} {% endfor %}</font></p>
+          <br>
+<input type="Submit" class="btn" name="Back to News" id="Back to News" value="Back to News" onclick="window.location.href='post/post_list/'">
+<input type="Submit" class="btn" name="Edit" id="Edit" value="Edit" onclick="window.location.href=''">
+<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="window.location.href='news.html'">
         </li>
-</ul>
-<a href="/post/post_update/{{post.id}}" >Edit this post</a>
+    </ul>
+</div>
+    <a href="{% url 'post.post_list' %}">back to post list</a>
+    <a href="/post/post_update/{{post.id}}" >Edit this post</a>
     <a href="#" onclick="confirmDeletePost()">Delete this post</a>
     <script type="text/javascript">
         function confirmDeletePost() {
