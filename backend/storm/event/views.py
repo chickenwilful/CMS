@@ -29,7 +29,33 @@ def map(request):
     with open('data.json', 'w') as f:
         json.dump(json_data, f)
 
-    return json_success(request, {'events': json_data})
+    return HttpResponse(json.dumps(json_data), content_type='application/json')
+
+
+def sendSMS():
+
+    import urllib
+
+    # If your firewall blocks access to port 5567, you can fall back to port 80:
+    # url = "http://bulksms.vsms.net/eapi/submission/send_sms/2/2.0"
+    # (See FAQ for more details.)
+    url = "http://bulksms.vsms.net:5567/eapi/submission/send_sms/2/2.0"
+    params = urllib.urlencode({'username' : 'myusername', 'password' : 'xxxxxxxx', 'message' : 'Testing Python', 'msisdn' : 271231231234})
+    f = urllib.urlopen(url, params)
+    # Read from the object, storing the page's contents in 's'.
+    s = f.read()
+    # Print the contents
+    #print s
+
+    result = s.split('|')
+    statusCode = result[0]
+    statusString = result[1]
+    if statusCode != '0':
+            print "Error: " + statusCode + ": " + statusString
+    else:
+            print "Message sent: batch ID " + result[2]
+
+    f.close()
 
 
 def event_create(request):
@@ -49,7 +75,7 @@ def event_create(request):
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.created_by_id = request.user.id
-            #model_instance.created_at = timezone.now()
+            model_instance.created_at = timezone.now()
             model_instance.save()
             return redirect("event.event_list")
         else:

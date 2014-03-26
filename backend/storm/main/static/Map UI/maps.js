@@ -47,7 +47,7 @@ function initialize() {
     function loadEvent(jsonName)
     {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', jsonBase+jsonName, true);
+        xhr.open('GET', jsonBase, true);
         xhr.onload = function() {
           loadMarker(this.responseText);
         };
@@ -56,6 +56,7 @@ function initialize() {
     function loadMarker(results)
     {
         var json = JSON.parse(results);
+        console.log(results)
         for(var key in json)
         {
             for (var i = 0; i < json[key].length; i++) {

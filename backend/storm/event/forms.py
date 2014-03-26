@@ -14,6 +14,8 @@ class MyModelChoiceField(ModelMultipleChoiceField):
 class EventCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventCreateForm, self).__init__(*args, **kwargs)
+        for fieldname in ['related_to']:
+            self.fields[fieldname].help_text = None
     related_to = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"))
 
     class Meta:
@@ -22,11 +24,17 @@ class EventCreateForm(forms.ModelForm):
 
     def save(self, commit=True):
         event = super(EventCreateForm, self).save(commit=False)
+        event.save()
         event.related_to = self.cleaned_data.get('related_to')
-        if commit:
-            event.save()
+        event.save()
         return event
 
 
 class EventUpdateForm(EventCreateForm):
-    pass
+    class Meta:
+        model = Event
+
+    def save(self, commit=True):
+        event = super(EventCreateForm, self).save(commit=False)
+        event.save()
+        return event
