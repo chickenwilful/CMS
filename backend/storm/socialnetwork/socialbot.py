@@ -1,10 +1,11 @@
 from abc import ABCMeta, abstractmethod
 from datetime import datetime, timedelta
+from urlparse import urlparse
 import json
 
 import facebook
 from twython import Twython, TwythonError, TwythonRateLimitError, TwythonAuthError
-from requests_oauthlib import OAuth2Session
+from requests_oauthlib import OAuth1Session, OAuth2Session
 import requests
 
 
@@ -226,6 +227,7 @@ class FacebookBot(SocialBot):
     """A SocialBot that can interface with the Facebook Graph API.
     """
     
+    __site_name = "Facebook"
     __client_token_name = "code"
     __permissions = ["manage_pages","status_update"]
 
@@ -257,7 +259,7 @@ class FacebookBot(SocialBot):
         return True
     
     def get_site_name(self):
-        return "Facebook"
+        return self.__site_name
     
     def get_client_token_name(self):
         return self.__client_token_name
@@ -374,12 +376,16 @@ class FacebookBot(SocialBot):
             del self._main_token
         if hasattr(self, "_page_name"):
             del self._page_name
+        if hasattr(self, "_page_url"):
+            del self._page_url
 
 class TwitterBot(SocialBot):
     """A SocialBot that can interface with the Twitter REST API.
     """
     
+    __site_name = "Twitter"
     __client_token_name = "oauth_verifier"
+    __base_account_url = "https://twitter.com/%s"
 
     def __init__(self, app_id, app_secret):
         self.__app_id = app_id
@@ -404,7 +410,7 @@ class TwitterBot(SocialBot):
         
         if "screen_name" in user_info:
             account_name = user_info["screen_name"]
-            account_url = "https://twitter.com/%s" % account_name
+            account_url = __base_account_url % account_name
             self._account_name = account_name
             self._account_url = account_url
             return account_name, account_url
@@ -418,7 +424,7 @@ class TwitterBot(SocialBot):
         return False
     
     def get_site_name(self):
-        return "Twitter"
+        return self.__site_name
     
     def get_client_token_name(self):
         return self.__client_token_name
@@ -522,6 +528,8 @@ class TwitterBot(SocialBot):
             del self._sub_token
         if hasattr(self, "_account_name"):
             del self._account_name
+        if hasattr(self, "_account_url"):
+            del self._account_url
 
 # Even though this bot is meant to post updates to G+, it will post them to the Buffer API instead.
 # Google has yet to release an API for Pages publicly, so we have to do it from a 3rd party API.
@@ -529,7 +537,15 @@ class GPlusBot(SocialBot):
     """A SocialBot that can interface with the Google+ Page API.
     """
     
+    __site_name = "Google+"
     __client_token_name = "code"
+    __authorize_url = "https://bufferapp.com/oauth2/authorize"
+    __token_url = "https://api.bufferapp.com/1/oauth2/token.json"
+    
+    __post_url = "https://api.bufferapp.com/1/updates/create.json"
+    __profiles_url = "https://api.bufferapp.com/1/profiles.json"
+    __profile_info_url = "https://api.bufferapp.com/1/profiles/%s.json"
+    __base_page_url = "https://plus.google.com/%s/"
 
     def __init__(self, app_id, app_secret):
         self.__app_id = app_id
@@ -553,16 +569,20 @@ class GPlusBot(SocialBot):
         response._content = json.dumps(token).encode('UTF-8')
         return response
     
+    def __create_oauth_session(self, token=None):
+        token = token or self._main_token
+        token_dict = self._get_token_dict(token)
+        return OAuth2Session(self.__app_id, token=token_dict)
+    
     def __retrieve_account_details(self):
         page_id = self._sub_token
-        token_dict = self._get_token_dict(self._main_token)
-        oauth_session = OAuth2Session(self.__app_id, token=token_dict)
+        oauth_session = self.__create_oauth_session()
         
-        page_info = oauth_session.get("https://api.bufferapp.com/1/profiles/%s.json" % page_id).json()
+        page_info = oauth_session.get(self.__profile_info_url % page_id).json()
         if "formatted_username" in page_info:
             page_name = page_info["formatted_username"]
             
-            page_url = "https://plus.google.com/%s/" % page_info["service_id"]
+            page_url = self.__base_page_url % page_info["service_id"]
             self._page_name = page_name
             self._page_url = page_url
             return page_name, page_url
@@ -576,7 +596,7 @@ class GPlusBot(SocialBot):
         return True
     
     def get_site_name(self):
-        return "Google+"
+        return self.__site_name
     
     def get_client_token_name(self):
         return self.__client_token_name
@@ -608,7 +628,6 @@ class GPlusBot(SocialBot):
         if title and content:
             message += "\n\n" + content
         
-        token_dict = self._get_token_dict(self._main_token)
         profile_id = self._sub_token
         
         post_data = {}
@@ -618,8 +637,8 @@ class GPlusBot(SocialBot):
         post_data["media[title]"] = title
         post_data["media[link]"] = link
         
-        oauth_session = OAuth2Session(self.__app_id, token=token_dict)
-        response = oauth_session.post("https://api.bufferapp.com/1/updates/create.json", data=post_data)
+        oauth_session = self.__create_oauth_session()
+        response = oauth_session.post(self.__post_url, data=post_data)
         response_json = response.json()
         
         result = {}
@@ -653,7 +672,7 @@ class GPlusBot(SocialBot):
         auth_data = {}
         
         oauth_session = OAuth2Session(self.__app_id, redirect_uri=callback_url)
-        oauth_url, state = oauth_session.authorization_url('https://bufferapp.com/oauth2/authorize')
+        oauth_url, state = oauth_session.authorization_url(self.__authorize_url)
         
         # auth_data["state"] = state
         auth_data["callback_url"] = callback_url
@@ -667,7 +686,7 @@ class GPlusBot(SocialBot):
         # Register the Buffer compliance hook
         oauth_session.register_compliance_hook("access_token_response",
                                                self.__missing_token_type_compliance_hook)
-        token = oauth_session.fetch_token("https://api.bufferapp.com/1/oauth2/token.json",
+        token = oauth_session.fetch_token(self.__token_url,
                                           code=client_token,
                                           client_secret=self.__app_secret)
         
@@ -680,10 +699,9 @@ class GPlusBot(SocialBot):
         return result
 
     def get_pages(self, request_token):
-        request_token_dict = self._get_token_dict(request_token)
-        
-        oauth_session = OAuth2Session(self.__app_id, token=request_token_dict)
-        response = oauth_session.get("https://api.bufferapp.com/1/profiles.json")
+        # import pdb; pdb.set_trace()
+        oauth_session = self.__create_oauth_session(token=request_token)
+        response = oauth_session.get(self.__profiles_url)
         
         profiles = response.json()
         pages = []
@@ -703,3 +721,204 @@ class GPlusBot(SocialBot):
             del self._sub_token
         if hasattr(self, "_page_name"):
             del self._page_name
+        if hasattr(self, "_page_url"):
+            del self._page_url
+
+class TumblrBot(SocialBot):
+    """A SocialBot that can interface with the Tumblr Blog API.
+    """
+    
+    __site_name = "Tumblr"
+    __client_token_name = "oauth_verifier"
+    __request_token_url = "https://www.tumblr.com/oauth/request_token"
+    __authorize_url = "https://www.tumblr.com/oauth/authorize"
+    __access_token_url = "https://www.tumblr.com/oauth/access_token"
+    
+    __post_url = "https://api.tumblr.com/v2/blog/%s/post"
+    __user_info_url = "https://api.tumblr.com/v2/user/info"
+    __blog_info_url = "https://api.tumblr.com/v2/blog/%s/info"
+
+    def __init__(self, app_id, app_secret):
+        self.__app_id = app_id
+        self.__app_secret = app_secret
+    
+    def __create_oauth_session(self, token=None, token_secret=None):
+        token = token or self._main_token
+        token_secret = token_secret or self._token_secret
+        return OAuth1Session(self.__app_id,
+                      client_secret=self.__app_secret,
+                      resource_owner_key=token,
+                      resource_owner_secret=token_secret)
+    
+    def __retrieve_account_details(self):
+        hostname = self._sub_token
+        params = { "api_key" : self.__app_id }
+        
+        response = requests.get(self.__blog_info_url % hostname, params=params)
+        response_json = response.json()
+        res_object = response_json["response"]
+        
+        if "blog" in res_object:
+            blog = res_object["blog"]
+            page_name = blog["title"]
+            page_url = blog["url"]
+            self._page_name = page_name
+            self._page_url = page_url
+            return page_name, page_url
+        else:
+            return None, None
+    
+    def must_refresh_token(self):
+        return False
+    
+    def must_select_page(self):
+        return True
+    
+    def get_site_name(self):
+        return self.__site_name
+    
+    def get_client_token_name(self):
+        return self.__client_token_name
+    
+    def get_account_name(self):
+        if hasattr(self, "_page_name"):
+            return self._page_name
+        elif hasattr(self, "_main_token"):
+            page_name, page_url = self.__retrieve_account_details()
+            
+            if page_name:
+                return page_name
+            else:
+                return "Unknown"
+        return "Unauthorized"
+    
+    def get_account_url(self):
+        if hasattr(self, "_page_url"):
+            return self._page_url
+        elif hasattr(self, "_main_token"):
+            page_name, page_url = self.__retrieve_account_details()
+            return page_url
+        return None
+    
+    def post(self, title, content, link):
+        body = content or title or None
+        if not body:
+            return {"error" : "No content in post."}
+        
+        hostname = self._sub_token
+        
+        post_data = {}
+        if link:
+            post_data["type"] = "link"
+            post_data["url"] = link
+            if title:
+                post_data["title"] = title
+            if content:
+                post_data["description"] = content
+        else:
+            post_data["type"] = "text"
+            post_data["body"] = body
+            if title:
+                post_data["title"] = title
+        
+        oauth_session = self.__create_oauth_session()
+        
+        blog_post_url = self.__post_url % hostname
+        response = oauth_session.post(blog_post_url, data=post_data)
+        result = {}
+        
+        if response.status_code != 201:
+            result["error"] = "Unable to post to %s." % self.__site_name
+        
+        return result
+    
+    def authenticate(self, token, sub_token=None):
+        if not sub_token:
+            raise ValueError("Tumblr requires the blog hostname as a sub token.")
+        
+        token_info = json.loads(token)
+        
+        self._main_token = token_info["oauth_token"]
+        self._token_secret = token_info["oauth_token_secret"]
+        self._sub_token = sub_token
+        
+        result = {}
+        result["main_token"] = token
+        result["sub_token"] = sub_token
+        
+        return result
+        
+    def refresh_token(self):
+        # No known method of refreshing a Tumblr token
+        pass
+    
+    def start_authentication(self, callback_url):
+        auth_data = {}
+        
+        oauth_session = OAuth1Session(self.__app_id, client_secret=self.__app_secret)
+        request_token_response = oauth_session.fetch_request_token(self.__request_token_url)
+        
+        oauth_token = request_token_response.get('oauth_token')
+        oauth_token_secret = request_token_response.get('oauth_token_secret')
+        
+        if (oauth_token and oauth_token_secret) is None:
+            return None, None
+        
+        oauth_url = oauth_session.authorization_url(self.__authorize_url)
+        auth_data["oauth_token"] = oauth_token
+        auth_data["oauth_token_secret"] = oauth_token_secret
+        
+        # auth_data["state"] = state
+        # auth_data["callback_url"] = callback_url
+        
+        return oauth_url, auth_data
+
+    def process_token(self, client_token, auth_data):
+        oauth_session = OAuth1Session(self.__app_id,
+                                      client_secret=self.__app_secret,
+                                      resource_owner_key=auth_data["oauth_token"],
+                                      resource_owner_secret=auth_data["oauth_token_secret"],
+                                      verifier=client_token)
+        token = oauth_session.fetch_access_token(self.__access_token_url)
+        
+        result = {}
+        if "oauth_token" in token:
+            result["main_token"] = json.dumps(token)
+        else:
+            result["error"] = "Unable to retrieve access token."
+        
+        return result
+
+    def get_pages(self, request_token):
+        oauth_tokens = json.loads(request_token)
+        oauth_token = oauth_tokens["oauth_token"]
+        oauth_token_secret = oauth_tokens["oauth_token_secret"]
+        
+        oauth_session = self.__create_oauth_session(token=oauth_token,
+                                                    token_secret=oauth_token_secret)
+        response = oauth_session.get(self.__user_info_url)
+        
+        response_object = response.json()["response"]
+        user = response_object["user"]
+        blogs = user["blogs"]
+        pages = []
+        for blog in blogs:
+            page = {}
+            hostname = urlparse(blog["url"]).hostname
+            page["id"] = hostname
+            page["name"] = blog["title"]
+            pages.append(page)
+        
+        return pages
+    
+    def clear_token(self):
+        if hasattr(self, "_main_token"):
+            del self._main_token
+        if hasattr(self, "_token_secret"):
+            del self._token_secret
+        if hasattr(self, "_sub_token"):
+            del self._sub_token
+        if hasattr(self, "_page_name"):
+            del self._page_name
+        if hasattr(self, "_page_url"):
+            del self._page_url
