@@ -6,21 +6,36 @@
 {% endblock %}
 
 {% block content-title %}
-    Forms
-{% endblock %}
+<h1><b><u>{% block content-title-form %}
+{% endblock content-title-form %}
+</u></b>
+</h1>
+</br>
+{% endblock content-title %}
 
 {% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" href='{% static "css/bootstrap_override.css" %}'>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    {% block message %}
+    {% endblock message %}
+
 
     <form role="form" class="form-horizontal" method="post">
+        {% bootstrap_form form layout="horizontal" %}
         {% csrf_token %}
-      <!--<ul>-->
-        <!--{{ form.as_ul }}-->
-      <!--</ul>-->
-                {% bootstrap_form form layout="horizontal" %}
         {% buttons submit='OK' reset='Cancel' layout='horizontal' %}{% endbuttons %}
     </form>
 
-{% endblock %}
+{% endblock content %}
 
     {# Include the hidden fields #}
         {% for hidden in form.hidden_fields %}

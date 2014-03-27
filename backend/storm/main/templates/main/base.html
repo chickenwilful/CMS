@@ -42,7 +42,13 @@
 			<div id="logo"></div>
 			<div id="searchbar">
 				<form action="#" method="post">
-				</form>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'user.user_logout' %}">Logout</a>
+                    {% else %}
+                        <a href="{% url 'user.user_login' %}">Login</a>
+                    {% endif %}
+
+                </form>
 			</div>
 		</div>
 		<div id="contents">
@@ -71,7 +77,6 @@
 {% endblock content-title %}
 
 {% block content %}
-
 {% endblock content %}
 		    </div>
 		  </div>
@@ -88,10 +93,10 @@
 								<a href="/post/post_list/">News</a>
 							</li>
 							<li>
-								<a href="about.html">About us</a>
+								<a href="/about/">About us</a>
 							</li>
                             <li>
-								<a href="Contact.html">Contact us</a>
+								<a href="/contact/">Contact us</a>
 							</li>
 
 					  </ul>

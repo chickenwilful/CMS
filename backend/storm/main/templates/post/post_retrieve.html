@@ -19,15 +19,15 @@
             <p>{{post.content}}</p>
             <p>&nbsp;</p>
           <br>
-<input type="Submit" class="btn" name="Back to News" id="Back to News" value="Back to News" onclick="window.location.href='post/post_list/'">
-<input type="Submit" class="btn" name="Edit" id="Edit" value="Edit" onclick="window.location.href=''">
-<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="window.location.href='news.html'">
+<input type="Submit" class="btn" name="Back to News" id="Back to News" value="Back to News" onclick="window.location.href='/post/post_list/'">
+<input type="Submit" class="btn" name="Edit" id="Edit" value="Edit" onclick="window.location.href='/post/post_update/{{post.id}}'">
+<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="confirmDeletePost()">
         </li>
     </ul>
 </div>
-    <a href="{% url 'post.post_list' %}">back to post list</a>
-    <a href="/post/post_update/{{post.id}}" >Edit this post</a>
-    <a href="#" onclick="confirmDeletePost()">Delete this post</a>
+    <!--<a href="{% url 'post.post_list' %}">back to post list</a>-->
+    <!--<a href="/post/post_update/{{post.id}}" >Edit this post</a>-->
+    <!--<a href="#" onclick="confirmDeletePost()">Delete this post</a>-->
     <script type="text/javascript">
         function confirmDeletePost() {
             var resp = confirm("Are you sure to delete this post?")

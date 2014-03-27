@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64f5d948-942d-4047-8ad0-3a84aa6dea8b" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/main/static/css/bootstrap_override.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/base.html" afterPath="$PROJECT_DIR$/main/templates/main/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/base_form.html" afterPath="$PROJECT_DIR$/main/templates/main/base_form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/base_list.html" afterPath="$PROJECT_DIR$/main/templates/main/base_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data.json" afterPath="$PROJECT_DIR$/data.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/event/event_create.html" afterPath="$PROJECT_DIR$/main/templates/event/event_create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/event/event_list.html" afterPath="$PROJECT_DIR$/main/templates/event/event_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/event/event_retrieve.html" afterPath="$PROJECT_DIR$/main/templates/event/event_retrieve.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/event/event_update.html" afterPath="$PROJECT_DIR$/main/templates/event/event_update.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/forms.py" afterPath="$PROJECT_DIR$/event/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/static/Map UI/maps.js" afterPath="$PROJECT_DIR$/main/static/Map UI/maps.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/main_page.html" afterPath="$PROJECT_DIR$/main/templates/main/main_page.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/post/post_create.html" afterPath="$PROJECT_DIR$/main/templates/post/post_create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/post/post_list.html" afterPath="$PROJECT_DIR$/main/templates/post/post_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/post/post_retrieve.html" afterPath="$PROJECT_DIR$/main/templates/post/post_retrieve.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/views.py" afterPath="$PROJECT_DIR$/event/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/post/post_update.html" afterPath="$PROJECT_DIR$/main/templates/post/post_update.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storm/settings.py" afterPath="$PROJECT_DIR$/storm/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/user_login.html" afterPath="$PROJECT_DIR$/main/templates/main/user_login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/storm_user/user_login.html" afterPath="$PROJECT_DIR$/main/templates/storm_user/user_login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/views.py" afterPath="$PROJECT_DIR$/main/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="storm.iws" />
@@ -20,10 +33,10 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/storm$tests.coverage" NAME="tests Coverage Results" MODIFIED="1395652167651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/event" />
     <SUITE FILE_PATH="coverage/storm$permissions.coverage" NAME="permissions Coverage Results" MODIFIED="1391872219386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm" />
+    <SUITE FILE_PATH="coverage/storm$tests.coverage" NAME="tests Coverage Results" MODIFIED="1395652167651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/event" />
     <SUITE FILE_PATH="coverage/storm$permissions__1_.coverage" NAME="permissions (1) Coverage Results" MODIFIED="1391873873559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm_user" />
-    <SUITE FILE_PATH="coverage/storm$manage.coverage" NAME="manage Coverage Results" MODIFIED="1395840529360" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/storm$manage.coverage" NAME="manage Coverage Results" MODIFIED="1395900228274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/storm$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1391871803422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -38,73 +51,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="maps.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/static/Map UI/maps.js">
+      <file leaf-file-name="main_page.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/templates/main/main_page.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="28" selection-start="1875" selection-end="1875" vertical-scroll-proportion="2.1851852" vertical-offset="0" max-vertical-offset="3213">
+            <state line="7" column="10" selection-start="155" selection-end="155" vertical-scroll-proportion="-0.6832061" vertical-offset="505" max-vertical-offset="1029">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/event/forms.py">
+      <file leaf-file-name="event_retrieve.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templates/event/event_retrieve.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="37" selection-start="945" selection-end="945" vertical-scroll-proportion="0.0" vertical-offset="567" max-vertical-offset="966">
+            <state line="25" column="86" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1008">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_form.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/templates/main/base_form.html">
+      <file leaf-file-name="post_retrieve.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templates/post/post_retrieve.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="18" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="903">
+            <state line="14" column="18" selection-start="0" selection-end="1428" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="966">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main/static/Map UI/data.json">
+      <file leaf-file-name="post_list.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templates/post/post_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+            <state line="4" column="0" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1596">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="273">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jsonutil/views.py">
+        <entry file="file://$PROJECT_DIR$/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="126">
+            <state line="31" column="0" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.0" vertical-offset="651" max-vertical-offset="1008">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/post/forms.py">
+      <file leaf-file-name="base_list.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templates/main/base_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+            <state line="1" column="0" selection-start="31" selection-end="31" vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="840">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/storm_user/forms.py">
+      <file leaf-file-name="event_list.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/templates/event/event_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="942" selection-end="1042" vertical-scroll-proportion="0.0" vertical-offset="376" max-vertical-offset="2163">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/event/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="71" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="966">
+            <state line="5" column="0" selection-start="37" selection-end="124" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1659">
               <folding />
             </state>
           </provider>
@@ -113,16 +126,7 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/event/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="0" selection-start="2853" selection-end="2853" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="2982">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jsonutil/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="351" selection-end="468" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="609">
+            <state line="92" column="0" selection-start="3184" selection-end="4100" vertical-scroll-proportion="0.0" vertical-offset="1932" max-vertical-offset="3192">
               <folding />
             </state>
           </provider>
@@ -142,13 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/main/static/main/css/style.css" />
-        <option value="$PROJECT_DIR$/jsonutil/__init__.py" />
-        <option value="$PROJECT_DIR$/event/urls.py" />
-        <option value="$PROJECT_DIR$/main/templates/storm_user/user_add.html" />
-        <option value="$PROJECT_DIR$/main/templates/storm_user/user_create.html" />
-        <option value="$PROJECT_DIR$/main/templates/storm_user/user_login.html" />
-        <option value="$PROJECT_DIR$/todo.py" />
         <option value="E:/Python27/Lib/site-packages/django/forms/__init__.py" />
         <option value="$PROJECT_DIR$/data.json" />
         <option value="$PROJECT_DIR$/post/urls.py" />
@@ -159,10 +156,8 @@
         <option value="$PROJECT_DIR$/event/permissions.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/event/permission.py" />
-        <option value="$PROJECT_DIR$/main/templates/event/event_retrieve.html" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/main/templates/main/no_permission.html" />
-        <option value="$PROJECT_DIR$/main/templates/event/event_list.html" />
         <option value="$PROJECT_DIR$/main/templatetags/permission_tags.py" />
         <option value="$PROJECT_DIR$/post/views.py" />
         <option value="$PROJECT_DIR$/storm_user/forms.py" />
@@ -175,24 +170,33 @@
         <option value="$PROJECT_DIR$/main/templatetags/post_permission_tags.py" />
         <option value="$PROJECT_DIR$/event/tests.py" />
         <option value="$PROJECT_DIR$/socialnetwork/tests.py" />
-        <option value="$PROJECT_DIR$/storm/settings.py" />
-        <option value="$PROJECT_DIR$/main/templates/main/base_list.html" />
-        <option value="$PROJECT_DIR$/main/views.py" />
         <option value="$PROJECT_DIR$/main/urls.py" />
         <option value="$PROJECT_DIR$/storm/urls.py" />
         <option value="$PROJECT_DIR$/event/models.py" />
         <option value="$PROJECT_DIR$/post/models.py" />
-        <option value="$PROJECT_DIR$/main/templates/post/post_list.html" />
         <option value="$PROJECT_DIR$/main/templates/main/about.html" />
         <option value="$PROJECT_DIR$/main/templates/main/Contact.html" />
-        <option value="$PROJECT_DIR$/main/templates/main/main_page.html" />
-        <option value="$PROJECT_DIR$/main/templates/main/base.html" />
         <option value="$PROJECT_DIR$/manage.py" />
-        <option value="$PROJECT_DIR$/main/templates/post/post_retrieve.html" />
-        <option value="$PROJECT_DIR$/event/forms.py" />
-        <option value="$PROJECT_DIR$/main/templates/main/base_form.html" />
         <option value="$PROJECT_DIR$/event/views.py" />
         <option value="$PROJECT_DIR$/main/static/Map UI/maps.js" />
+        <option value="$PROJECT_DIR$/storm/settings.py" />
+        <option value="$PROJECT_DIR$/main/static/css/bootstrap_override.css" />
+        <option value="$PROJECT_DIR$/event/forms.py" />
+        <option value="$PROJECT_DIR$/main/templates/event/event_list.html" />
+        <option value="$PROJECT_DIR$/main/templates/post/post_retrieve.html" />
+        <option value="$PROJECT_DIR$/main/templates/post/post_create.html" />
+        <option value="$PROJECT_DIR$/main/templates/post/post_update.html" />
+        <option value="$PROJECT_DIR$/main/templates/event/event_update.html" />
+        <option value="$PROJECT_DIR$/main/templates/event/event_create.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/user_login.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/base_form.html" />
+        <option value="$PROJECT_DIR$/main/templates/storm_user/user_login.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/base.html" />
+        <option value="$PROJECT_DIR$/main/views.py" />
+        <option value="$PROJECT_DIR$/main/templates/event/event_retrieve.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/base_list.html" />
+        <option value="$PROJECT_DIR$/main/templates/post/post_list.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/main_page.html" />
       </list>
     </option>
   </component>
@@ -210,10 +214,16 @@
             <id />
           </State>
           <State>
+            <id>Buildout</id>
+          </State>
+          <State>
             <id>GeneralJavaScript</id>
           </State>
           <State>
             <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Python</id>
           </State>
         </expanded-state>
         <selected-state>
@@ -409,68 +419,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Map UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="storm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="jsonutil" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -496,7 +444,7 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="vcs.Git" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="last_opened_file_path" value="E:/CZ3003_Project/storm" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
@@ -706,6 +654,9 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -727,9 +678,6 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -842,14 +790,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32736155" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4248366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32410422" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1858006" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18504532" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5294118" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -857,12 +805,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3257329" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -881,9 +829,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25981873" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47394136" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39863715" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -907,41 +855,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/post/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/post/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/post/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="609" selection-end="609" vertical-scroll-proportion="0.39285713" vertical-offset="0" max-vertical-offset="588" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event/templates/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="44" selection-end="83" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="168" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templatetags/my_custom_tags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="136" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templatetags/post_permission_tags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="49" selection-start="1022" selection-end="1022" vertical-scroll-proportion="0.6576087" vertical-offset="414" max-vertical-offset="966" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/templatetags/user_permissions_tags.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="66" selection-start="1232" selection-end="1232" vertical-scroll-proportion="1.6353983" vertical-offset="0" max-vertical-offset="1113" />
@@ -962,11 +875,6 @@
         <state line="46" column="0" selection-start="1735" selection-end="1735" vertical-scroll-proportion="0.33333334" vertical-offset="652" max-vertical-offset="4053" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/event/event_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="16" selection-start="1274" selection-end="1274" vertical-scroll-proportion="0.19923371" vertical-offset="1030" max-vertical-offset="1638" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/event/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="0" selection-start="189" selection-end="189" vertical-scroll-proportion="0.21501707" vertical-offset="0" max-vertical-offset="586" />
@@ -975,11 +883,6 @@
     <entry file="file://$PROJECT_DIR$/socialnetwork/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="0" selection-start="483" selection-end="483" vertical-scroll-proportion="-9.4921465" vertical-offset="5481" max-vertical-offset="12201" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/event/event_retrieve.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="152" selection-end="152" vertical-scroll-proportion="0.24910395" vertical-offset="92" max-vertical-offset="1113" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storm/urls.py">
@@ -992,19 +895,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="903" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="155" selection-end="155" vertical-scroll-proportion="0.17857143" vertical-offset="0" max-vertical-offset="588" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crossdomainxhr/django_crossdomainxhr_middleware.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="37" selection-start="571" selection-end="571" vertical-scroll-proportion="0.17857143" vertical-offset="336" max-vertical-offset="1050" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="4" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/post/models.py">
@@ -1027,39 +920,14 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/main_page.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="898" selection-end="898" vertical-scroll-proportion="1.3225191" vertical-offset="0" max-vertical-offset="1008" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/main/no_permission.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="51" selection-start="178" selection-end="178" vertical-scroll-proportion="0.39106146" vertical-offset="0" max-vertical-offset="537" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/user_login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="651" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/main/user_common.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/post/post_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="980" selection-end="2139" vertical-scroll-proportion="0.15229358" vertical-offset="757" max-vertical-offset="1533" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/base_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="27" selection-start="308" selection-end="308" vertical-scroll-proportion="0.60215056" vertical-offset="0" max-vertical-offset="987" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="97" selection-start="1793" selection-end="1793" vertical-scroll-proportion="1.2567568" vertical-offset="0" max-vertical-offset="2961" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/main/event_common.html">
@@ -1070,11 +938,6 @@
     <entry file="file://$PROJECT_DIR$/event/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="0" selection-start="668" selection-end="668" vertical-scroll-proportion="0.43003413" vertical-offset="0" max-vertical-offset="586" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="341" selection-end="394" vertical-scroll-proportion="0.0" vertical-offset="128" max-vertical-offset="3843" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
@@ -1089,19 +952,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main/static/Map UI/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="10" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.0" vertical-offset="672" max-vertical-offset="1008">
-          <folding />
-        </state>
+        <state line="32" column="10" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.0" vertical-offset="672" max-vertical-offset="1008" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/post/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="68" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1932" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/post/post_retrieve.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="966" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storm_user/views.py">
@@ -1114,72 +970,160 @@
         <state line="9" column="36" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/event/models.py">
+    <entry file="file://$PROJECT_DIR$/main/static/Map UI/maps.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="71" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="903">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/post/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="399">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storm_user/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="942" selection-end="1042" vertical-scroll-proportion="0.0" vertical-offset="376" max-vertical-offset="2163">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jsonutil/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="351" selection-end="468" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="609">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="37" selection-start="945" selection-end="945" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="882">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/base_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="18" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="903">
-          <folding />
-        </state>
+        <state line="59" column="28" selection-start="1875" selection-end="1875" vertical-scroll-proportion="2.1851852" vertical-offset="0" max-vertical-offset="3213" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/static/Map UI/data.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jsonutil/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/post/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="399" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storm_user/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="942" selection-end="1042" vertical-scroll-proportion="0.57482994" vertical-offset="376" max-vertical-offset="2163" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jsonutil/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="351" selection-end="468" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/static/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7959" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storm/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="175" column="39" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.0" vertical-offset="3171" max-vertical-offset="3822" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/static/css/bootstrap_override.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="15" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="231" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="71" selection-start="621" selection-end="621" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="903" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/event/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="131" selection-start="753" selection-end="753" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="882" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/post/post_create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="10" selection-start="78" selection-end="78" vertical-scroll-proportion="-2.1" vertical-offset="0" max-vertical-offset="252" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/post/post_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="30" selection-start="112" selection-end="112" vertical-scroll-proportion="-2.8" vertical-offset="0" max-vertical-offset="210" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="0" selection-start="2548" selection-end="2548" vertical-scroll-proportion="-2.5402298" vertical-offset="2355" max-vertical-offset="3066" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="67" selection-start="177" selection-end="177" vertical-scroll-proportion="0.27476636" vertical-offset="0" max-vertical-offset="535" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/base_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="24" selection-start="828" selection-end="828" vertical-scroll-proportion="0.60431653" vertical-offset="252" max-vertical-offset="1218" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_update.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="30" selection-start="113" selection-end="113" vertical-scroll-proportion="0.15107913" vertical-offset="0" max-vertical-offset="556" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_create.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="3" selection-start="550" selection-end="550" vertical-scroll-proportion="0.6798561" vertical-offset="0" max-vertical-offset="567" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/user_login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="6" selection-start="526" selection-end="526" vertical-scroll-proportion="0.4910072" vertical-offset="0" max-vertical-offset="556" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="252">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/event/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="0" selection-start="2853" selection-end="2853" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="2982">
+        <state line="92" column="0" selection-start="3184" selection-end="4100" vertical-scroll-proportion="0.0" vertical-offset="1701" max-vertical-offset="2982">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/static/Map UI/maps.js">
+    <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="28" selection-start="1875" selection-end="1875" vertical-scroll-proportion="2.1851852" vertical-offset="0" max-vertical-offset="3213">
+        <state line="31" column="0" selection-start="1218" selection-end="1218" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="903">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/post/post_retrieve.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="18" selection-start="0" selection-end="1428" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="966">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_retrieve.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="86" selection-start="724" selection-end="724" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1008">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/base_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="31" selection-end="31" vertical-scroll-proportion="0.0" vertical-offset="21" max-vertical-offset="840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/post/post_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="1596">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/event/event_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="37" selection-end="124" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1659">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/main_page.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="10" selection-start="155" selection-end="155" vertical-scroll-proportion="-0.6832061" vertical-offset="505" max-vertical-offset="1029">
           <folding />
         </state>
       </provider>

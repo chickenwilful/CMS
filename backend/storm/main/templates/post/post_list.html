@@ -1,7 +1,10 @@
 {% extends "main/base_list.html" %}
+{% block map %}
+
+{% endblock %}
 
 {% block content-title-list %}
-    NEWS
+News
 {% endblock content-title-list %}
 
 {% block sidebar %}
@@ -29,13 +32,13 @@
 
 {% block content %}
 <p>
-    <a href="{% url 'main.main_page' %}">Back to home</a>
-    <br/>
-    <a href="{% url 'post.post_create' %}">Create a new post</a>
+    <!--<a href="{% url 'main.main_page' %}">Back to home</a>-->
+    <!--<br/>-->
+    <!--<a href="{% url 'post.post_create' %}">Create a new post</a>-->
+</br>
+<input type="Submit" class="btn" name="Edit" id="Edit"
+value="Create a new post" onclick="window.location.href='/post/post_create/'">
 
-<!--  <button type="button" class="btn btn-primary btn-lg" onclick="window.location='/main/';">Back to home</button>
-  <button type="button" class="btn btn-default btn-lg" onclick="window.location='/post/post_create/';">Add a new post</button>
--->
 </p>
 
 <ul id="list">

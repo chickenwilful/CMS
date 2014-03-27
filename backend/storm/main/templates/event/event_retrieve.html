@@ -1,42 +1,37 @@
+
 {% extends 'main/base.html' %}
 
 {% block map %}
 {% endblock %}
-
 {% block content-title %}
-    This is Event detail
 {% endblock %}
 
-
 {% block content %}
-
-<a href="{% url 'event.event_list' %}">back to event list</a>
-<br>
-
-<strong>Type:</strong>
-{{event.type}}
-<br>
-<strong>Title:</strong>
-{{event.title}}
-<br>
-<strong>Description:</strong>
-{{event.description|safe}}
-<br>
-<strong>Created_by :</strong>
-{{event.created_by}}
-<br>
-<strong>Date created:</strong>
-{{event.created_at}}
-<br>
-<strong>Related to: </strong>
-{% for user in event.related_to.all %}
-{{user.username}}
-{% endfor %}
-<br>
-    <a href="/event/event_update/{{event.id}}" >Edit this event</a>
-    <a href="#" onclick="confirmDeletePost()">Delete this event</a>
+<div class="body">
+    <ul id="list">
+        <li>
+          <h3>{{event.title}}</h3>
+          <br>
+          <p>By {{event.created_by}} </p>
+          <p>{{event.created_at}}</p>
+          <p>Type: {{event.type}}</p>
+          <p>&nbsp;</p>
+            <p>{{event.description}}</p>
+            <p>&nbsp;</p>
+          <p>Reporter: {{event.reporter_name}} | {{event.reporter_phone_number}}</p>
+          <p>Address: {{event.address}}</p>
+          <p>Postal Code: {{event.postal_code}}</p>
+         </li>
+</ul>
+<input type="Submit" class="btn" name="Back to News" id="Back to News" value="Back to Home" onclick="window.location.href='/main/'">
+<input type="Submit" class="btn" name="Edit" id="Edit" value="Edit" onclick="window.location.href='/event/event_update/{{event.id}}'">
+<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="confirmDeleteevent()">
+</div>
+    <!--<a href="{% url 'event.event_list' %}">back to event list</a>-->
+    <!--<a href="/event/event_update/{{event.id}}" >Edit this event</a>-->
+    <!--<a href="#" onclick="confirmDeleteevent()">Delete this event</a>-->
     <script type="text/javascript">
-        function confirmDeletePost() {
+        function confirmDeleteevent() {
             var resp = confirm("Are you sure to delete this event?")
             console.log(resp + 'work');
             if (resp) {

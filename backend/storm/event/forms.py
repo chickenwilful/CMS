@@ -16,7 +16,7 @@ class EventCreateForm(forms.ModelForm):
         super(EventCreateForm, self).__init__(*args, **kwargs)
         for fieldname in ['related_to']:
             self.fields[fieldname].help_text = None
-    related_to = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"))
+    related_to = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"), widget=forms.CheckboxSelectMultiple())
 
     class Meta:
         model = Event

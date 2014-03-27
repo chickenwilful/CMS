@@ -1,15 +1,9 @@
 {% extends 'main/base.html' %}
 
-{% block map %}
-
-{% endblock %}
-
 {% block content-title %}
-<h1><b><u>
-{% block content-title-list %}
+<h1><b><u>{% block content-title-list %}
 {% endblock content-title-list %}
-</u></b><br>
-<br>
+</u></b>
 </h1>
 {% block filter %}
     <br/>
@@ -18,7 +12,7 @@
         <option value="1">Dengue</option>
         <option value="2">Gas Leak</option>
         <option value="3">Fire</option>
-        <option value="4">Bird Flu</option>
+        <option value="4">Accident</option>
     </select>
     <p style="display: none" id="filter_id" value="{{filter_id}}"></p>
     <script type="text/javascript">
@@ -35,7 +29,6 @@
             window.location.href = document.getElementById('FilterDropDown').value;
         }
     </script>
-
 {% endblock filter%}
 {% endblock content-title %}
 
