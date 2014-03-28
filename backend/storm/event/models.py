@@ -15,7 +15,7 @@ class Event(models.Model):
     type = models.ForeignKey(EmergencySituation)
     title = models.CharField(max_length=255, default="title")
     description = models.TextField(max_length=255, null=True, blank=True)
-    created_by = models.ForeignKey(User, related_name="creator")
+    created_by = models.ForeignKey(User, related_name="creator", editable=False)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
     related_to = models.ManyToManyField(User, related_name='related_to')
     reporter_name = models.CharField(max_length=255, null=True, blank=True)

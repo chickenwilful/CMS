@@ -13,7 +13,8 @@ def main_page(request, emergency_situation_id=0):
     """
     # Check user permissions
     if not can_list_event(request.user):
-        return render(request, "main/no_permission.html")
+        return render(request, "main/main_page.html",
+                      {'event_list': [], 'filter_id': emergency_situation_id})
 
     #Query database
     if int(emergency_situation_id) == 0:
@@ -23,7 +24,7 @@ def main_page(request, emergency_situation_id=0):
 
     if not Group.objects.get(name="CMSAdmin") in request.user.groups.all():
         event_list = event_list.filter(Q(created_by=request.user) | Q(related_to=request.user))
-
+    event_list = event_list.order_by('-id')
     # Make Response
     for event in event_list:
         event.description = event.description[:250]

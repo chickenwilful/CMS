@@ -108,6 +108,8 @@ def event_list(request, emergency_situation_id=0):
     if not Group.objects.get(name="CMSAdmin") in request.user.groups.all():
         event_list = event_list.filter(Q(created_by=request.user) | Q(related_to=request.user))
 
+    event_list = event_list.order_by('-id')
+
     # Make Response
     for event in event_list:
         event.description = event.description[:250]

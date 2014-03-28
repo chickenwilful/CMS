@@ -47,14 +47,15 @@ def user_logout(request):
 
 def user_retrieve(request, user_id):
     #Check permission
-    if not can_retrieve_user(request.user, User.objects.get(pk=user_id)):
-        return render(request, "main/no_permission.html")
     try:
-        user = User.objects.get(pk=user_id)
-    except (KeyError, User.DoesNotExist):
-        return HttpResponse("404 NOT FOUND")
+        userprofile = UserProfile.objects.get(user=User.objects.get(pk=user_id))
+    except(KeyError, UserProfile.DoesNotExist):
+        return HttpResponse("Dont exist this user!")
+
+    if not can_retrieve_user(request.user, userprofile):
+        return render(request, "main/no_permission.html")
     else:
-        return render(request, 'storm_user/user_retrieve.html', {"user": user})
+        return render(request, 'storm_user/user_retrieve.html', {"userprofile": userprofile})
 
 
 def user_create(request):
@@ -83,14 +84,14 @@ def user_create(request):
 def user_update(request, user_id):
 
     #Check permission
-    if not can_update_user(request.user, User.objects.get(pk=user_id)):
+    user = get_object_or_404(User, pk=user_id)
+    userprofile = UserProfile.objects.get(user=user)
+    if not can_update_user(request.user, userprofile):
         return render(request, "main/no_permission.html")
 
     if not (request.POST or request.GET):
         user = get_object_or_404(User, pk=user_id)
         form = UserUpdateForm(instance=user)
-        form.phone_number = user.get_user_model().phone_number
-        form.name = user.get_user_model().name
         return render(request, 'storm_user/user_update.html', {'form': form})
     else:
         form = UserUpdateForm(request.POST)

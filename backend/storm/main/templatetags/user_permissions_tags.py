@@ -18,7 +18,7 @@ def can_retrieve_user(user, user_profile):
     CMSAdmin can retrieve profile of every admin
     Users can retrieve their own profile
     """
-    return (Group.objects.get(name="CMSAdmin") in user.groups.all()) or user == user_profile
+    return (Group.objects.get(name="CMSAdmin") in user.groups.all()) or user == user_profile.user
 
 @register.filter(name='can_create_user')
 def can_create_user(user):
@@ -34,7 +34,7 @@ def can_update_user(user, user_profile):
     CMSAdmin can update profile of every admin
     Users can update their own profile
     """
-    return (Group.objects.get(name="CMSAdmin") in user.groups.all()) or user == user_profile
+    return (Group.objects.get(name="CMSAdmin") in user.groups.all()) or user == user_profile.user
 
 
 @register.filter(name='can_delete_user')

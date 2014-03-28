@@ -2,28 +2,29 @@
 
 {% block map %}
 {% endblock %}
+
 {% block content-title %}
-    This is user detail
+    <h1><u>User Profile</u></h1>
 {% endblock %}
 
 {% block content %}
-    <strong>Username:</strong>
-    {{userprofile.user.username}}
-    <br>
-    <strong>Password:</strong>
-    <br>
-    <strong>User name:</strong>
-    {{userprofile.name}}
-    <br>
-    <strong>User phone_number:</strong>
-    {{userprofile.phone_number}}
-    <br>
-    <strong>User group:</strong>
-    {% for group in userprofile.user.groups.all %}
-    {{group.name}}
-    {% endfor %}
-    <br>
+<div class="body">
+    <ul id="list">
+        <li>
+          <h3>{{userprofile.name}}</h3>
+          <br>
+          <p>Username: {{userprofile.user.username}} </p>
+          <p>Group: {% for group in userprofile.user.groups.all %}{{group}} {% endfor %}</p>
+          <p>Email: {{userprofile.user.email}}</p>
+          <p>Phone number: {{userprofile.phone_number}}</p>
 
-    <a href="/user/user_update/{{user.id}}" >Edit this profile</a>
-    <a href="#">Delete this profile</a>
+          <p>&nbsp;</p>
+            <p>{{post.content}}</p>
+            <p>&nbsp;</p>
+          <br>
+<input type="Submit" class="btn" name="Edit" id="Edit" value="Edit Profile" onclick="window.location.href='/user/user_update/{{user.id}}'">
+<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete Profile" onclick="confirmDeletePost()">
+        </li>
+    </ul>
+</div>
 {% endblock %}

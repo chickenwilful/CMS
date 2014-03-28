@@ -1,15 +1,28 @@
 {% extends 'main/base_list.html' %}
 
-{% block content-title-list %}
-    Emergency reports
-{% endblock content-title-list %}
+{% load event_permission_tags %}
+
+
+
+{% block content-title %}
+    {% if not user|can_list_event %}
+    {% endif %}
+{% endblock content-title %}
+
+{% block pagination %}
+    {% if not user|can_list_event %}
+    {% endif %}
+{% endblock %}
+
 
 {% block content %}
+{% if user|can_list_event %}
+
 </br></br>
 
-<input type="Submit" class="btn" name="edit" id="edit"
-value="Create New Report" onclick="window.location.href='/event/event_create/'">
-<br>
+<button type="button" class="btn" onclick="window.location.href='/event/event_create/'" >
+Create a report
+</button><br>
 
 <ul id="list">
 {% for event in event_list %}
@@ -17,27 +30,26 @@ value="Create New Report" onclick="window.location.href='/event/event_create/'">
             <h3>{{event.title}}</h3>
             <span class="time">{{event.created_at}}</span>
             <p>
-                </br>
-    <strong>Created by:</strong> {{event.created_by}}
-    <br/>
-    {{event.description}}
-    <a href="/event/event_retrieve/{{event.id}}/">See more..</a>
-    </br/>
-    <strong>Type: </strong> {{event.type}}
-    <br/>
+            </br>
+    <strong>Type: </strong> {{event.type}} <br/>
+    <strong>Created by:</strong> {{event.created_by}}</br>
     <strong>Related to: </strong>
     {% for user in event.related_to.all %}
     {{user.username}}
     {% endfor %}
+
+    <br/>
+    {{event.description}}
+    <a href="/event/event_retrieve/{{event.id}}/">See more..</a>
+    </br/>
 
     </p>
             <a href="/event/event_retrieve/{{event.id}}/" class="more">Read more &gt;&gt;</a>
         </li>
 
 {% endfor %}
-<div id="pagination">
-<a href="news.html">&lt;&lt;</a> <a href="news.html">First</a> <a href="news.html">1</a> <a href="news.html">2</a> <a href="news.html">3</a> <a href="news.html">4</a> <a href="news.html">5</a> <a href="news.html">6</a> <a href="news.html">7</a> <a href="news.html">8</a> <a href="news.html">9</a> <a href="news.html">10</a> <a href="news.html">11</a> <a href="news.html">12</a> <a href="news.html">13</a> <a href="news.html">14</a> <a href="news.html">15</a> <a href="news.html">16</a> <a href="news.html">17</a> <a href="news.html">18</a> <a href="news.html">19</a> <a href="news.html">20</a> <a href="news.html">Last</a> <a href="news.html">&gt;&gt;</a>
-					</div>
-  </ul>
+</ul>
+{% endif %}
 
-{% endblock content %}
+{% endblock %}
+

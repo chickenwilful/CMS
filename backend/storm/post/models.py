@@ -9,7 +9,7 @@ class Post(models.Model):
     content = models.TextField(max_length=255)
     imageLink = models.CharField(max_length=255, null=True, blank=True)
     created_at = models.DateTimeField(auto_now=False, auto_now_add=True)
-    created_by = models.ForeignKey(User)
+    created_by = models.ForeignKey(User, editable=False)
     isPublished = models.BooleanField(default=True)
 
     def __str__(self):

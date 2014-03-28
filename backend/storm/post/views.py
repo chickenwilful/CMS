@@ -18,6 +18,7 @@ def post_list(request, emergency_situation_id=0):
         post_list = Post.objects.all()
     else:
         post_list = Post.objects.filter(type=emergency_situation_id)
+    post_list = post_list.order_by('-id')
 
     for post in post_list:
         post.content = post.content[:280]
