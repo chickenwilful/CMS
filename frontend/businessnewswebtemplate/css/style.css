@@ -390,3 +390,8 @@ a.sitename {
 	font-size: 14px;
 	color: #F00;
 }
+#myparagraph {
+	position: absolute;
+	top: 98px;
+	left: 750px;
+}
