@@ -167,7 +167,7 @@ a.sitename {
 /** MAIN **/
 #main {
 	float: right;
-	background-color: #f2f2f2;
+	background-color: #FFFFD9;
 	min-height: 982px;
 	width: 666px;
 	margin: 0 24px 0 12px;
@@ -392,6 +392,7 @@ a.sitename {
 }
 #myparagraph {
 	position: absolute;
-	top: 98px;
-	left: 750px;
+	top: 79px;
+	left: 695px;
+	width: 229px;
 }
