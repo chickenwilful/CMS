@@ -5,15 +5,16 @@
 
 {% endblock %}
 
-{% block content-title %}
-<h1><b><u>{% block content-title-form %}
-{% endblock content-title-form %}
+{% block body-title %}
+<h1><b><u>
+{% block body-title-form %}
+{% endblock %}
 </u></b>
 </h1>
 </br>
-{% endblock content-title %}
+{% endblock %}
 
-{% block content %}
+{% block body-content %}
 {% load staticfiles %}
 <link rel="stylesheet" href='{% static "css/bootstrap_override.css" %}'>
 
@@ -21,7 +22,6 @@
 <script src='{% static "js/bootstrap.min.js" %}'></script>
     {% block message %}
     {% endblock message %}
-
 
     <form role="form" class="form-horizontal" method="post">
         {% bootstrap_form form layout="horizontal" %}
@@ -32,18 +32,4 @@
         <!--{% bootstrap_button "Back" %} {% endbuttons %}-->
     </form>
 
-{% endblock content %}
-
-    {# Include the hidden fields #}
-        {% for hidden in form.hidden_fields %}
-        {{ hidden }}
-        {% endfor %}
-    {# Include the visible fields #}
-        {% for field in form.visible_fields %}
-            <div class="fieldWrapper">
-                {% if field.field.widget %}
-                {% endif %}
-                {{ field.errors }}
-                {{ field.label_tag }} {{ field }}
-            </div>
-        {% endfor %}
+{% endblock %}

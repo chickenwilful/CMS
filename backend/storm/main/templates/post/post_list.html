@@ -1,43 +1,23 @@
 {% extends "main/base_list.html" %}
 {% block map %}
-
 {% endblock %}
 
-{% block content-title-list %}
+{% block body-title-list %}
 News
-{% endblock content-title-list %}
+{% endblock body-title-list %}
 
-{% block sidebar %}
-			  <div id="navigation">
-					<div>
-						<ul>
-							<li class="selected">
-								<a href="/main/">Home</a>
-							</li>
+{% block navigation %}
+{% include 'main/post_common.html' %}
+{% endblock navigation %}
 
-							<li>
-								<a href="/post/post_list/"><font color="#FFFFFF">News</font></a>
-							</li>
-							<li>
-								<a href="/about">About us</a>
-							</li>
-                            <li>
-								<a href="/contact">Contact us</a>
-							</li>
-
-					  </ul>
-					</div>
-				</div>
-{% endblock sidebar %}
-
-{% block content %}
+{% block body-content %}
 <p>
     <!--<a href="{% url 'main.main_page' %}">Back to home</a>-->
     <!--<br/>-->
     <!--<a href="{% url 'post.post_create' %}">Create a new post</a>-->
 </br>
 <input type="Submit" class="btn" name="Edit" id="Edit"
-value="Create a new post" onclick="window.location.href='/post/post_create/'">
+value="Create News" onclick="window.location.href='/post/post_create/'">
 
 </p>
 
@@ -50,8 +30,7 @@ value="Create a new post" onclick="window.location.href='/post/post_create/'">
 					      </span>
 						  <p>
 						    <br>
-                              {{post.content|safe}}
-                            <a href="/post/post_retrieve/{{post.id}}/">See more..</a>
+                              {{post.content|safe}}...
                            </p>
 
             <a href="/post/post_retrieve/{{post.id}}/" class="more">Read more &gt;&gt;</a>
@@ -59,5 +38,5 @@ value="Create a new post" onclick="window.location.href='/post/post_create/'">
 {% endfor %}
 </ul>
 
-{% endblock content %}
+{% endblock body-content %}
 

@@ -8,7 +8,7 @@
 
 {% endblock map %}
 
-{% block content %}
+{% block body-content %}
 				<div class="body"><br>
                 <h1><b><u>About Us</u></b></h1>
                 <br>
@@ -21,27 +21,27 @@
                     
 				</div>
 
-{% endblock content %}
+{% endblock %}
 
-{% block sidebar %}
-      <div id="navigation">
-            <div>
-                <ul>
-                    <li class="selected">
-                        <a href="/main/">Home</a>
-                    </li>
+{% block navigation %}
+			  <div id="navigation">
+                    <div>
+						<ul>
+							<li class="selected">
+								<a href="/event/event_list/">EVENTS</a>
+							</li>
 
-                    <li>
-                        <a href="/post/post_list/">News</a>
-                    </li>
-                    <li>
-                        <a href="/about"><font color="#FFFFFF">ABOUT US</font></a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact us</a>
-                    </li>
+							<li>
+								<a href="/post/post_list/">NEWS</a>
+							</li>
+							<li>
+								<a href="/about"><font color="#FFFFFF">ABOUT US</font></a>
+							</li>
+                            <li>
+								<a href="/contact">CONTACT US</a>
+							</li>
 
-              </ul>
-            </div>
-        </div>
-{% endblock sidebar %}
+					  </ul>
+					</div>
+				</div>
+{% endblock navigation %}

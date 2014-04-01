@@ -1,47 +1,23 @@
 {% extends "main/base_list.html" %}
 
-{% block content-title-list %}
-    Emergency reports
-{% endblock content-title-list %}
+{% block body-title-list %}
+    Events
+{% endblock body-title-list %}
 
 
-{% block content-title-extra %}
-    Event List
 
-<div id="spend_filter" class="btn-group">
-      <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#">
-  			<i class="icon-filter"></i>
-				Filter By
-				<span class="caret"></span>
-			</a>
-			<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-				<li>
-					<a href="0">All</a>
-				</li>
-				<li>
-					<a href="1">Haze</a>
-				</li>
-				<li>
-					<a href="2">BirdFlu</a>
-				</li>
-			</ul>
-		</div>
-{% endblock %}
+{% block body-content %}
+<br/><br/>
+<input type="Submit" class="btn" name="Edit" id="Edit"
+value="Create Event" onclick="window.location.href='/event/event_create/'">
 
-
-{% block content %}
-</br>
-<a href="{% url 'main.main_page' %}">back to main page</a>
-<br>
-
-<a href="/event/event_create/">Add a new event</a>
-<br>
 
 <ul id="list">
 {% for event in event_list %}
         <li>
-            <span class="time">{{event.created_at}}</span>
             <h3>{{event.title}}</h3>
+            <span class="time">{{event.created_at}}</span>
+            <br/>
             <p>
     <strong>Created by:</strong> {{event.created_by}}
     <br/>
@@ -64,9 +40,5 @@
 					</div>
   </ul>
 
-
-{% endblock content %}
-
-{% block action %}
 
 {% endblock %}

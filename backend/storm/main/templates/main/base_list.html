@@ -1,8 +1,9 @@
 {% extends 'main/base.html' %}
 
-{% block content-title %}
-<h1><b><u>{% block content-title-list %}
-{% endblock content-title-list %}
+{% block body-title %}
+<h1><b><u>
+{% block body-title-list %}
+{% endblock body-title-list %}
 </u></b>
 </h1>
 {% block filter %}
@@ -26,11 +27,11 @@
             });
         });
         function FilterDropDown() {
-            window.location.href = document.getElementById('FilterDropDown').value;
+            window.location.href = document.getElementById('FilterDropDown').value + "#body";
         }
     </script>
 {% endblock filter%}
-{% endblock content-title %}
+{% endblock body-title %}
 
 {% block pagination %}
 <div id="pagination">
