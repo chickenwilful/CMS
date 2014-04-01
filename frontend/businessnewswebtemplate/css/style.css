@@ -135,11 +135,11 @@ a.sitename {
 	font-size: 20px;
 	line-height: 42px;
 	margin: 0 0 24px;
-	text-align: center;
 }
 #contents h3 {
 	color: #300302;
 	font-size: 18px;
+	font-family: Tahoma, Geneva, sans-serif;
 	line-height: 24px;
 	margin: 0 0 0;
 	text-transform: uppercase;
@@ -196,6 +196,7 @@ a.sitename {
 	margin-right: 0;
 	margin-bottom: 0;
 	margin-left: 0;
+	font-family:Tahoma, Geneva, sans-serif;
 }
 #list li p {
 	padding-bottom: 0;
