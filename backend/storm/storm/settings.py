@@ -76,7 +76,7 @@ DATABASES = {
         'NAME': 'storm',
         'USER': 'storm_user',
         'PASSWORD': 'storm_pass',
-        'HOST': '127.0.0.1',
+        'HOST': '127.0.0.1', # Using direct IP instead of localhost, to ensure MySQLdb doesn't fail
     },
 }
 
