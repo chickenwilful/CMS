@@ -20,11 +20,6 @@ class UserLoginForm(forms.ModelForm):
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
 
-class UserProfileCreateForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile
-
-
 class UserCreateForm(forms.ModelForm):
     """
     A form to create a user. Include all the required fields, plus a repeated password
@@ -67,21 +62,25 @@ class UserUpdateForm(forms.ModelForm):
     A form for edit profile user. Included all the fields on the user, but replaces the password field
     with password hash display field.
     """
-
     def __init__(self, *args, **kwargs):
         super(UserUpdateForm, self).__init__(*args, **kwargs)
-
         for fieldname in self.fields:
             self.fields[fieldname].help_text = None
+        self.fields['username'].widget.attrs["readonly"] = "readonly"
+        self.fields['password'].widget.attrs["readonly"] = "readonly"
+        try:
+            userprofile = UserProfile.objects.get(user=self.instance)
+            self.fields['name'].initial = userprofile.name
+            self.fields['phone_number'].initial = userprofile.phone_number
+        except UserProfile.DoesNotExist:
+            pass
 
-    username = forms.CharField(widget=forms.TextInput(attrs={"readonly": "readonly"}))
-    password = ReadOnlyPasswordHashField()
-    name = forms.CharField(label="Name", widget=forms.TextInput)
-    phone_number = forms.CharField(label="Phone number", widget=forms.TextInput)
+    name = forms.CharField(label="Name", widget=forms.TextInput, required=True)
+    phone_number = forms.CharField(label="Phone number", widget=forms.TextInput, required=True)
 
     class Meta:
         model = User
-        fields = ['username',  'email', 'name', 'phone_number']
+        fields = ['username', 'email', 'name', 'phone_number', 'password']
 
     def clean_password(self):
         """
@@ -89,9 +88,5 @@ class UserUpdateForm(forms.ModelForm):
         This is done here, rather than on the field, because the field
         does not have access to the initial value
         """
-        return self.initial['password']
+        return self.instance.password
 
-
-class UserProfileUpdateForm(forms.ModelForm):
-    class Meta:
-        model = UserProfile

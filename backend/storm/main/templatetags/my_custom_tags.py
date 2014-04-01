@@ -1,7 +1,15 @@
 from django import template
 from django.forms import CheckboxInput, TextInput
+from storm_user.models import UserProfile
 
 register = template.Library()
+
+
+@register.filter(name="officalName")
+def offcialName(user):
+    userprofile = UserProfile.objects.get(user=user)
+    return userprofile.name
+
 
 @register.filter('klass')
 def klass(ob):
@@ -12,9 +20,5 @@ def klass(ob):
 def is_checkbox(field):
     return field.field.widget.__class__.__name__ == CheckboxInput().__class__.__name__
 
-
-@register.filter(name='is_textinput')
-def is_textinput(field):
-    return field.field.widget.__class__.__name__ == TextInput().__class__.__name__
 
 

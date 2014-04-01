@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.db import models
 
 import logging
@@ -11,3 +10,5 @@ class UserProfile(models.Model):
     phone_number = models.CharField(max_length=255)
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name

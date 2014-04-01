@@ -1,6 +1,6 @@
 var map;
 var geocoder;
-var iconBase = "http://localhost:8000/static/MapUI/";
+var iconBase = "http://localhost:8000/static/Map UI/";
 var jsonBase = "http://localhost:8000/event/map/";
 //var singaporeBound = "1.1679031235897843, 103.59146118164062|1.4569047431701578, 104.02507781982422";
 var southWest = new google.maps.LatLng(1.1679031235897843, 103.59146118164062);

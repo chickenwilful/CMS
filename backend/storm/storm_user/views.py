@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from main.templatetags.user_permissions_tags import can_retrieve_user, can_create_user, can_list_user, can_update_user
-from storm_user.forms import UserLoginForm, UserCreateForm, UserUpdateForm, UserProfileUpdateForm
+from storm_user.forms import UserLoginForm, UserCreateForm, UserUpdateForm
 from storm_user.models import UserProfile
 
 
@@ -94,13 +94,13 @@ def user_update(request, user_id):
         form = UserUpdateForm(instance=user)
         return render(request, 'storm_user/user_update.html', {'form': form})
     else:
-        form = UserUpdateForm(request.POST)
+        form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.save()
             userprofile = UserProfile.objects.get(user=model_instance)
-            userprofile.name = form.clean_data.get('name')
-            userprofile.phone_number = form.clean_data.get('phone_number')
+            userprofile.name = form.cleaned_data.get('name')
+            userprofile.phone_number = form.cleaned_data.get('phone_number')
             userprofile.save()
             return HttpResponseRedirect(reverse('user.user_retrieve', args=(user_id,)))
         else:

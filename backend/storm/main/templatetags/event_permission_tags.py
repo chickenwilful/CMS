@@ -6,14 +6,14 @@ register = template.Library()
 
 @register.filter(name='can_list_event')
 def can_list_event(user):
-    return "event.event_list" in user.get_all_permissions()
-
+    #return "event.event_list" in user.get_all_permissions()
+    return True
 
 @register.filter(name='can_retrieve_event')
 def can_retrieve_event(user, event):
-    return Group.objects.get(name="CMSAdmin") in user.groups.all() \
-        or ("event.event_retrieve" in user.get_all_permissions() and user in event.related_to.all())
-
+    # return Group.objects.get(name="CMSAdmin") in user.groups.all() \
+    #     or ("event.event_retrieve" in user.get_all_permissions() and user in event.related_to.all())
+    return True
 
 @register.filter(name='can_create_event')
 def can_create_event(user):

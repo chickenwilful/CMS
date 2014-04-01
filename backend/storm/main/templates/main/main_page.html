@@ -3,7 +3,6 @@
 {% load event_permission_tags %}
 
 
-
 {% block content-title %}
     {% if not user|can_list_event %}
     {% endif %}
@@ -40,7 +39,6 @@ Create a report
 
     <br/>
     {{event.description}}
-    <a href="/event/event_retrieve/{{event.id}}/">See more..</a>
     </br/>
 
     </p>

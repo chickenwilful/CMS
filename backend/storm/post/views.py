@@ -26,6 +26,7 @@ def post_list(request, emergency_situation_id=0):
 
 
 def post_create(request):
+    #todo isPublished affects
     """
     Render and process a form to add a Post.
     """

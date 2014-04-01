@@ -14,20 +14,15 @@ class MyModelChoiceField(ModelMultipleChoiceField):
 class EventCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventCreateForm, self).__init__(*args, **kwargs)
-        for fieldname in ['related_to']:
-            self.fields[fieldname].help_text = None
-    related_to = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"), widget=forms.CheckboxSelectMultiple())
+        self.fields['related_to'].help_text = None
+        self.fields['reporter_phone_number'].widget.attrs['type'] = "number"
+    related_to = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"),
+                                    widget=forms.CheckboxSelectMultiple())
 
     class Meta:
         model = Event
         exclude = ['related_to']
 
-    def save(self, commit=True):
-        event = super(EventCreateForm, self).save(commit=False)
-        event.save()
-        event.related_to = self.cleaned_data.get('related_to')
-        event.save()
-        return event
 
 
 class EventUpdateForm(EventCreateForm):

@@ -77,6 +77,8 @@ def event_create(request):
             model_instance.created_by_id = request.user.id
             model_instance.created_at = timezone.now()
             model_instance.save()
+            model_instance.related_to = form.cleaned_data.get('related_to')
+            model_instance.save()
             return redirect("event.event_list")
         else:
             return render(request, 'event/event_create.html', {'form': form})
@@ -105,8 +107,8 @@ def event_list(request, emergency_situation_id=0):
     else:
         event_list = Event.objects.filter(type=emergency_situation_id)
 
-    if not Group.objects.get(name="CMSAdmin") in request.user.groups.all():
-        event_list = event_list.filter(Q(created_by=request.user) | Q(related_to=request.user))
+    # if not Group.objects.get(name="CMSAdmin") in request.user.groups.all():
+    #     event_list = event_list.filter(Q(created_by=request.user) | Q(related_to=request.user))
 
     event_list = event_list.order_by('-id')
 

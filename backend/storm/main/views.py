@@ -22,12 +22,12 @@ def main_page(request, emergency_situation_id=0):
     else:
         event_list = Event.objects.filter(type=emergency_situation_id)
 
-    if not Group.objects.get(name="CMSAdmin") in request.user.groups.all():
-        event_list = event_list.filter(Q(created_by=request.user) | Q(related_to=request.user))
+    # if not Group.objects.get(name="CMSAdmin") in request.user.groups.all():
+    #     event_list = event_list.filter(Q(created_by=request.user) | Q(related_to=request.user))
     event_list = event_list.order_by('-id')
     # Make Response
     for event in event_list:
-        event.description = event.description[:250]
+        event.description = event.description[:250] #Todo Need to use tags instead
     return render(request, "main/main_page.html",
                   {'event_list': event_list, 'filter_id': emergency_situation_id})
 
