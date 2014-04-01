@@ -11,6 +11,7 @@ def main_page(request, emergency_situation_id=0):
     List all events from database, which can be seen by current user.
     Users can see all events that are related to them, or they are admins
     """
+    return redirect("/event/event_list/")
     # Check user permissions
     if not can_list_event(request.user):
         return render(request, "main/main_page.html",

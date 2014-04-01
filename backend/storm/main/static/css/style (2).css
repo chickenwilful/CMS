@@ -1,0 +1,364 @@
+/* Website template by freewebsitetemplates.com */
+.posttext{height: 300px; width: 500px;font-size:17px}
+.newstext{height: 100px; width: 500px; }
+
+body {
+	background: #CCC);
+	font-family: Georgia, "Times New Roman", Times, serif;
+	margin: 0;
+	font-size: 14px;
+	line-height: 24px;
+}
+#background {
+}
+#page {
+	width: 960px;
+	margin: 0 auto;
+}
+img {
+	border-top-width: thick;
+	border-right-width: thick;
+	border-bottom-width: thick;
+	border-left-width: thick;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+/*------------------------------ SPRITES ------------------------------*/
+ .btn2, #navigation li, #navigation li a:hover, #navigation li.selected a {
+	background-color: #999;
+
+}
+#navigation, #navigation > div, #navigation ul {
+	background: #FFF;
+	background-repeat: no-repeat;
+}
+#connect > a, #featured li > a {
+	background: url(../images/icons.png) no-repeat;
+}
+.btn {
+	
+	color: #000000;
+	cursor: pointer;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 11px;
+	font-weight: bold;
+	height: 40px;
+	line-height: 24px;
+	width: 130px;
+	text-align: center;
+
+}
+
+/*------------------------------ HEADER ------------------------------*/
+#header {
+	height: 106px;
+	padding: 24px 0;
+	text-align: center;
+	position: relative
+}
+/** motto **/
+#motto {
+	text-align: right;
+	padding: 13px 27px 15px 0;
+}
+a.sitename {
+	float: left;
+	display: inline-block;
+	font-family: "UnifrakturCook-Bold";
+	font-size: 24px;
+	height: 24px;
+	margin-left: 5px;
+}
+#motto p {
+	display: inline-block;
+	height: 24px;
+	line-height: 24px;
+	margin: 8px 0 0;
+}
+/** Logo **/
+#logo {
+	display: inline-block;
+	position: absolute;
+	left: 191px;
+	top: 23px;
+	width: 451px;
+}
+/** Searchbar **/
+#searchbar {
+	padding: 0 24px 15px 0;
+	text-align: right;
+}
+#searchbar form {
+	display: inline-block;
+*float: right; /** Needed for IE7 **/
+}
+#searchbar form input {
+	float: left;
+	border: 0;
+	margin: 0;
+}
+
+/*------------------------------ CONTENTS ------------------------------*/
+#contents {
+	background: url(../images/content-shadow.png) no-repeat right bottom;
+*display: inline-block; /** Needed for IE7 **/
+}
+#contents:after {
+	clear:both;
+	content:"";
+	display:block;
+	height:0;
+	line-height:0;
+	visibility:hidden;
+}
+#contents h1 {
+	color: #7e501c;
+	font-size: 31px;
+	font-weight: bold;
+
+
+	font-family:"Comic Sans MS", cursive
+	margin: 0 0 30px;
+	text-align: justify;
+	font-family: "Comic Sans MS", cursive;
+}
+#contents h1 a {
+	color: #7e501c;
+}
+#contents h1 em {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+#contents h2 {
+	font-size: 20px;
+	line-height: 42px;
+	margin: 0 0 24px;
+	text-align: center;
+}
+#contents h3 {
+	color: #300302;
+	font-size: 18px;
+	line-height: 24px;
+	margin: 0 0 0;
+	text-transform: uppercase;
+}
+#contents h4 {
+	color: #300302;
+	font-size: 14px;
+	line-height: 24px;
+	margin: 0;
+}
+#contents p {
+	color: #525252;
+	font-size: 14px;
+	line-height: 24px;
+	margin: 0;
+	padding: 0 0 30px;
+	text-align: justify;
+}
+#contents p a {
+	color: #525252;
+}
+#contents p a:hover {
+	color: #e19320;
+}
+/** MAIN **/
+#main {
+	float: right;
+	background-color: #f2f2f2;
+	min-height: 982px;
+	width: 666px;
+	margin: 0 24px 0 12px;
+	padding: 12px 12px 22px;
+}
+#main div.body {
+	padding: 0 30px;
+	font-size: 20px;
+}
+/** list **/
+#list {
+	list-style: none;
+	margin: 30px 0;
+	padding: 0;
+}
+#list li {
+	display: inline-block;
+	width: 100%;
+	margin: 0 0 54px;
+}
+#list span.time {
+	float: left;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 0.2px;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 0;
+}
+#list li p {
+	padding-bottom: 0;
+}
+#list li a.more {
+	float: right;
+	color: #300302;
+	font-size: 14px;
+	font-style: italic;
+}
+#list li a.more:hover {
+	color: #097a07;
+}
+/** pagination **/
+#pagination {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: center;
+}
+#pagination a {
+	color: #a2a2a1;
+	margin: 0 3px;
+	padding: 0 2px;
+	text-decoration: none;
+}
+#pagination a:hover {
+	color: #be841f;
+}
+/** gallery **/
+#gallery {
+	margin: 0 0 36px;
+}
+#gallery > div {
+	margin: 0 0 14px;
+}
+#gallery ul {
+	display: inline-block;
+	list-style: none;
+	width: 606px;
+	margin: 0;
+	padding: 6px 30px;
+}
+#gallery ul li {
+	float: left;
+	cursor: pointer;
+	height: 48px;
+	width: 78px;
+	margin: 0 11px;
+}
+#gallery ul li:hover {
+	filter:alpha(opacity=80);
+	opacity: 0.8;
+}
+/** SIDEBAR **/
+#sidebar {
+	float: left;
+	height: auto;
+	width: 229px;
+	margin-left: 5px;
+}
+#sidebar div.section {
+	margin: 0 0 24px;
+	padding: 0 0 6px;
+}
+/** Navigation **/
+#navigation {
+	background-position: -468px bottom;
+	margin: 0 0 16px;
+	padding: 0 0 8px;
+}
+#navigation > div {
+	background-position: 0 top;
+	padding: 8px 0 0;
+}
+#navigation ul {
+	background-position: -234px top;
+	background-repeat: repeat-y;
+	list-style: none;
+	margin: 0;
+	padding: 0 6px;
+}
+#navigation li {
+	background-position: 0 -90px;
+	height: 72px;
+	width: 216px;
+	margin-top: 18px;
+}
+#navigation li:hover, #navigation li.selected {
+	background-position: -226px -90px;
+}
+#navigation li:first-child {
+	margin-top: 0;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 24px;
+}
+#navigation li a {
+	color: #0040ff;
+	display: block;
+	font: 28px/72px "Arial Black";
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+#navigation li a:hover, #navigation li.selected a {
+	background-position: 24px -162px;
+	color: #0040ff;
+	font-family: "Arial Black";
+}
+/** connect **/
+#connect {
+	background-color: #f5ecce;
+	margin-left: 1px;
+	padding: 6px;
+}
+#connect h2 {
+	background-color: #f5da81;
+	color: #7b4c1a;
+}
+#connect > a {
+	display: inline-block;
+	height: 19px;
+	width: 23px;
+	margin: 0 24px 18px;
+}
+#connect a.twitter {
+	background-position: 0 0;
+}
+#connect a.facebook {
+	background-position: -72px 0;
+	width: 19px;
+}
+#connect a.googleplus {
+	background-position: -141px 0;
+	width: 22px;
+}
+/** Post **/
+#posts {
+	background-color: #f5ecce;
+	margin-left: 1px;
+	padding: 6px;
+}
+#posts h2 {
+	background-color: #f5da81;
+	color: #7b4c1a;
+	margin-bottom: 12px;
+}
+#posts ul {
+	list-style: none;
+	margin: 0;
+	padding: 0 6px;
+	overflow: hidden;
+}
+#posts li {
+	margin: 0 0 24px;
+	font-face: Arial Black, Gadget, sans-serif;
+	font-color:#000;
+	font-size: 10px;
+	font-style: normal;
+}
+#posts h5 {
+	color: #fff;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 24px;
+	margin: 0;
+}

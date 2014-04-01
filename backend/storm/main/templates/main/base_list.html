@@ -18,8 +18,6 @@
     <p style="display: none" id="filter_id" value="{{filter_id}}"></p>
     <script type="text/javascript">
         $('document').ready(function() {
-            console.log(window.location.href);
-
             $("#FilterDropDown").find("option").each(function(){
                 if( $(this).attr('value') == $("#filter_id").attr("value")) {
                     $(this).attr("selected","selected");

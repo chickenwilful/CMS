@@ -27,9 +27,10 @@
         {% bootstrap_form form layout="horizontal" %}
         {% csrf_token %}
         {% buttons submit="OK" reset="Cancel" layout="horizontal"%}{% endbuttons %}
-        <!--{% buttons layout="horizontal" %}-->
-            <!--<button type="submit" class="btn btn-primary">OK</button>-->
-        <!--{% bootstrap_button "Back" %} {% endbuttons %}-->
     </form>
-
+    <script>
+        $(document).ready(function() {
+            $("#id_password").attr('type', 'password');
+        });
+    </script>
 {% endblock %}
