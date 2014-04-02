@@ -41,7 +41,8 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&region=sg"></script>
 
     <script src='{% static "Map UI/HomeControl.js"%}'></script>
-    <script src='{% static "Map UI/maps.js"%}'></script>    
+    <script src='{% static "Map UI/maps.js"%}'></script>
+
 {% block head-extra %}
 {% endblock %}
 </head>
@@ -57,12 +58,12 @@
 			<div id="searchbar">
 				<form action="#" method="post">
                     </br>
+                    <p style="font-size:8"></p>
                     {% if user.is_authenticated %}
                         Welcome, <a href="/user/user_retrieve/{{user.id}}">{{user.username}}</a> | <a href="{% url 'user.user_logout' %}">Logout</a>
                     {% else %}
                         Welcome to website | <a href="{% url 'user.user_login' %}">Login</a>
                     {% endif %}
-
                 </form>
 
 			</div>
@@ -78,7 +79,7 @@
                       <td width="80">Dengue &nbsp; <img src='{% static "Map UI/dengue.png" %}' alt="Dengue" width="18" height="19"></td>
                       <td width="62">Fire &nbsp; <img src='{% static "Map UI/fire.png" %}' alt="Fire" width="18" height="19"></td>
                       <td width="91">Gas Leak &nbsp; <img src='{% static "Map UI/gas_leak.png" %}' alt="Gas Leak" width="18" height="19"/></td>
-                      <td width="376">Tsunami &nbsp; <img src='{% static "Map UI/Accident.png" %}'alt="Tsunami" width="18" height="19"/></td>
+                      <td width="376">Accident &nbsp; <img src='{% static "Map UI/Accident.png" %}'alt="Tsunami" width="18" height="19"/></td>
                     </tr>
                     </tbody></table>
                 </div>

@@ -19,16 +19,17 @@ value="Create Event" onclick="window.location.href='/event/event_create/'">
             <span class="time">{{event.created_at}}</span>
             <br/>
             <p>
-    <strong>Created by:</strong> {{event.created_by}}
-    <br/>
-    {{event.description}}
-    </br/>
     <strong>Type: </strong> {{event.type}}
+    <br/>
+    <strong>Created by:</strong> {{event.created_by}}
     <br/>
     <strong>Related to: </strong>
     {% for user in event.related_to.all %}
     {{user.username}}
     {% endfor %}
+    </br>
+    {{event.description}}
+    </br/>
 
     </p>
             <a href="/event/event_retrieve/{{event.id}}/" class="more">Read more &gt;&gt;</a>
