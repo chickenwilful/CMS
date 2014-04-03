@@ -18,15 +18,17 @@ def map(request):
     for event in event_list:
         if event.type.name not in json_data:
             json_data[event.type.name] = []
+        time = event.created_at.strftime('%Y-%m-%d %H:%M %Z')
         json_data[event.type.name].append({
             "postal_code": event.postal_code,
             "reporter": event.reporter_name,
-            "time": event.created_at.strftime('%Y-%m-%d %H:%M'),
+            "time": time,
             "description": event.description,
             "address": event.address,
             "event_link": "/event/event_retrieve/%d/" % event.id
         })
-
+        if event.id == 17:
+            print time
     with open('data.json', 'w') as f:
         json.dump(json_data, f)
 
@@ -101,6 +103,7 @@ def event_list(request, emergency_situation_id=0):
     # Check user permissions
     if not can_list_event(request.user):
         return render(request, "main/no_permission.html")
+
 
     #Query database
     if int(emergency_situation_id) == 0:
