@@ -11,7 +11,7 @@ var currentTime = new Date();
 function initialize() {
     geocoder = new google.maps.Geocoder();
     map = new google.maps.Map(document.getElementById('map_canvas'), {
-      zoom: 12,
+      zoom: 11,
       center: new google.maps.LatLng(1.3667,103.81),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
@@ -99,18 +99,20 @@ function initialize() {
         if(diff<3)
             marker.setAnimation(google.maps.Animation.BOUNCE)
 //        google.maps.event.addListener(marker, 'click', toggleBounce);
+		var newDes = description.substring(0,60);
         var content = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">'+icons[key].name+'</h1>'+
+      '<h4 id="firstHeading" class="firstHeading">'+icons[key].name+'</h4>'+
       '<div id="bodyContent">'+
-      '<p><b>Name of reporter: </b>' + reporter + 
-      '<p><b>Venue: </b>' + addr +
-      '<p><b>Time reported: </b>'+ time+
-      '<p><b>Description: </b>' + description + 
+      '<b>Name of reporter: </b>' + reporter + 
+      '<br><b>Venue: </b>' + addr +
+      '<br><b>Time reported: </b>'+ time+
+      '<br><b>Description: </b>' + newDes + ' ...'
       '</div>'+
       '</div>';
         google.maps.event.addListener(marker, 'click', function () {
+			infowindow.setOptions({maxWidth:200});
             infowindow.setContent(content);
             infowindow.open(map, marker);
         });
