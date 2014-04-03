@@ -217,8 +217,10 @@ class SocialCenter(object):
                     # results[social_site] = dict(result.items() + results[social_site].items())
             # Retrieve results from threads
             for social_site, async_result in async_results.items():
+                # logger.debug("Retrieving results from %s" % social_site)
                 result = async_result.get()
                 results[social_site] = dict(result.items() + results[social_site].items())
+                logger.debug("Published on %s!" % self.get_site_name(social_site))
             return results
         return None
         
