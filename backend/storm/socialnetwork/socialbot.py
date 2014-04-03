@@ -410,7 +410,7 @@ class TwitterBot(SocialBot):
         
         if "screen_name" in user_info:
             account_name = user_info["screen_name"]
-            account_url = __base_account_url % account_name
+            account_url = self.__base_account_url % account_name
             self._account_name = account_name
             self._account_url = account_url
             return account_name, account_url
