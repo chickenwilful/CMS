@@ -23,14 +23,19 @@ jQuery(document).ready(function() {
             successAlert.show();
         })
         .fail(function(response) {
-            failedSites = JSON.parse(response.responseText);
-            failedSiteNames = [];
-            for (id in failedSites) {
-                if (failedSites.hasOwnProperty(id)) {
-                    failedSiteNames.push(failedSites[id].name);
+            console.log(response)
+            try {
+                failedSites = JSON.parse(response.responseText);
+                failedSiteNames = [];
+                for (id in failedSites) {
+                    if (failedSites.hasOwnProperty(id)) {
+                        failedSiteNames.push(failedSites[id].name);
+                    }
                 }
+                errorAlert.find("span").text("Post failed to publish in the following sites: " + failedSiteNames.join(", "));
+            } catch(err) {
+                errorAlert.find("span").text("Unknown error occurred!");
             }
-            errorAlert.find("span").text("Post failed to publish in the following sites: " + failedSiteNames.join(", "));
             errorAlert.show();
         })
         .always(function() {

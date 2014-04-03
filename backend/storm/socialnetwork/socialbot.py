@@ -235,6 +235,12 @@ class FacebookBot(SocialBot):
         self.__app_id = app_id
         self.__app_secret = app_secret
     
+    @staticmethod
+    def __strip_invalid_chars(string):
+        if isinstance(string, unicode):
+            return ''.join([x for x in string if ord(x) < 128])
+        return string
+    
     def __retrieve_account_details(self):
         graph = facebook.GraphAPI(self._main_token)
         #import pdb; pdb.set_trace()
@@ -284,6 +290,10 @@ class FacebookBot(SocialBot):
         return None
     
     def post(self, title, content, link):
+        # Facebook Graph API fails with non-ASCII characters
+        title = self.__strip_invalid_chars(title)
+        content = self.__strip_invalid_chars(content)
+        
         message = title or content or None
         if not message:
             return {"error" : "No content in post."}
@@ -294,7 +304,9 @@ class FacebookBot(SocialBot):
         try:
             result = graph.put_object("me", "feed", message=message, link=link, name=title) 
         except facebook.GraphAPIError as e:
-            return { "error" : e.message }
+            return { "error" : "Facebook error: %s" % e.message }
+        except Exception as e:
+            return { "error" : "Unknown error: %s" % e.message }
         return result
     
     def authenticate(self, token, sub_token=None):
@@ -410,7 +422,7 @@ class TwitterBot(SocialBot):
         
         if "screen_name" in user_info:
             account_name = user_info["screen_name"]
-            account_url = __base_account_url % account_name
+            account_url = self.__base_account_url % account_name
             self._account_name = account_name
             self._account_url = account_url
             return account_name, account_url
@@ -465,11 +477,13 @@ class TwitterBot(SocialBot):
         try:
             result = twitter.update_status(status=status_text + " " + link)
         except TwythonRateLimitError as e:
-            return { "error" : e.msg }
+            return { "error" : "Twitter rate error: %s" % e.msg }
         except TwythonAuthError as e:
-            return { "error" : e.msg }
+            return { "error" : "Twitter auth error: %s" % e.msg }
         except TwythonError as e:
-            return { "error" : e.msg }
+            return { "error" : "Twitter error: %s" % e.msg }
+        except Exception as e:
+            return { "error" : "Unknown error: %s" % e.message }
         return result
     
     def authenticate(self, token, sub_token=None):
@@ -644,11 +658,11 @@ class GPlusBot(SocialBot):
         result = {}
         if not response_json["success"]:
             result = response_json
-            result["error"] = "Unable to post to Google+."
+            result["error"] = "Google+ error: Post unsuccessful."
         else:
             result = response_json["updates"][0]
             if result["status"] != "sent":
-                result["error"] = "Unable to post to Google+."
+                result["error"] = "Google+ error: Post was not sent to Google+ from Buffer."
         
         return result
     
