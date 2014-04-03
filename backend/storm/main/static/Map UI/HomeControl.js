@@ -14,7 +14,7 @@ var singapore = new google.maps.LatLng(1.3667,103.81);
   var controlUI = document.createElement('div');
   controlUI.style.backgroundColor = 'white';
   controlUI.style.borderStyle = 'solid';
-  controlUI.style.borderWidth = '2px';
+  controlUI.style.borderWidth = '1px';
   controlUI.style.cursor = 'pointer';
   controlUI.style.textAlign = 'center';
   controlUI.title = 'Click to set the map to Home';
@@ -33,5 +33,6 @@ var singapore = new google.maps.LatLng(1.3667,103.81);
   // Chicago
   google.maps.event.addDomListener(controlUI, 'click', function() {
     map.setCenter(singapore);
+	map.setZoom(11);
   });
   }
