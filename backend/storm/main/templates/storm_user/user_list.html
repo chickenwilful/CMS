@@ -1,29 +1,38 @@
-{% extends 'main/base_list.html' %}
-
-{% block content-title %}
-    USER LIST
+{% extends "main/base_list.html" %}
+{% block map %}
 {% endblock %}
 
-{% block content %}
-    <a href="{% url 'main.main_page' %}">Back to home</a>
-    <br/>
-    <a href="{% url 'user.user_create' %}">Create a new user</a>
-    </br>
+{% block body-title-list %}
+User List
+{% endblock body-title-list %}
 
+{% block body-content %}
+<p>
+    <!--<a href="{% url 'main.main_page' %}">Back to home</a>-->
+    <!--<br/>-->
+    <!--<a href="{% url 'post.post_create' %}">Create a new post</a>-->
+</br>
+<input type="Submit" class="btn btn-primary" name="Edit" id="Edit"
+value="Create News" onclick="window.location.href='/user/user_create/'">
+
+</p>
+
+<ul id="list">
 {% for userprofile in user_list %}
-    <strong>Username:</strong>
-    {{userprofile.user.username}}
-    <br>
-    <strong>Password:</strong>
-    <br>
-    <strong>User name:</strong>
-    {{userprofile.name}}
-    <br>
-    <strong>User phone_number:</strong>
-    {{userprofile.phone_number}}
-    <br>
-    <a href="/user/user_retrieve/{{userprofile.user.id}}" >See detail</a>
-    </br>
-    <p>--------------------------------------------------</p>
+<li>
+
+						  <h3>{{userprofile.name}}</h3>
+						  <p>
+						    </br>
+                              Username: {{userprofile.user.username}}...
+                            </br>
+                              Email : {{userprofile.user.email}}
+                           </p>
+
+            <a href="/user/user_retrieve/{{userprofile.user.id}}/" class="more">Read more &gt;&gt;</a>
+</li>
 {% endfor %}
-{% endblock %}
+</ul>
+
+{% endblock body-content %}
+

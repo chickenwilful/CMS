@@ -25,7 +25,7 @@
     <form role="form" class="form-horizontal" method="post">
         {% bootstrap_form form layout="horizontal" %}
         {% csrf_token %}
-        {% buttons submit="OK" reset="Cancel" layout="horizontal"%}{% endbuttons %}
+        {% buttons submit="OK" reset="Reset" layout="horizontal"%}{% endbuttons %}
     </form>
     <script>
         $(document).ready(function() {

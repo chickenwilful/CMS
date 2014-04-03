@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import User
 from storm_user.models import UserProfile
 
@@ -26,9 +25,9 @@ class UserCreateForm(forms.ModelForm):
     """
     def __init__(self, *args, **kwargs):
         super(UserCreateForm, self).__init__(*args, **kwargs)
-
         for fieldname in ['username', 'groups']:
             self.fields[fieldname].help_text = None
+        self.fields['groups'].widget = forms.CheckboxSelectMultiple()
 
     name = forms.CharField(label="Name", widget=forms.TextInput)
     phone_number = forms.CharField(label="Phone number", widget=forms.TextInput)
