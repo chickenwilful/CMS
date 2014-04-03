@@ -133,6 +133,7 @@ a.sitename {
 }
 #contents h2 {
 	font-size: 20px;
+	text-align:center;
 	line-height: 42px;
 	margin: 0 0 24px;
 }
