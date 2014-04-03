@@ -24,6 +24,7 @@ def map(request):
             "time": event.created_at.strftime('%Y-%m-%d %H:%M'),
             "description": event.description,
             "address": event.address,
+            "event_link": "/event/event_retrieve/%d/" % event.id
         })
 
     with open('data.json', 'w') as f:
