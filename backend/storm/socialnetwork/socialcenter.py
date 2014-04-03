@@ -1,6 +1,7 @@
 from django.conf import settings
 from models import SocialToken
 from datetime import datetime
+from multiprocessing.pool import ThreadPool
 import logging
 import re
 
@@ -200,15 +201,24 @@ class SocialCenter(object):
                 return result
         else:
             results = {}
+            async_results = {}
+            pool = ThreadPool(processes=1)
             for social_site, social_bot in self.bots.items():
                 results[social_site] = {
                     "logged_in" : self.is_logged_in(social_site),
                     "name"      : self.get_site_name(social_site)
                 }
                 if self.is_logged_in(social_site):
-                    result = social_bot.post(title, content, link)
+                    # Publish to different sites on separate threads
+                    async_results[social_site] = pool.apply_async(social_bot.post,
+                                                    (title, content, link))
+                    # result = social_bot.post(title, content, link)
                     # merge results from individual bots with existing values
-                    results[social_site] = dict(result.items() + results[social_site].items())
+                    # results[social_site] = dict(result.items() + results[social_site].items())
+            # Retrieve results from threads
+            for social_site, async_result in async_results.items():
+                result = async_result.get()
+                results[social_site] = dict(result.items() + results[social_site].items())
             return results
         return None
         
