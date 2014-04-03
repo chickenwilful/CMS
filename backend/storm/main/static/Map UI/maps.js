@@ -66,6 +66,7 @@ function initialize() {
                 var time = data.time;
                 var des = data.description;
                 if(postalCode!==''){
+                    console.log(postalCode);
                     (function(postalCode, des, reporter, addr, time, key){
                         geocoder.geocode({ 'address': postalCode}, function(results, status) {
                             addMarker(des, reporter, addr, time, results[0].geometry.location, key);
