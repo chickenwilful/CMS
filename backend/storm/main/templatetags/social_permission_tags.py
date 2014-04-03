@@ -9,4 +9,4 @@ def can_list_social(user):
     """
     Only CMS Admin can see user list
     """
-    return Group.objects.get(name="CMSAdmin") in User(user).groups.all()
+    return Group.objects.get(name="CMSAdmin") in user.groups.all()

@@ -129,8 +129,13 @@
 				<div class="section">
 					<div id="connect">
 						<h2>Connect with us:</h2>
-						<a href="https://twitter.com/CMSSocialBot" target="_blank" class="twitter"></a> <a href="https://www.facebook.com/pages/CMS-Alerts/738126479553549" target="_blank" class="facebook"></a> <a href="https://plus.google.com/116253498383005615682/" target="_blank" class="googleplus"></a>
-					    {{user.id}}
+						<a href="https://twitter.com/CMSSocialBot" target="_blank" class="twitter"></a>
+                        <a href="https://www.facebook.com/pages/CMS-Alerts/738126479553549" target="_blank" class="facebook"></a>
+                        <a href="https://plus.google.com/116253498383005615682/" target="_blank" class="googleplus"></a>
+                        <a href="http://cmsalerts.tumblr.com/" target="_blank" class="tumblr"></a>
+					    {% if user|can_list_social %}
+                        <div style="text-align:center"><a href="/social/" class="btn">Manage</a></div>
+                        {% endif %}
                     </div>
 				</div>
 				<div class="section">
