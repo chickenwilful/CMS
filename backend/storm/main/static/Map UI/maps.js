@@ -65,28 +65,29 @@ function initialize() {
                 var addr = data.address;
                 var time = data.time;
                 var des = data.description;
+				var eventLink = data.event_link;
+				console.log(eventLink);
                 if(postalCode!==''){
-                    console.log(postalCode);
-                    (function(postalCode, des, reporter, addr, time, key){
+                    (function(postalCode, des, reporter, addr, time, key, eventLink){
                         geocoder.geocode({ 'address': postalCode}, function(results, status) {
-                            addMarker(des, reporter, addr, time, results[0].geometry.location, key);
+                            addMarker(des, reporter, addr, time, results[0].geometry.location, key, eventLink);
                         });
-                    })(postalCode,des,reporter, addr, time, key);
+                    })(postalCode,des,reporter, addr, time, key, eventLink);
                 }
                 else{
-                    (function(postalCode, des, reporter, addr, time, key){
+                    (function(postalCode, des, reporter, addr, time, key, eventLink){
                         geocoder.geocode({ 'address': addr, 'bounds':bound}, function(results, status) {
-                            addMarker(des, reporter, addr, time, results[0].geometry.location, key);
+                            addMarker(des, reporter, addr, time, results[0].geometry.location, key, eventLink);
 
                         });
-                    })(postalCode,des,reporter, addr, time, key);
+                    })(postalCode,des,reporter, addr, time, key, eventLink);
                 }
 
             }
         }
    }
 
-    function addMarker(description, reporter, addr, time, location, key)
+    function addMarker(description, reporter, addr, time, location, key, eventLink)
     {
 
         var eventTime = new Date(time);
@@ -101,6 +102,9 @@ function initialize() {
             marker.setAnimation(google.maps.Animation.BOUNCE)
 //        google.maps.event.addListener(marker, 'click', toggleBounce);
 		var newDes = description.substring(0,60);
+		console.log(eventLink);
+		var hyperlink = "See more".link(eventLink);
+		console.log(hyperlink);
         var content = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
@@ -109,7 +113,7 @@ function initialize() {
       '<b>Name of reporter: </b>' + reporter + 
       '<br><b>Venue: </b>' + addr +
       '<br><b>Time reported: </b>'+ time+
-      '<br><b>Description: </b>' + newDes + ' ...'
+      '<br><b>Description: </b>' + newDes + ' ...' + hyperlink
       '</div>'+
       '</div>';
         google.maps.event.addListener(marker, 'click', function () {
