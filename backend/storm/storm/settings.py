@@ -47,7 +47,6 @@ INSTALLED_APPS = (
     'user',
     'main',
     'storm_user',
-    #'crossdomainxhr', #No need to use
     'socialnetwork',
     'bootstrap3',
 )

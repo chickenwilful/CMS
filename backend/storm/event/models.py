@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Q
 from django.http import request
@@ -20,7 +21,13 @@ class Event(models.Model):
     related_to = models.ManyToManyField(User, related_name='related_to')
     reporter_name = models.CharField(max_length=255, null=True, blank=True)
     reporter_phone_number = models.CharField(max_length=255, null=True, blank=True)
-    postal_code = models.CharField(max_length=255, null=True, blank=True)
+    postal_code = models.CharField(
+        max_length=255, null=True, blank=True,
+        validators=[RegexValidator(
+            regex='^\d{6}$', message='Invalid Singapore Postal Code', code='Invalid number')
+        ]
+    )
+    #Todo postal_code unique
     address = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):

@@ -28,7 +28,7 @@ def can_create_post(user):
 
 @register.filter(name='can_update_post')
 def can_update_post(user, post):
-    ans = "post.post_create" in user.get_all_permissions()
+    ans = "post.post_update" in user.get_all_permissions()
     return ans and (user == post.created_by or (Group.objects.get(name="CMSAdmin") in user.groups.all()))
 
 

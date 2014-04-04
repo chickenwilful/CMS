@@ -36,7 +36,7 @@ def map(request):
 
 
 def sendSMS():
-
+    #Todo sendSMS()?
     import urllib
 
     # If your firewall blocks access to port 5567, you can fall back to port 80:
@@ -80,8 +80,9 @@ def event_create(request):
             model_instance.created_by_id = request.user.id
             model_instance.created_at = timezone.now()
             model_instance.save()
-            model_instance.related_to = form.cleaned_data.get('related_to')
+            # model_instance.related_to = form.cleaned_data.get('related_to')
             model_instance.save()
+            sendSMS()
             return redirect("event.event_list")
         else:
             return render(request, 'event/event_create.html', {'form': form})
@@ -104,15 +105,11 @@ def event_list(request, emergency_situation_id=0):
     if not can_list_event(request.user):
         return render(request, "main/no_permission.html")
 
-
     #Query database
     if int(emergency_situation_id) == 0:
         event_list = Event.objects.all()
     else:
         event_list = Event.objects.filter(type=emergency_situation_id)
-
-    # if not Group.objects.get(name="CMSAdmin") in request.user.groups.all():
-    #     event_list = event_list.filter(Q(created_by=request.user) | Q(related_to=request.user))
 
     event_list = event_list.order_by('-id')
 

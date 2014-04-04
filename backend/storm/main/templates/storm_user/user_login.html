@@ -5,9 +5,10 @@ Login
 {% endblock %}
 
 {% block message %}
-    <!--<span style="color: blue; font-family: Georgia, Times New Roman, Times, serif" > {{message}}</span>-->
-<!--<br/>-->
-<!--<br/>-->
-{% endblock %}
+   {% if message != "" %}
+    <span>{{message}}</span>
+    </br></br>
 
+   {% endif %}
+{% endblock %}
 

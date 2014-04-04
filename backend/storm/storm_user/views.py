@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from main.templatetags.user_permissions_tags import can_retrieve_user, can_create_user, can_list_user, can_update_user
+from main.templatetags.user_permission_tags import can_retrieve_user, can_create_user, can_list_user, can_update_user
 from storm_user.forms import UserLoginForm, UserCreateForm, UserUpdateForm
 from storm_user.models import UserProfile
 
@@ -21,7 +21,7 @@ def user_login(request):
 
     if not (request.POST or request.GET):
         return render(request, 'storm_user/user_login.html',
-                      {'form': form, 'message': "Please login..."})
+                      {'form': form, 'message': ""})
     else:
         # Form POST request is submitted
         try:

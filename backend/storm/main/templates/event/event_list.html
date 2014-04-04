@@ -1,16 +1,21 @@
 {% extends "main/base_list.html" %}
+{% load event_permission_tags %}
 
 {% block body-title-list %}
     Events
+
+{% if user|can_create_event %}
+<input style="float: right" type="Submit" class="btn" name="Edit" id="Edit"
+value="Create Event" onclick="window.location.href='/event/event_create/'">
+{% else %}
+<input name="btnEdit" type="submit" class="btn" id="btnEdit" value="Create Event" width="10" height="100" style="color: #999; float: right" disabled="">
+{% endif %}
+
 {% endblock body-title-list %}
 
 
 
 {% block body-content %}
-<br/><br/>
-<input type="Submit" class="btn" name="Edit" id="Edit"
-value="Create Event" onclick="window.location.href='/event/event_create/'">
-
 
 <ul id="list">
 {% for event in event_list %}
@@ -23,9 +28,9 @@ value="Create Event" onclick="window.location.href='/event/event_create/'">
     <br/>
     <strong>Created by:</strong> {{event.created_by}}
     <br/>
-    <strong>Related to: </strong>
+    <strong>Related rescue agencies: </strong>
     {% for user in event.related_to.all %}
-    {{user.username}}
+    {{user.username}};
     {% endfor %}
     </br>
     {{event.description}}
@@ -36,10 +41,6 @@ value="Create Event" onclick="window.location.href='/event/event_create/'">
         </li>
 
 {% endfor %}
-<div id="pagination">
-<a href="news.html">&lt;&lt;</a> <a href="news.html">First</a> <a href="news.html">1</a> <a href="news.html">2</a> <a href="news.html">3</a> <a href="news.html">4</a> <a href="news.html">5</a> <a href="news.html">6</a> <a href="news.html">7</a> <a href="news.html">8</a> <a href="news.html">9</a> <a href="news.html">10</a> <a href="news.html">11</a> <a href="news.html">12</a> <a href="news.html">13</a> <a href="news.html">14</a> <a href="news.html">15</a> <a href="news.html">16</a> <a href="news.html">17</a> <a href="news.html">18</a> <a href="news.html">19</a> <a href="news.html">20</a> <a href="news.html">Last</a> <a href="news.html">&gt;&gt;</a>
-					</div>
-  </ul>
 
 
 {% endblock %}

@@ -1,4 +1,5 @@
 {% extends 'main/base.html' %}
+{% load post_permission_tags %}
 
 {% block map %}
 {% endblock %}
@@ -26,23 +27,33 @@
             <p>{{post.content}}</p>
             <p>&nbsp;</p>
           <br>
-<input type="Submit" class="btn" name="Back to News" id="Back to News" value="Back to News" onclick="window.location.href='/post/post_list/'">
-<input type="Submit" class="btn" name="Edit" id="Edit" value="Edit" onclick="window.location.href='/post/post_update/{{post.id}}'">
-<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="confirmDeletePost()">
         </li>
     </ul>
+<input type="Submit" class="btn" value="Back to News" onclick="window.location.href='/post/post_list'">
+
+{% if user|can_update_post:post %}
+<input type="Submit" class="btn" name="Edit" id="Edit" value="Edit" onclick="window.location.href='/post/post_update/{{post.id}}'">
+{% else %}
+<input name="btnEdit" type="submit" class="btn" id="btnEdit" value="Edit" width="10" height="100" style="color: #999;" disabled="">
+{% endif %}
+
+{% if user|can_delete_post:post %}
+<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="confirmDeletepost()">
+{% else %}
+<input name="btnEdit" type="submit" class="btn" id="btnEdit" value="Delete" width="10" height="100" style="color: #999;" disabled="" onclick="confirmDeletepost()">
+
+{% endif %}
 </div>
-    <!--<a href="{% url 'post.post_list' %}">back to post list</a>-->
-    <!--<a href="/post/post_update/{{post.id}}" >Edit this post</a>-->
-    <!--<a href="#" onclick="confirmDeletePost()">Delete this post</a>-->
-    <script type="text/javascript">
-        function confirmDeletePost() {
-            var resp = confirm("Are you sure to delete this post?")
-            console.log(resp + 'work');
-            if (resp) {
-                window.location.href   = '/post/post_delete/{{post.id}}/';
-            }
-            return false;
+
+<script type="text/javascript">
+    function confirmDeletePost() {
+        var resp = confirm("Are you sure to delete this post?")
+        console.log(resp + 'work');
+        if (resp) {
+            window.location.href   = '/post/post_delete/{{post.id}}/';
         }
-    </script>
+        return false;
+    }
+</script>
+
 {% endblock %}

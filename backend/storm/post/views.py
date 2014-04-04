@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -18,7 +19,8 @@ def post_list(request, emergency_situation_id=0):
         post_list = Post.objects.all()
     else:
         post_list = Post.objects.filter(type=emergency_situation_id)
-    post_list = post_list.order_by('-id')
+
+    post_list = post_list.filter(Q(created_by=request.user.id) | Q(isPublished=True)).order_by("-id")
 
     for post in post_list:
         post.content = post.content[:280]

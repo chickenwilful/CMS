@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.db.models import Q
 from django.forms import ModelMultipleChoiceField
 from event.models import Event
 from storm_user.models import UserProfile
@@ -15,21 +16,19 @@ class EventCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventCreateForm, self).__init__(*args, **kwargs)
         self.fields['related_to'].help_text = None
-        self.fields['reporter_phone_number'].widget.attrs['type'] = "number"
-    related_to = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"),
-                                    widget=forms.CheckboxSelectMultiple())
+        self.fields['related_to'] = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"), widget=forms.CheckboxSelectMultiple())
+
+    def clean_reporter_phone_number(self):
+        #Check that the phone number only contains numeric character
+        num = self.cleaned_data.get('reporter_phone_number')
+        if num and (not num.isnumeric()):
+            raise forms.ValidationError("Phone number must contain only numeric characters")
 
     class Meta:
         model = Event
-        exclude = ['related_to']
 
+#Todo either post_code or address exist
 
 
 class EventUpdateForm(EventCreateForm):
-    class Meta:
-        model = Event
-
-    def save(self, commit=True):
-        event = super(EventCreateForm, self).save(commit=False)
-        event.save()
-        return event
+    pass

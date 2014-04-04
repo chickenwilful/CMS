@@ -18,6 +18,11 @@ class UserLoginForm(forms.ModelForm):
         fields = ('username',)
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
+    def save(self, commit=True):
+        event = super(UserLoginForm, self).save(commit=False)
+
+        return event
+
 
 class UserCreateForm(forms.ModelForm):
     """
@@ -27,7 +32,6 @@ class UserCreateForm(forms.ModelForm):
         super(UserCreateForm, self).__init__(*args, **kwargs)
         for fieldname in ['username', 'groups']:
             self.fields[fieldname].help_text = None
-        self.fields['groups'].widget = forms.CheckboxSelectMultiple()
 
     name = forms.CharField(label="Name", widget=forms.TextInput)
     phone_number = forms.CharField(label="Phone number", widget=forms.TextInput)

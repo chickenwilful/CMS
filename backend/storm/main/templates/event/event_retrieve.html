@@ -1,8 +1,10 @@
 
 {% extends 'main/base.html' %}
+{% load event_permission_tags %}
 
 {% block map %}
 {% endblock %}
+
 {% block body-title %}
 {% endblock %}
 
@@ -23,14 +25,23 @@
           <p>Postal Code: {{event.postal_code}}</p>
          </li>
 </ul>
-<input type="Submit" class="btn" name="Back to News" id="Back to News" value="Back to Home" onclick="window.location.href='/main/'">
+
+<input type="Submit" class="btn" value="Back to Home" onclick="window.location.href='/main/'">
+
+{% if user|can_update_event:event %}
 <input type="Submit" class="btn" name="Edit" id="Edit" value="Edit" onclick="window.location.href='/event/event_update/{{event.id}}'">
+{% else %}
+<input name="btnEdit" type="submit" class="btn" id="btnEdit" value="Edit" width="10" height="100" style="color: #999;" disabled="">
+{% endif %}
+
+{% if user|can_delete_event:event %}
 <input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="confirmDeleteevent()">
+{% else %}
+<input name="btnEdit" type="submit" class="btn" id="btnEdit" value="Delete" width="10" height="100" style="color: #999;" disabled="" onclick="confirmDeleteevent()">
+{% endif %}
 </div>
-    <!--<a href="{% url 'event.event_list' %}">back to event list</a>-->
-    <!--<a href="/event/event_update/{{event.id}}" >Edit this event</a>-->
-    <!--<a href="#" onclick="confirmDeleteevent()">Delete this event</a>-->
-    <script type="text/javascript">
+
+<script type="text/javascript">
         function confirmDeleteevent() {
             var resp = confirm("Are you sure to delete this event?")
             console.log(resp + 'work');
@@ -39,5 +50,6 @@
             }
             return false;
         }
-    </script>
+</script>
+
 {% endblock %}

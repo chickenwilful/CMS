@@ -1,9 +1,18 @@
 {% extends "main/base_list.html" %}
+{% load post_permission_tags %}
+
 {% block map %}
 {% endblock %}
 
 {% block body-title-list %}
 News
+{% if user|can_create_post %}
+<input style="float: right" type="Submit" class="btn" name="Edit" id="Edit"
+value="Create News" onclick="window.location.href='/post/post_create/'">
+{% else %}
+<input name="btnEdit" type="submit" class="btn" id="btnEdit" value="Create News" width="10" height="100" style="color: #999; float: right" disabled="">
+{% endif %}
+
 {% endblock body-title-list %}
 
 {% block navigation %}
@@ -11,15 +20,6 @@ News
 {% endblock navigation %}
 
 {% block body-content %}
-<p>
-    <!--<a href="{% url 'main.main_page' %}">Back to home</a>-->
-    <!--<br/>-->
-    <!--<a href="{% url 'post.post_create' %}">Create a new post</a>-->
-</br>
-<input type="Submit" class="btn btn-primary" name="Edit" id="Edit"
-value="Create News" onclick="window.location.href='/post/post_create/'">
-
-</p>
 
 <ul id="list">
 {% for post in post_list %}

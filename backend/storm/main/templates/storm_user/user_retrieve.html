@@ -1,10 +1,12 @@
 {% extends 'main/base.html' %}
+{% load user_permission_tags %}
 
 {% block map %}
 {% endblock %}
 
-{% block body-content-title %}
+{% block body-title-form %}
     <h1><u>User Profile</u></h1>
+
 {% endblock %}
 
 {% block body-content %}
@@ -22,6 +24,9 @@
             <p>{{post.content}}</p>
             <p>&nbsp;</p>
           <br>
+{% if user|can_list_user %}
+<input type="Submit" class="btn" name="Edit" id="Edit" value="User List" onclick="window.location.href='/user/user_list/'">
+{% endif %}
 <input type="Submit" class="btn" name="Edit" id="Edit" value="Edit Profile" onclick="window.location.href='/user/user_update/{{user.id}}'">
         </li>
     </ul>

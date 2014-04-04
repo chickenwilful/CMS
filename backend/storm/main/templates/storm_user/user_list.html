@@ -4,18 +4,16 @@
 
 {% block body-title-list %}
 User List
-{% endblock body-title-list %}
 
-{% block body-content %}
-<p>
-    <!--<a href="{% url 'main.main_page' %}">Back to home</a>-->
-    <!--<br/>-->
-    <!--<a href="{% url 'post.post_create' %}">Create a new post</a>-->
-</br>
-<input type="Submit" class="btn btn-primary" name="Edit" id="Edit"
+<input style="float: right" type="Submit" class="btn btn-primary" name="Edit" id="Edit"
 value="Create News" onclick="window.location.href='/user/user_create/'">
 
-</p>
+{% endblock body-title-list %}
+
+{% block filter %}
+{% endblock %}
+
+{% block body-content %}
 
 <ul id="list">
 {% for userprofile in user_list %}
