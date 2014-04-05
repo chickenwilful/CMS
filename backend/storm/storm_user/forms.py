@@ -59,7 +59,6 @@ class UserCreateForm(forms.ModelForm):
             raise forms.ValidationError("Phone number must contain only numeric characters")
         return num
 
-
     def save(self, commit=True):
         #save the provided password in hashed format
         user = super(UserCreateForm, self).save(commit=False)
@@ -92,7 +91,7 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'name', 'phone_number', 'password']
+        fields = ['username', 'groups', 'email', 'name', 'phone_number', 'password']
 
     def clean_phone_number(self):
         #Check that the phone number only contains numeric character

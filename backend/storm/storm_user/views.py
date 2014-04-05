@@ -91,12 +91,14 @@ def user_update(request, user_id):
 
     if not (request.POST or request.GET):
         user = get_object_or_404(User, pk=user_id)
+        print user.groups.all()
         form = UserUpdateForm(instance=user)
         return render(request, 'storm_user/user_update.html', {'form': form})
     else:
         form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
             model_instance = form.save(commit=False)
+            print model_instance.groups.all()
             model_instance.save()
             userprofile = UserProfile.objects.get(user=model_instance)
             userprofile.name = form.cleaned_data.get('name')
