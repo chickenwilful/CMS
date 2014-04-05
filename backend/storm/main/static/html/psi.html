@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.ajax({
+			type: "GET",
+			url: "http://app2.nea.gov.sg/data/rss/nea_psi.xml",
+			dataType: "xml",
+			success: xmlParser
+		});
+	});
+
+	function xmlParser(xml) {
+		$('#load').fadeOut();
+		$(xml).find("channel").each(function(){
+			$("#container").append('<div class="item"><div class="title">'+ $(this).find("title").text() + '<br/>'
+									+ $(this).find("description").text() + '<br/></div></div>'
+										);
+			$(".item").fadeIn(1000);
+		});
+	}
+
+</script>
+</head>
+
+<body>
+	<div id="container"></div>
+</body>
+
+</html>

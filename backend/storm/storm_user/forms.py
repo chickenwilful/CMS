@@ -51,6 +51,14 @@ class UserCreateForm(forms.ModelForm):
             raise forms.ValidationError("Password don't match")
         return password2
 
+    def clean_phone_number(self):
+        #Check that the phone number only contains numeric character
+        num = self.cleaned_data.get('phone_number')
+        if num and (not num.isnumeric()):
+            raise forms.ValidationError("Phone number must contain only numeric characters")
+        return num
+
+
     def save(self, commit=True):
         #save the provided password in hashed format
         user = super(UserCreateForm, self).save(commit=False)
@@ -84,6 +92,13 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'name', 'phone_number', 'password']
+
+    def clean_phone_number(self):
+        #Check that the phone number only contains numeric character
+        num = self.cleaned_data.get('phone_number')
+        if num and (not num.isnumeric()):
+            raise forms.ValidationError("Phone number must contain only numeric characters")
+        return num
 
     def clean_password(self):
         """

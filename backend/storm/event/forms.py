@@ -23,6 +23,17 @@ class EventCreateForm(forms.ModelForm):
         num = self.cleaned_data.get('reporter_phone_number')
         if num and (not num.isnumeric()):
             raise forms.ValidationError("Phone number must contain only numeric characters")
+        return num
+
+    def clean_address(self):
+        """
+        Either address or postal code must be filled
+        """
+        addr = self.cleaned_data.get('address')
+        postal_code = self.cleaned_data.get("postal_code")
+        if not (postal_code or addr):
+            raise forms.ValidationError("Must fill either postal code or address")
+        return addr
 
     class Meta:
         model = Event
@@ -30,5 +41,28 @@ class EventCreateForm(forms.ModelForm):
 #Todo either post_code or address exist
 
 
-class EventUpdateForm(EventCreateForm):
-    pass
+class EventUpdateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(EventUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['related_to'].help_text = None
+        self.fields['related_to'] = MyModelChoiceField(queryset=User.objects.filter(groups__name="RescueAgency"), widget=forms.CheckboxSelectMultiple())
+
+    def clean_reporter_phone_number(self):
+        #Check that the phone number only contains numeric character
+        num = self.cleaned_data.get('reporter_phone_number')
+        if num and (not num.isnumeric()):
+            raise forms.ValidationError("Phone number must contain only numeric characters")
+        return num
+
+    def clean_address(self):
+        """
+        Either address or postal code must be filled
+        """
+        addr = self.cleaned_data.get('address')
+        postal_code = self.cleaned_data.get("postal_code")
+        if not (postal_code or addr):
+            raise forms.ValidationError("Must fill either postal code or address")
+        return addr
+
+    class Meta:
+        model = Event

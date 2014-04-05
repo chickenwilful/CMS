@@ -129,8 +129,8 @@ def event_update(request, event_id):
 
     #Handle request
     if not (request.POST or request.GET):
-        post = get_object_or_404(Event, pk=event_id)
-        form = EventUpdateForm(instance=post)
+        event = get_object_or_404(Event, pk=event_id)
+        form = EventUpdateForm(instance=event)
         return render(request, "event/event_update.html", {'form': form})
     else:
         # Form POST request is submitted
@@ -140,7 +140,7 @@ def event_update(request, event_id):
             form.save()
             return HttpResponseRedirect(reverse('event.event_retrieve', args=(event_id,)))
         else:
-            return HttpResponse("Fail!")
+            return render(request, 'event/event_update.html', {'form': form})
 
 
 def event_delete(request, event_id):

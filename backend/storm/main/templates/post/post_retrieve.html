@@ -38,10 +38,9 @@
 {% endif %}
 
 {% if user|can_delete_post:post %}
-<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="confirmDeletepost()">
+<input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="confirmDeletePost()">
 {% else %}
-<input name="btnEdit" type="submit" class="btn" id="btnEdit" value="Delete" width="10" height="100" style="color: #999;" disabled="" onclick="confirmDeletepost()">
-
+<input name="btnEdit" type="submit" class="btn" id="btnEdit" value="Delete" width="10" height="100" style="color: #999;" disabled="" onclick="confirmDeletePost()">
 {% endif %}
 </div>
 

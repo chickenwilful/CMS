@@ -23,7 +23,12 @@
           <p>Reporter: {{event.reporter_name}} | {{event.reporter_phone_number}}</p>
           <p>Address: {{event.address}}</p>
           <p>Postal Code: {{event.postal_code}}</p>
-         </li>
+          <p>Related rescue agencies:
+            {% for user in event.related_to.all %}
+            {{user.username}};
+            {% endfor %}
+          </p>
+        </li>
 </ul>
 
 <input type="Submit" class="btn" value="Back to Home" onclick="window.location.href='/main/'">
