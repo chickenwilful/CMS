@@ -1,7 +1,7 @@
 
 {% extends 'main/base.html' %}
 {% load event_permission_tags %}
-
+{% load my_custom_tags %}
 {% block map %}
 {% endblock %}
 
@@ -14,7 +14,7 @@
         <li>
           <h3>{{event.title}}</h3>
           <br>
-          <p>By {{event.created_by}} </p>
+          <p>By {{event.created_by|officalName}} </p>
           <p>{{event.created_at}}</p>
           <p>Type: {{event.type}}</p>
           <p>&nbsp;</p>
@@ -25,7 +25,7 @@
           <p>Postal Code: {{event.postal_code}}</p>
           <p>Related rescue agencies:
             {% for user in event.related_to.all %}
-            {{user.username}};
+            {{user|officalName}};
             {% endfor %}
           </p>
         </li>

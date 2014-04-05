@@ -7,7 +7,10 @@ register = template.Library()
 
 @register.filter(name="officalName")
 def offcialName(user):
-    userprofile = UserProfile.objects.get(user=user)
+    try:
+        userprofile = UserProfile.objects.get(user=user)
+    except UserProfile.DoesNotExist:
+        pass
     return userprofile.name
 
 

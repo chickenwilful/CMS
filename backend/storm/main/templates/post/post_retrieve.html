@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% load post_permission_tags %}
+{% load my_custom_tags %}
 
 {% block map %}
 {% endblock %}
@@ -17,7 +18,7 @@
         <li>
           <h3>{{post.title}}</h3>
           <br>
-          <p>By {{post.created_by}} </p>
+          <p>By {{post.created_by|officalName}} </p>
           <p>{{post.created_at}}</p>
           <p>Type: {{post.type}}</p>
           <p>&nbsp;</p>

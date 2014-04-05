@@ -1,5 +1,6 @@
 {% extends "main/base_list.html" %}
 {% load event_permission_tags %}
+{% load my_custom_tags %}
 
 {% block body-title-list %}
     Events
@@ -30,7 +31,7 @@ value="Create Event" onclick="window.location.href='/event/event_create/'">
     <br/>
     <strong>Related rescue agencies: </strong>
     {% for user in event.related_to.all %}
-    {{user.username}};
+    {{user|officalName}};
     {% endfor %}
     </br>
     {{event.description}}
