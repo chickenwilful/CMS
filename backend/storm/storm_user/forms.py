@@ -32,7 +32,7 @@ class UserCreateForm(forms.ModelForm):
         super(UserCreateForm, self).__init__(*args, **kwargs)
         for fieldname in ['username', 'groups']:
             self.fields[fieldname].help_text = None
-        self.fields['groups'].widget = forms.CheckboxSelectMultiple(choices=self.fields['groups'].choices)
+        # self.fields['groups'].widget = forms.CheckboxSelectMultiple(choices=self.fields['groups'].choices)
 
     name = forms.CharField(label="Name", widget=forms.TextInput)
     phone_number = forms.CharField(label="Phone number", widget=forms.TextInput)
