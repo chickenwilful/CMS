@@ -72,6 +72,7 @@ def user_create(request):
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.save()
+            form.save_m2m()
             userprofile = UserProfile(name=form.cleaned_data.get('name'),
                                       phone_number=form.cleaned_data.get('phone_number'),
                                       user=model_instance)
@@ -98,8 +99,8 @@ def user_update(request, user_id):
         form = UserUpdateForm(request.POST, instance=user)
         if form.is_valid():
             model_instance = form.save(commit=False)
-            print model_instance.groups.all()
             model_instance.save()
+            form.save_m2m()
             userprofile = UserProfile.objects.get(user=model_instance)
             userprofile.name = form.cleaned_data.get('name')
             userprofile.phone_number = form.cleaned_data.get('phone_number')

@@ -80,8 +80,7 @@ def event_create(request):
             model_instance.created_by_id = request.user.id
             model_instance.created_at = timezone.now()
             model_instance.save()
-            # model_instance.related_to = form.cleaned_data.get('related_to')
-            model_instance.save()
+            form.save_m2m()
             sendSMS()
             return redirect("event.event_list")
         else:
