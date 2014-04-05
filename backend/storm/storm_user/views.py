@@ -76,7 +76,7 @@ def user_create(request):
                                       phone_number=form.cleaned_data.get('phone_number'),
                                       user=model_instance)
             userprofile.save()
-            return render(request, 'main/main_page.html')
+            return redirect('user.user_list')
         else:
             return render(request, 'storm_user/user_create.html', {'form': form})
 
@@ -114,5 +114,5 @@ def user_list(request):
     if not can_list_user(request.user):
         return render(request, "main/no_permission.html")
 
-    user_list = UserProfile.objects.all()
+    user_list = UserProfile.objects.all().order_by("-id")
     return render(request, "storm_user/user_list.html", {'user_list': user_list})
