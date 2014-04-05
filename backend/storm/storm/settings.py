@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'storm_user',
     'socialnetwork',
     'bootstrap3',
+    'crossdomainxhr',
 )
 
 MIDDLEWARE_CLASSES = (
