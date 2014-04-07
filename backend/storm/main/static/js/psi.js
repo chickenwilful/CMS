@@ -1,25 +1,14 @@
-var $items;
-
-function showRSS(str)
-      {
-          if (str.length==0) { 
-            document.getElementById("psi").innerHTML="";
-            return;
-          }
-          
-        xmlhttp = new XMLHttpRequest();
-
-        xmlhttp.onreadystatechange = function() {
-          if (xmlhttp.readyState==4 && xmlhttp.status==200){
-              document.getElementById("psi").innerHTML=xmlhttp.responseText;
-          }
-        }
-        xmlhttp.open("GET","getrss.php?q="+str,true);
-        xmlhttp.send();
-      }
-
-showRSS("psi");
-
-$(function(){
- $("#psi").append(items);
- });
+$(function() {
+  $.ajax({
+    url : "/main/getPSI",
+    dataType: "text",
+    success: function(data) {
+      console.log(data);
+      $("#psi").append(data);
+    },
+    error: function() {
+      console.log("Failed to load PSI");
+      $("#psi").text("Unable to load PSI data");
+    }
+  });
+});

@@ -1,10 +1,12 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
+from django.http import HttpResponse, HttpResponseServerError
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from event.models import Event
 from main.templatetags.event_permission_tags import can_list_event
-
+from xml.etree import ElementTree
+import requests
 
 def main_page(request, emergency_situation_id=0):
     """
@@ -40,5 +42,20 @@ def aboutus(request):
 def contactus(request):
     return render(request, "main/Contact.html")
 
-
-
+def get_psi(request):
+    """Retrieves the PSI readings from NEA
+    """
+    
+    try:
+        res = requests.get("http://app2.nea.gov.sg/data/rss/nea_psi.xml")
+        xmlDoc = ElementTree.fromstring(res.content)
+        items = list(xmlDoc.iter("item"))
+        items = items[:3] # retrieve only the 3 most recent readings
+        psiHTML = ""
+        for item in items:
+            itemDate = item.find("pubDate").text
+            itemPSI = item.find("psi").text
+            psiHTML += itemDate + ": " + itemPSI + "<br />"
+        return HttpResponse(psiHTML)
+    except requests.exceptions.RequestException:
+        return HttpResponseServerError("Could not retrieve PSI.")
