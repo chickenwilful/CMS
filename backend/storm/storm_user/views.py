@@ -119,3 +119,8 @@ def user_list(request):
 
     user_list = UserProfile.objects.all().order_by("-id")
     return render(request, "storm_user/user_list.html", {'user_list': user_list})
+
+
+def user_delete(request, user_id):
+    User.objects.get(pk=user_id).delete()
+    return HttpResponseRedirect(reverse('user.user_list'))

@@ -10,4 +10,5 @@ urlpatterns = patterns(
     url(r'^user_retrieve/(?P<user_id>\d+)/$', views.user_retrieve, name='user.user_retrieve'),
     url(r'^user_update/(?P<user_id>\d+)/$', views.user_update, name='user.user_update'),
     url(r'^login/$', views.login, name='user.login'),
+    url(r'^user_delete/(?P<user_id>\d+)/$', views.user_delete, name='user.user_delete'),
 )
