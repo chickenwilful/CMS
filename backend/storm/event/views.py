@@ -1,5 +1,4 @@
 import json
-import copy
 from django.contrib.auth.models import Group
 from django.db.models import Q
 from django.utils import timezone
@@ -20,11 +19,8 @@ def map(request):
     for event in event_list:
         if event.type.name not in json_data:
             json_data[event.type.name] = []
-        created_time = copy.copy(event.created_at)
         # Adjustment for local timezone
-        created_time = timezone.make_aware(created_time, local_timezone)
-        created_time = local_timezone.fromutc(created_time)
-        # End adjustment for local timezone
+        created_time = event.created_at.astimezone(local_timezone)
         time = created_time.strftime('%Y-%m-%d %H:%M %z')
         json_data[event.type.name].append({
             "postal_code": event.postal_code,
