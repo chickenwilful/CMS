@@ -1,4 +1,5 @@
 import json
+import copy
 from django.contrib.auth.models import Group
 from django.db.models import Q
 from django.utils import timezone
@@ -14,11 +15,17 @@ from main.templatetags.event_permission_tags import can_retrieve_event, can_list
 def map(request):
     event_list = Event.objects.all()
     json_data = {}
+    local_timezone = timezone.get_default_timezone()
 
     for event in event_list:
         if event.type.name not in json_data:
             json_data[event.type.name] = []
-        time = event.created_at.strftime('%Y-%m-%d %H:%M %Z')
+        created_time = copy.copy(event.created_at)
+        # Adjustment for local timezone
+        created_time = timezone.make_aware(created_time, local_timezone)
+        created_time = local_timezone.fromutc(created_time)
+        # End adjustment for local timezone
+        time = created_time.strftime('%Y-%m-%d %H:%M %z')
         json_data[event.type.name].append({
             "postal_code": event.postal_code,
             "reporter": event.reporter_name,
