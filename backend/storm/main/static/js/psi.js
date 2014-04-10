@@ -1,3 +1,6 @@
+// Author: Muhammad Fazli Bin Rosli
+// Matriculation No.: N1302335L
+// Functionality: PSI Levels
 $(function() {
   $.ajax({
     url : "/main/getPSI",
