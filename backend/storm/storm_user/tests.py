@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.test.client import Client, RequestFactory
+from storm_user.models import UserProfile
 
 
 class UserViewTest(TestCase):

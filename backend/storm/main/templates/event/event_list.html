@@ -22,7 +22,7 @@ value="Create Event" onclick="window.location.href='/event/event_create/'">
 {% for event in event_list %}
         <li>
             <h3>{{event.title}}</h3>
-            <span class="time">{{event.created_at}}</span>
+            <span class="time">{{event.created_at}} | {{event.created_by|officalName}}</span>
             <br/>
             <p>
     <strong>Type: </strong> {{event.type}}
@@ -34,7 +34,7 @@ value="Create Event" onclick="window.location.href='/event/event_create/'">
     {{user|officalName}};
     {% endfor %}
     </br>
-    {{event.description}}
+    {{event.description}}...
     </br/>
 
     </p>

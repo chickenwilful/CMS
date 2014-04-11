@@ -93,10 +93,10 @@ def post_delete(request, post_id):
     delete a post
     """
     #Check permission
-    if not can_delete_post(request.user, Post.objects.get(pk=post_id)):
+    post = get_object_or_404(Post, pk=post_id)
+    if not can_delete_post(request.user, post):
         return render(request, "main/no_permission.html")
-
-    Post.objects.get(pk=post_id).delete()
+    post.delete()
     return HttpResponseRedirect(reverse('post.post_list'))
 
 

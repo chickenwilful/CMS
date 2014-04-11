@@ -148,5 +148,6 @@ def event_delete(request, event_id):
     """
     delete a post
     """
-    Event.objects.get(pk=event_id).delete()
+    event = get_object_or_404(Event, pk=event_id)
+    event.delete()
     return HttpResponseRedirect(reverse('event.event_list'))
