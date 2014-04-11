@@ -1,18 +1,23 @@
 jQuery.noConflict();
 
 jQuery(document).ready(function() {
-  
+  // Prepare post publish test form for use.
   var postForm = jQuery("#postForm");
   var errorAlert = jQuery("#errorAlert");
   var successAlert = jQuery("#successAlert");
+  // Submits the post details over a separate thread.
   postForm.submit(function(event) {
     event.preventDefault();
+    
     var postTitle = postForm.find("input[name=postTitle]").val();
     var postContent = postForm.find("textarea[name=postContent]").val();
     var postLink = postForm.find("input[name=postLink]").val();
+    
     var submitButton = postForm.find("input[type=submit]");
+    
     jQuery(".alert").hide();
     submitButton.button("loading");
+    
     jQuery.post(settings.socialPostURI, {
           postTitle: postTitle,
           postContent: postContent,

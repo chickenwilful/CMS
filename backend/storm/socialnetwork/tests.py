@@ -133,7 +133,7 @@ class TestBotWithPages(TestBot):
         return pages
 
 class SingletonTestCase(TestCase):
-    """TC001
+    """Test Case 1: Social Center Is Singleton
     """
     
     def test_social_center_is_singleton(self):
@@ -146,7 +146,8 @@ class SingletonTestCase(TestCase):
         del social_center2;
 
 class SocialCenterAddStubTestCase(TestCase):
-
+    """Test Case 2: Social Center Must Add Stubs
+    """
     TEST_SITE = "test"
     
     @classmethod
@@ -176,7 +177,8 @@ class SocialCenterAddStubTestCase(TestCase):
         self.social_center.remove_site(self.TEST_SITE)
 
 class SocialCenterExposeTestCase(TestCase):
-
+    """Test Case 3: Social Center Must Expose Social Network Properties
+    """
     TEST_SITE = "test"
     
     @classmethod
@@ -209,7 +211,8 @@ class SocialCenterExposeTestCase(TestCase):
                          self.test_bot.get_account_url())
 
 class SocialCenterAuthTestCase(TestCase):
-
+    """Test Case 4: Social Center Must Authenticate Stub
+    """
     TEST_SITE = "test"
     
     @classmethod
@@ -276,7 +279,8 @@ class SocialCenterAuthTestCase(TestCase):
         self.assertTrue(self.social_center.is_logged_in(self.TEST_SITE))
 
 class SocialCenterPageTestCase(TestCase):
-
+    """Test Case 5: Social Center Must Retrieve Pages
+    """
     TEST_SITE = "test"
     TEST_PAGED_SITE = "test_paged"
     
@@ -329,7 +333,8 @@ class SocialCenterPageTestCase(TestCase):
             self.assertEqual(page["name"], "Page " + str(i+1))
 
 class SocialCenterPublishStubTestCase(TestCase):
-
+    """Test Case 6: Social Center Must Publish Posts on Stub
+    """
     TEST_SITE = "test"
     
     @classmethod
@@ -395,7 +400,8 @@ class SocialCenterPublishStubTestCase(TestCase):
         self.assertIn("error", invalid_result)
 
 class StaticURLTestCase(TestCase):
-    
+    """Test Case 7: Social Center Static Views Must Resolve
+    """
     def test_social_url_resolves_to_social_view(self):
         found = resolve("/social/")
         self.assertEqual(found.func, sn_views.social)
@@ -409,7 +415,8 @@ class StaticURLTestCase(TestCase):
         self.assertEqual(found.func, sn_views.social_post)
 
 class DynamicURLTestCase(TestCase):
-    
+    """Test Case 8: Social Center Dynamic Views Must Resolve
+    """
     @staticmethod
     def generate_random_string(size, chars):
         return ''.join(random.choice(chars) for _ in range(size))
@@ -434,7 +441,8 @@ class DynamicURLTestCase(TestCase):
         self.assert_dynamic_url_resolves_to("/social/%s/page", sn_views.social_page_select)
 
 class RequestTestCase(TestCase):
-
+    """Test Case 9: Social Center Views Must Render
+    """
     TEST_SITE = "test"
     TEST_PAGED_SITE = "test_paged"
     
