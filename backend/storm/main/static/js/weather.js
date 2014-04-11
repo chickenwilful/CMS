@@ -17,7 +17,7 @@ jQuery(function() {
                 var listItem = jQuery("<li/>");
                 var imageElement = jQuery('<img src="' + weatherImage + '" width="25px" height="25px" title="' + forecasts[i].text + '" />');
                 jQuery("<span/>", {
-                    text: forecasts[i].day
+                    text: forecasts[i].day + ":"
                 }).appendTo(listItem);
                 jQuery("<span/>", {
                     text: forecasts[i].low + "/" + forecasts[i].high,
