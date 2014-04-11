@@ -10,7 +10,4 @@ def has_socialnetwork_perms(user):
     @rtype: bool
     @return: True if the user has permissions to access the socialnetwork views
     """
-    #return (user.has_perm("socialnetwork.add_socialtoken") and 
-    #        user.has_perm("socialnetwork.change_socialtoken") and
-    #        user.has_perm("socialnetwork.delete_socialtoken"))
-    return Group.objects.get(name="CMSAdmin") in user.groups.all()
+    return user.groups.filter(name="CMSAdmin").exists()
