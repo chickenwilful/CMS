@@ -15,6 +15,10 @@ def post_retrieve(request, post_id):
 
 
 def post_list(request, emergency_situation_id=0):
+    """
+    A list of post contains: published post or post created by the current user
+    """
+
     if int(emergency_situation_id) == 0:
         post_list = Post.objects.all()
     else:
@@ -51,6 +55,7 @@ def post_create(request):
             model_instance.created_by_id = request.user.id
             model_instance.created_at = timezone.now()
             model_instance.save()
+            #Although isPublished = false, it still shared on facebook
             social_center = SocialCenter()
             social_center.publish(model_instance.title,
                                   model_instance.content,

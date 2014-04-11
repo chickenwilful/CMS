@@ -18,11 +18,6 @@ class UserLoginForm(forms.ModelForm):
         fields = ('username',)
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
-    def save(self, commit=True):
-        event = super(UserLoginForm, self).save(commit=False)
-
-        return event
-
 
 class UserCreateForm(forms.ModelForm):
     """

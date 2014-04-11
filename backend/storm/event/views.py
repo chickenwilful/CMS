@@ -30,8 +30,6 @@ def map(request):
             "address": event.address,
             "event_link": "/event/event_retrieve/%d/" % event.id
         })
-        if event.id == 17:
-            print time
     with open('data.json', 'w') as f:
         json.dump(json_data, f)
 
@@ -91,10 +89,11 @@ def event_create(request):
 
 
 def event_retrieve(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
     # Check user permissions
+
     if not can_retrieve_event(request.user, Event.objects.get(pk=event_id)):
         return render(request, "main/no_permission.html")
-    event = get_object_or_404(Event, pk=event_id)
     return render(request, 'event/event_retrieve.html', {"event": event})
 
 
@@ -119,6 +118,7 @@ def event_list(request, emergency_situation_id=0):
     for event in event_list:
         event.description = event.description[:250]
     return render(request, "event/event_list.html", {'event_list': event_list, 'filter_id': emergency_situation_id})
+
 
 
 def event_update(request, event_id):

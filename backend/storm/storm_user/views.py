@@ -92,7 +92,6 @@ def user_update(request, user_id):
 
     if not (request.POST or request.GET):
         user = get_object_or_404(User, pk=user_id)
-        print user.groups.all()
         form = UserUpdateForm(instance=user)
         return render(request, 'storm_user/user_update.html', {'form': form})
     else:
