@@ -14,14 +14,13 @@ from main.templatetags.event_permission_tags import can_retrieve_event, can_list
 def map(request):
     event_list = Event.objects.all()
     json_data = {}
-    local_timezone = timezone.get_default_timezone()
 
     for event in event_list:
         if event.type.name not in json_data:
             json_data[event.type.name] = []
         # Adjustment for local timezone
-        created_time = event.created_at.astimezone(local_timezone)
-        time = created_time.strftime('%Y-%m-%d %H:%M %z')
+        created_time = timezone.localtime(event.created_at)
+        time = created_time.strftime('%I:%M %p %d/%m/%y')
         json_data[event.type.name].append({
             "postal_code": event.postal_code,
             "reporter": event.reporter_name,

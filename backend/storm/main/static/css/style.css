@@ -323,21 +323,36 @@ a.sitename {
 	width: 23px;
 	margin: 0 15px 18px;
 }
-#connect a.twitter {
+#connect > a.twitter {
 	background-position: 0 0;
 }
-#connect a.facebook {
+#connect > a.facebook {
 	background-position: -72px 0;
 	width: 19px;
 }
-#connect a.googleplus {
+#connect > a.googleplus {
 	background-position: -141px 0;
 	width: 22px;
 }
-#connect a.tumblr {
+#connect > a.tumblr {
 	background: url(../images/tumblr.png) no-repeat;
 	width: 23px;
     height: 23px;
+}
+/** Weather **/
+ul.weather li {
+    margin: 0 !important;
+}
+ul.weather span {
+    line-height: 30px;
+    font-size: 10pt;
+}
+ul.weather span.forecast{
+    float: right;
+}
+ul.weather img{
+    margin-left: 60px;
+    vertical-align: middle;
 }
 /** Post **/
 #posts {

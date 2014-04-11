@@ -197,7 +197,7 @@ class SocialBot(object):
     
     @abstractmethod
     def get_pages(self, request_token):
-        """Retrieves all pages hosted by the authenticated user..
+        """Retrieves all pages hosted by the authenticated user.
         
         @type  request_token: str
         @param request_token: The token used for requests to the website.
