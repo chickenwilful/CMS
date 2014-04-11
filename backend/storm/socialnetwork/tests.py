@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.http import HttpRequest, HttpResponseRedirect
 from django.core.urlresolvers import resolve
-from django.contrib.auth.models import User, Permission
+from django.contrib.auth.models import User, Permission, Group
 from django.template.loader import render_to_string
 import random
 import string
@@ -247,9 +247,9 @@ class SocialCenterAuthTestCase(TestCase):
         callback_url = "http://testapp2.com/"
         redirect_url, auth_data = self.social_center.start_authentication(self.TEST_SITE, callback_url)
         
-        self.assertRaises(BaseException, self.social_center.process_client_token, None)
-        self.assertRaises(BaseException, self.social_center.process_client_token, {})
-        self.assertRaises(BaseException, self.social_center.process_client_token, { "callback_url" : callback_url })
+        self.assertRaises(Exception, self.social_center.process_client_token, None)
+        self.assertRaises(Exception, self.social_center.process_client_token, {})
+        self.assertRaises(Exception, self.social_center.process_client_token, { "callback_url" : callback_url })
         
         invalid_result = self.social_center.process_client_token(self.TEST_SITE, "invalid_code", auth_data)
         
@@ -440,11 +440,13 @@ class RequestTestCase(TestCase):
     
     @staticmethod
     def generate_user_with_permissions():
+        admin_group = Group.objects.create(name="CMSAdmin")
         user = User.objects.create_user(username='testuser')
-        user.user_permissions.add(Permission.objects.get(codename="add_socialtoken"))
-        user.user_permissions.add(Permission.objects.get(codename="change_socialtoken"))
-        user.user_permissions.add(Permission.objects.get(codename="delete_socialtoken"))
-        user = User.objects.get(pk=user.pk)
+        user.groups.add(admin_group)
+        # user.user_permissions.add(Permission.objects.get(codename="add_socialtoken"))
+        # user.user_permissions.add(Permission.objects.get(codename="change_socialtoken"))
+        # user.user_permissions.add(Permission.objects.get(codename="delete_socialtoken"))
+        # user = User.objects.get(pk=user.pk)
         return user
     
     @staticmethod
@@ -549,8 +551,8 @@ class RequestTestCase(TestCase):
         not_found_response = sn_views.social_callback(get_request, "non_existant_site")
         self.assertEqual(not_found_response.status_code, 404)
         
-        self.assertRaises(BaseException, sn_views.social_callback, get_request, self.TEST_SITE)
-        self.assertRaises(BaseException, sn_views.social_callback, get_request, self.TEST_PAGED_SITE)
+        self.assertRaises(Exception, sn_views.social_callback, get_request, self.TEST_SITE)
+        self.assertRaises(Exception, sn_views.social_callback, get_request, self.TEST_PAGED_SITE)
         
         test_client_token_name = self.test_bot.get_client_token_name()
         test_paged_client_token_name = self.test_paged_bot.get_client_token_name()
