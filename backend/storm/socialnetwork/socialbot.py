@@ -1,3 +1,10 @@
+"""SocialBot definition module
+Defines the L{SocialBot} abstract class, and implementations used
+by the STORM application.
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
 from abc import ABCMeta, abstractmethod
 from datetime import datetime, timedelta
 from urlparse import urlparse

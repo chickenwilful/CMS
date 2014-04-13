@@ -1,3 +1,12 @@
+"""socialnetwork tests module
+Defines automated unit tests for the socialnetwork app, and stubs
+used in these tests.
+Refer to the STD for SocialCenter for more information.
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
+
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.http import HttpRequest, HttpResponseRedirect

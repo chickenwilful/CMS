@@ -1,3 +1,22 @@
+"""SocialCenter definition module
+Defines the L{SocialCenter} class, which will be used by the STORM application
+to publish notifications to various SNSes.
+
+@attention: This module relies on Django's settings module to retrieve the
+            following settings:
+              - FACEBOOK_APP_ID
+              - FACEBOOK_SECRET
+              - TWITTER_KEY
+              - TWITTER_SECRET
+              - GPLUS_APP_ID
+              - GPLUS_SECRET
+              - TUMBLR_APP_ID
+              - TUMBLR_SECRET
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
+
 from django.conf import settings
 from models import SocialToken
 from datetime import datetime

@@ -1,3 +1,12 @@
+"""socialnetwork views module
+Defines views and endpoints used by the app.
+
+This module handles the authentication process presented by L{SocialCenter}.
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
+
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET, require_POST
