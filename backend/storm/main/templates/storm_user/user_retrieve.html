@@ -26,8 +26,6 @@
           <br>
         </li>
     </ul>
-</div>
-
 {% if user|can_list_user %}
 <input type="Submit" class="btn" name="Edit" id="Edit" value="User List" onclick="window.location.href='/user/user_list/'"/>
 {% endif %}
@@ -35,6 +33,8 @@
 {% if user|can_delete_user %}
 <input type="Submit" class="btn" name="Delete" id="Delete" value="Delete" onclick="confirmDeleteUser()">
 {% endif %}
+
+</div>
 
 <script type="text/javascript">
     function confirmDeleteUser() {

@@ -44,4 +44,10 @@ def can_delete_user(user):
     """
     return Group.objects.get(name="CMSAdmin") in user.groups.all()
 
+@register.filter(name='can_changepassword')
+def can_changepassword(user, user_id):
+    """
+    CMSAdmin or owner can do
+    """
+    return (Group.objects.get(name="CMSAdmin") in user.groups.all()) or int(user.id) == int(user_id)
 
