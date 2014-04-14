@@ -1,3 +1,9 @@
+"""socialnetwork utility module
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
+
 from django.contrib.auth.models import Group
 
 def has_socialnetwork_perms(user):

@@ -1,3 +1,9 @@
+"""socialnetwork urls module
+Defines URLs used by the socialnetwork app
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
 from django.conf.urls import patterns, url
 from socialnetwork import views
 

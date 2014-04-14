@@ -1,3 +1,11 @@
+/* 
+ * Post Publish Test Page Form Wrapper
+ *
+ * Handles posts published from the test page.
+ *
+ * Author: Muhammad Fazli Bin Rosli
+ * Matriculation No.: N1302335L
+ */
 jQuery.noConflict();
 
 jQuery(document).ready(function() {
