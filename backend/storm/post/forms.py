@@ -6,10 +6,10 @@ class PostCreateForm(ModelForm):
 
     class Meta:
         model = Post
-        field = ('title', 'content', 'imageLink', 'isShared')
+        field = ('title', 'content', 'imageLink', 'isPublished')
 
 
 class PostUpdateForm(ModelForm):
     class Meta:
         model = Post
-        field = ('title', 'content', 'imageLink', 'isShared')
+        field = ('title', 'content', 'imageLink', 'isPublished')

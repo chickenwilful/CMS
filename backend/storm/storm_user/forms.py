@@ -9,7 +9,6 @@ class UserLoginForm(forms.ModelForm):
     """
     def __init__(self, *args, **kwargs):
         super(UserLoginForm, self).__init__(*args, **kwargs)
-
         for fieldname in ['username']:
             self.fields[fieldname].help_text = None
 

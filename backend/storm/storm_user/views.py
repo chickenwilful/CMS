@@ -95,13 +95,13 @@ def user_update(request, user_id):
         user = get_object_or_404(User, pk=user_id)
         form = UserUpdateForm(instance=user)
         if not (Group.objects.get(name="CMSAdmin") in request.user.groups.all()): #Todo: isCMSAdmin()
-            form.fields['groups'].widget = forms.HiddenInput() #stupid!
+            form.fields['groups'].widget = forms.MultipleHiddenInput() #stupid!
         #Todo: Thinking: how to manage fields form with permissions
         return render(request, 'storm_user/user_update.html', {'form': form})
     else:
         form = UserUpdateForm(request.POST, instance=user)
         if not (Group.objects.get(name="CMSAdmin") in request.user.groups.all()):
-            form.fields['groups'].widget = forms.HiddenInput()
+            form.fields['groups'].widget = forms.MultipleHiddenInput()
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.save()
