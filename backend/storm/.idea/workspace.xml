@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64f5d948-942d-4047-8ad0-3a84aa6dea8b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/base.html" afterPath="$PROJECT_DIR$/main/templates/main/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data.json" afterPath="$PROJECT_DIR$/data.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/static/Map UI/maps.js" afterPath="$PROJECT_DIR$/main/static/Map UI/maps.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storm_user/models.py" afterPath="$PROJECT_DIR$/storm_user/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templatetags/user_permission_tags.py" afterPath="$PROJECT_DIR$/main/templatetags/user_permission_tags.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/storm_user/user_retrieve.html" afterPath="$PROJECT_DIR$/main/templates/storm_user/user_retrieve.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storm_user/views.py" afterPath="$PROJECT_DIR$/storm_user/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/event/views.py" afterPath="$PROJECT_DIR$/event/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="storm.iws" />
@@ -21,10 +16,10 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/storm$tests.coverage" NAME="tests Coverage Results" MODIFIED="1395652167651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/event" />
     <SUITE FILE_PATH="coverage/storm$permissions.coverage" NAME="permissions Coverage Results" MODIFIED="1391872219386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm" />
+    <SUITE FILE_PATH="coverage/storm$tests.coverage" NAME="tests Coverage Results" MODIFIED="1395652167651" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/event" />
     <SUITE FILE_PATH="coverage/storm$permissions__1_.coverage" NAME="permissions (1) Coverage Results" MODIFIED="1391873873559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm_user" />
-    <SUITE FILE_PATH="coverage/storm$manage.coverage" NAME="manage Coverage Results" MODIFIED="1397616893548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/storm$manage.coverage" NAME="manage Coverage Results" MODIFIED="1397656792258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/storm$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1391871803422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/storm" />
     <SUITE FILE_PATH="coverage/storm$Unittest_EventModelTest_test_create.coverage" NAME="Unittest EventModelTest.test_create Coverage Results" MODIFIED="1397058079443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/event" />
   </component>
@@ -39,7 +34,37 @@
     <favorites_list name="storm" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/event/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="120" column="7" selection-start="4295" selection-end="4295" vertical-scroll-proportion="0.035714287" vertical-offset="2562" max-vertical-offset="3360">
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storm_user/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2835">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storm_user/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -88,7 +113,6 @@
         <option value="$PROJECT_DIR$/post/tests.py" />
         <option value="$PROJECT_DIR$/main/templates/main/no_operation.html" />
         <option value="$PROJECT_DIR$/storm_user/tests.py" />
-        <option value="$PROJECT_DIR$/event/views.py" />
         <option value="$PROJECT_DIR$/post/views.py" />
         <option value="$PROJECT_DIR$/main/templates/event/event_list.html" />
         <option value="$PROJECT_DIR$/main/templates/post/post_list.html" />
@@ -104,6 +128,7 @@
         <option value="$PROJECT_DIR$/storm_user/views.py" />
         <option value="$PROJECT_DIR$/main/static/Map UI/maps.js" />
         <option value="$PROJECT_DIR$/main/templates/main/base.html" />
+        <option value="$PROJECT_DIR$/event/views.py" />
       </list>
     </option>
   </component>
@@ -206,64 +231,6 @@
         <subPane subId="Project Files">
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="storm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="storm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="storm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="templates">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="storm">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="main">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="templates">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="main">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -478,6 +445,9 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -499,9 +469,6 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -655,20 +622,20 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32189542" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2620846" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28096676" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5276873" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6503268" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6465798" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32410422" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39576548" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -687,9 +654,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23036253" sideWeight="0.67064846" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8534202" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39576548" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39576548" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8534202" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -817,15 +784,15 @@
           <OriginalElement>#E:/STORM/NTU-CZ3003-CMS/backend/storm/storm_user</OriginalElement>
           <nodes>
             <node x="" y="">django.forms.models.ModelForm</node>
-            <node x="" y="">storm_user.forms.UserLoginForm</node>
             <node x="" y="">django.forms.models.BaseModelForm</node>
+            <node x="" y="">storm_user.forms.UserLoginForm</node>
             <node x="" y="">storm_user.forms.UserUpdateForm</node>
-            <node x="" y="">django.db.models.base.Model</node>
-            <node x="" y="">storm_user.forms.UserCreateForm</node>
             <node x="" y="">object</node>
+            <node x="" y="">storm_user.forms.UserCreateForm</node>
+            <node x="" y="">django.db.models.base.Model</node>
             <node x="" y="">storm_user.models.UserProfile</node>
-            <node x="" y="">django.forms.forms.BaseForm</node>
             <node x="" y="">_abcoll.Hashable</node>
+            <node x="" y="">django.forms.forms.BaseForm</node>
           </nodes>
           <notes />
           <edges />
@@ -843,13 +810,13 @@
           <OriginalElement>#E:/STORM/NTU-CZ3003-CMS/backend/storm/post</OriginalElement>
           <nodes>
             <node x="" y="">django.forms.models.ModelForm</node>
-            <node x="" y="">post.forms.PostUpdateForm</node>
             <node x="" y="">django.forms.models.BaseModelForm</node>
+            <node x="" y="">post.forms.PostUpdateForm</node>
             <node x="" y="">post.forms.PostCreateForm</node>
-            <node x="" y="">django.db.models.base.Model</node>
             <node x="" y="">object</node>
-            <node x="" y="">django.forms.forms.BaseForm</node>
+            <node x="" y="">django.db.models.base.Model</node>
             <node x="" y="">_abcoll.Hashable</node>
+            <node x="" y="">django.forms.forms.BaseForm</node>
             <node x="" y="">post.models.Post</node>
           </nodes>
           <notes />
@@ -878,10 +845,10 @@
             <node x="" y="">django.forms.models.ModelForm</node>
             <node x="" y="">event.forms.EventUpdateForm</node>
             <node x="" y="">event.forms.EventCreateForm</node>
-            <node x="" y="">django.forms.fields.ChoiceField</node>
             <node x="" y="">django.db.models.base.Model</node>
-            <node x="" y="">django.forms.fields.Field</node>
+            <node x="" y="">django.forms.fields.ChoiceField</node>
             <node x="" y="">django.forms.forms.BaseForm</node>
+            <node x="" y="">django.forms.fields.Field</node>
           </nodes>
           <notes />
           <edges />
@@ -905,11 +872,6 @@
     <entry file="file://$PROJECT_DIR$/main/templates/main/user_common.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/event/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="18" selection-start="5256" selection-end="5256" vertical-scroll-proportion="0.71428573" vertical-offset="2814" max-vertical-offset="3402" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storm_user/tests.py">
@@ -997,66 +959,55 @@
         <state line="40" column="0" selection-start="962" selection-end="962" vertical-scroll-proportion="0.88709676" vertical-offset="345" max-vertical-offset="1008" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storm_user/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="46" selection-start="4243" selection-end="4243" vertical-scroll-proportion="0.2857143" vertical-offset="2184" max-vertical-offset="2877" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/storm_user/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="0" selection-start="4867" selection-end="4867" vertical-scroll-proportion="0.03583618" vertical-offset="2499" max-vertical-offset="3339">
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
+        <state line="119" column="0" selection-start="4867" selection-end="4867" vertical-scroll-proportion="0.03583618" vertical-offset="2499" max-vertical-offset="3339" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="13540" selection-start="16738" selection-end="16840" vertical-scroll-proportion="-3.9748201" vertical-offset="5024" max-vertical-offset="5943">
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#6;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#7;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
+        <state line="72" column="13540" selection-start="16738" selection-end="16840" vertical-scroll-proportion="-3.9748201" vertical-offset="5024" max-vertical-offset="5943" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/static/Map UI/maps.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="18" selection-start="2182" selection-end="2182" vertical-scroll-proportion="0.32593855" vertical-offset="1237" max-vertical-offset="3423">
-          <folding />
-        </state>
+        <state line="67" column="18" selection-start="2182" selection-end="2182" vertical-scroll-proportion="0.32593855" vertical-offset="1237" max-vertical-offset="3423" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/templates/storm_user/user_retrieve.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="21" selection-start="477" selection-end="477" vertical-scroll-proportion="0.4532374" vertical-offset="147" max-vertical-offset="1176">
-          <folding />
-        </state>
+        <state line="19" column="21" selection-start="477" selection-end="477" vertical-scroll-proportion="0.4532374" vertical-offset="147" max-vertical-offset="1176" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templatetags/user_permission_tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="72" selection-start="1660" selection-end="1660" vertical-scroll-proportion="0.89249146" vertical-offset="716" max-vertical-offset="1386" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storm_user/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2877">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/storm_user/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="21" selection-start="518" selection-end="518" vertical-scroll-proportion="0.71672356" vertical-offset="0" max-vertical-offset="588">
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="588">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templatetags/user_permission_tags.py">
+    <entry file="file://$PROJECT_DIR$/event/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="72" selection-start="1660" selection-end="1660" vertical-scroll-proportion="0.89249146" vertical-offset="716" max-vertical-offset="1386">
+        <state line="120" column="7" selection-start="4295" selection-end="4295" vertical-scroll-proportion="0.035714287" vertical-offset="2562" max-vertical-offset="3360">
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
