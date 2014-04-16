@@ -16,3 +16,7 @@ class UserProfile(models.Model):
 
     def isCMSAdmin(self):
         return Group.objects.get(name="CMSAdmin") in self.user.groups.all()
+
+
+def isCMSAdmin(user):
+    return Group.objects.get(name="CMSAdmin") in user.groups.all()

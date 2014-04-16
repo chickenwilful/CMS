@@ -4,10 +4,9 @@ from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from main.templatetags.user_permission_tags import can_retrieve_user, can_create_user, can_list_user, can_update_user, \
-    can_changepassword
+from main.templatetags.user_permission_tags import can_retrieve_user, can_create_user, can_list_user, can_update_user, can_changepassword
 from storm_user.forms import UserLoginForm, UserCreateForm, UserUpdateForm, UserChangePasswordForm
-from storm_user.models import UserProfile
+from storm_user.models import UserProfile, isCMSAdmin
 
 
 def user_login(request):
@@ -94,13 +93,13 @@ def user_update(request, user_id):
 
     if not (request.POST or request.GET):
         form = UserUpdateForm(instance=user)
-        if not (Group.objects.get(name="CMSAdmin") in request.user.groups.all()): #Todo: isCMSAdmin()
+        if (not isCMSAdmin(request.user)) or isCMSAdmin(user):
             form.fields['groups'].widget = forms.MultipleHiddenInput() #stupid!
         #Todo: Thinking: how to manage fields form with permissions
         return render(request, 'storm_user/user_update.html', {'form': form, 'user_id': user_id})
     else:
         form = UserUpdateForm(request.POST, instance=user)
-        if not (Group.objects.get(name="CMSAdmin") in request.user.groups.all()):
+        if (not isCMSAdmin(request.user)) or isCMSAdmin(user):
             form.fields['groups'].widget = forms.MultipleHiddenInput()
         if form.is_valid():
             model_instance = form.save(commit=False)

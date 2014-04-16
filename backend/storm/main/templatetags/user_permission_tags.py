@@ -51,3 +51,10 @@ def can_changepassword(user, user_id):
     """
     return (Group.objects.get(name="CMSAdmin") in user.groups.all()) or int(user.id) == int(user_id)
 
+
+@register.filter(name='can_be_deleted')
+def can_be_deleted(user):
+    """
+    CMSAdmin cannot be deleted
+    """
+    return not (Group.objects.get(name="CMSAdmin") in user.groups.all())
