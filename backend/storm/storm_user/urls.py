@@ -3,6 +3,7 @@ from storm_user import views
 
 urlpatterns = patterns(
     '',
+    url(r'^user_changepassword/(?P<user_id>\d+)/$', views.user_changepassword, name='user.user_changepassword'),
     url(r'^user_list/$', views.user_list, name='user.user_list'),
     url(r'^user_login/$', views.user_login, name='user.user_login'),
     url(r'^user_logout/$', views.user_logout, name='user.user_logout'),

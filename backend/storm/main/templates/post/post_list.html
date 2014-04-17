@@ -26,7 +26,8 @@ value="Create News" onclick="window.location.href='/post/post_create/'">
 <li>
 
 						  <h3>{{post.title}}</h3>
-						  <span class="time">{{post.created_at}}<br>
+    {% load my_custom_tags %}
+						  <span class="time">{{post.created_at}} | {{post.created_by|officalName}}<br>
 					      </span>
 						  <p>
 						    <br>

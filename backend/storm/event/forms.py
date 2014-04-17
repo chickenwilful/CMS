@@ -38,8 +38,6 @@ class EventCreateForm(forms.ModelForm):
     class Meta:
         model = Event
 
-#Todo either post_code or address exist
-
 
 class EventUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

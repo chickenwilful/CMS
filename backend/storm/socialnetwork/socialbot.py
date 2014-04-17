@@ -1,3 +1,10 @@
+"""SocialBot definition module
+Defines the L{SocialBot} abstract class, and implementations used
+by the STORM application.
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
 from abc import ABCMeta, abstractmethod
 from datetime import datetime, timedelta
 from urlparse import urlparse
@@ -197,7 +204,7 @@ class SocialBot(object):
     
     @abstractmethod
     def get_pages(self, request_token):
-        """Retrieves all pages hosted by the authenticated user..
+        """Retrieves all pages hosted by the authenticated user.
         
         @type  request_token: str
         @param request_token: The token used for requests to the website.

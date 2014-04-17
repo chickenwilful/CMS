@@ -1,3 +1,12 @@
+"""socialnetwork views module
+Defines views and endpoints used by the app.
+
+This module handles the authentication process presented by L{SocialCenter}.
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
+
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.views.decorators.http import require_GET, require_POST
@@ -25,6 +34,8 @@ def user_has_socialtoken_perms(func):
 @require_GET
 @user_has_socialtoken_perms
 def social(request):
+    # Main social network manager view
+    # Lists all supported social networking services
     social_center = SocialCenter()
     
     sites = social_center.get_sites()
@@ -40,6 +51,8 @@ def social(request):
 @require_GET
 @user_has_socialtoken_perms
 def social_test(request):
+    # Social post publishing test view
+    # Allows integration testing of the Social Center component
     return render(request, "socialnetwork-post-test.html", {
         "social_post_uri" : reverse('socialnetwork.views.social_post')
     })
@@ -47,6 +60,8 @@ def social_test(request):
 @require_POST
 @user_has_socialtoken_perms
 def social_post(request, site=None):
+    # Social post publishing test endpoint
+    # Requests from social_test refer to this endpoint
     logger.debug(request.POST)
     title = request.POST["postTitle"]
     content = request.POST["postContent"]
@@ -69,6 +84,8 @@ def social_post(request, site=None):
 @require_GET
 @user_has_socialtoken_perms
 def social_logout(request, site):
+    # Social site logout endpoint
+    # Causes the authentication tokens of the site to be deleted.
     social_center = SocialCenter()
     if not social_center.has_site(site):
         return HttpResponseNotFound("Site not found")
@@ -79,6 +96,8 @@ def social_logout(request, site):
 @require_GET
 @user_has_socialtoken_perms
 def social_auth(request, site):
+    # Social site authentication view
+    # Redirects to the site after some simple processing.
     
     callback_url = request.build_absolute_uri(reverse('socialnetwork.views.social_callback', kwargs={ "site" : site }))
     auth_data_key = "%s_auth_data" % site
@@ -98,6 +117,8 @@ def social_auth(request, site):
 @require_GET
 @user_has_socialtoken_perms
 def social_callback(request, site):
+    # Social site callback view
+    # Retrieves the tokens from the authentication response.
     social_center = SocialCenter()
     
     if not social_center.has_site(site):
@@ -141,6 +162,7 @@ def social_callback(request, site):
 @require_POST
 @user_has_socialtoken_perms
 def social_page_select(request, site):
+    # Social site page selection endpoint
     social_center = SocialCenter()
     
     if not social_center.has_site(site):

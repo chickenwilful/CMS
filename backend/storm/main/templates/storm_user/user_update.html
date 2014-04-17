@@ -2,5 +2,8 @@
 
 {% block body-title-form %}
     Update Profile
-
 {% endblock  %}
+
+{% block body-content-extra %}
+        <a href="/user/user_changepassword/{{user_id}}"><p>Change password</p></a>
+{% endblock %}

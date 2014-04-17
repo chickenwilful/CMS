@@ -1,11 +1,12 @@
+from django import forms
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from main.templatetags.user_permission_tags import can_retrieve_user, can_create_user, can_list_user, can_update_user
-from storm_user.forms import UserLoginForm, UserCreateForm, UserUpdateForm
-from storm_user.models import UserProfile
+from main.templatetags.user_permission_tags import can_retrieve_user, can_create_user, can_list_user, can_update_user, can_changepassword
+from storm_user.forms import UserLoginForm, UserCreateForm, UserUpdateForm, UserChangePasswordForm
+from storm_user.models import UserProfile, isCMSAdmin
 
 
 def user_login(request):
@@ -91,12 +92,15 @@ def user_update(request, user_id):
         return render(request, "main/no_permission.html")
 
     if not (request.POST or request.GET):
-        user = get_object_or_404(User, pk=user_id)
-        print user.groups.all()
         form = UserUpdateForm(instance=user)
-        return render(request, 'storm_user/user_update.html', {'form': form})
+        if (not isCMSAdmin(request.user)) or isCMSAdmin(user):
+            form.fields['groups'].widget = forms.MultipleHiddenInput() #stupid!
+        #Todo: Thinking: how to manage fields form with permissions
+        return render(request, 'storm_user/user_update.html', {'form': form, 'user_id': user_id})
     else:
         form = UserUpdateForm(request.POST, instance=user)
+        if (not isCMSAdmin(request.user)) or isCMSAdmin(user):
+            form.fields['groups'].widget = forms.MultipleHiddenInput()
         if form.is_valid():
             model_instance = form.save(commit=False)
             model_instance.save()
@@ -108,11 +112,10 @@ def user_update(request, user_id):
             return HttpResponseRedirect(reverse('user.user_retrieve', args=(user_id,)))
         else:
             return render(request, 'storm_user/user_update.html/',
-                          {'message': 'update user fail!', 'form': form})
+                          {'message': 'update user fail!', 'form': form, 'user_id': user_id})
 
 
 def user_list(request):
-
     #Check permission
     if not can_list_user(request.user):
         return render(request, "main/no_permission.html")
@@ -122,5 +125,27 @@ def user_list(request):
 
 
 def user_delete(request, user_id):
-    User.objects.get(pk=user_id).delete()
+    user = get_object_or_404(User, pk=user_id)
+    if Group.objects.get(name="CMSAdmin") in user.groups.all():
+        return render(request, "main/no_operation.html", {"message": "You can not delete a CMS Admin."})
+    user.delete()
     return HttpResponseRedirect(reverse('user.user_list'))
+
+
+def user_changepassword(request, user_id):
+    if not (can_changepassword(request.user, user_id)):
+        return render(request, "main/no_permission.html")
+
+    user = get_object_or_404(User, pk=user_id)
+
+    if not (request.POST or request.GET):
+        form = UserChangePasswordForm(instance=user)
+        return render(request, "storm_user/user_changepassword.html", {'form': form})
+    else:
+        form = UserChangePasswordForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('user.user_retrieve', args=(user_id,)))
+        else:
+            return render(request, 'storm_user/user_changepassword.html/',
+                          {'message': 'change password fail!', 'form': form})

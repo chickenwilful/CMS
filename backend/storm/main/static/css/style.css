@@ -339,6 +339,21 @@ a.sitename {
 	width: 23px;
     height: 23px;
 }
+/** Weather **/
+ul.weather li {
+    margin: 0 !important;
+}
+ul.weather span {
+    line-height: 30px;
+    font-size: 10pt;
+}
+ul.weather span.forecast{
+    float: right;
+}
+ul.weather img{
+    margin-left: 60px;
+    vertical-align: middle;
+}
 /** Post **/
 #posts {
 	background-color: #f5ecce;

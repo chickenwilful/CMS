@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import Group
 from django.db import models
 
 import logging
@@ -12,3 +13,10 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.name
+
+    def isCMSAdmin(self):
+        return Group.objects.get(name="CMSAdmin") in self.user.groups.all()
+
+
+def isCMSAdmin(user):
+    return Group.objects.get(name="CMSAdmin") in user.groups.all()

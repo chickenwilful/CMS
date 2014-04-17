@@ -1,27 +1,24 @@
 import json
-from django.contrib.auth.models import Group
-from django.db.models import Q
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from event.forms import EventCreateForm, EventUpdateForm
 from event.models import Event
-from jsonutil import json_success
 from main.templatetags.event_permission_tags import can_retrieve_event, can_list_event, can_create_event, can_update_event
+from storm_user.models import UserProfile
 
 
 def map(request):
     event_list = Event.objects.all()
     json_data = {}
-    local_timezone = timezone.get_default_timezone()
 
     for event in event_list:
         if event.type.name not in json_data:
             json_data[event.type.name] = []
         # Adjustment for local timezone
-        created_time = event.created_at.astimezone(local_timezone)
-        time = created_time.strftime('%Y-%m-%d %H:%M %z')
+        created_time = timezone.localtime(event.created_at)
+        time = created_time.strftime('%I:%M %p %d/%m/%y')
         json_data[event.type.name].append({
             "postal_code": event.postal_code,
             "reporter": event.reporter_name,
@@ -30,37 +27,37 @@ def map(request):
             "address": event.address,
             "event_link": "/event/event_retrieve/%d/" % event.id
         })
-        if event.id == 17:
-            print time
     with open('data.json', 'w') as f:
         json.dump(json_data, f)
 
     return HttpResponse(json.dumps(json_data), content_type='application/json')
 
 
-def sendSMS():
+def sendSMS(rescueAgencyList, message):
     #Todo sendSMS()?
+    phoneNumberList = []
+    for rescueAgency in rescueAgencyList:
+        profile = UserProfile.objects.get(user=rescueAgency)
+        phoneNumberList.append(profile.phone_number)
+        phoneNumberString = (",").join(phoneNumberList)
+        print "phoneNumberString: ", "\"", phoneNumberString, "\""
+
     import urllib
 
     # If your firewall blocks access to port 5567, you can fall back to port 80:
     # url = "http://bulksms.vsms.net/eapi/submission/send_sms/2/2.0"
     # (See FAQ for more details.)
-    url = "http://bulksms.vsms.net:5567/eapi/submission/send_sms/2/2.0"
-    params = urllib.urlencode({'username' : 'myusername', 'password' : 'xxxxxxxx', 'message' : 'Testing Python', 'msisdn' : 271231231234})
-    f = urllib.urlopen(url, params)
-    # Read from the object, storing the page's contents in 's'.
+    # url = "http://api.clickatell.com/http/sendmsg?user=vanvoducabc&password=AIGcSRIFaZZVRQ&api_id=3475157&to="+phoneNumberString+"&text=Message"
+    encMessage = urllib.quote_plus(message)
+    url = "https://tapi.starhub.com/sessions?action=create&token=614555634e484f636b4a6d4f48524a5a577766684c77704c70424a704f5164734f5744484b4e474b464e6b6e&n="+phoneNumberString+"&msg=" + encMessage
+
+    print url
+
+    f = urllib.urlopen(url)
+     #Read from the object, storing the page's contents in 's'.
     s = f.read()
-    # Print the contents
-    #print s
-
-    result = s.split('|')
-    statusCode = result[0]
-    statusString = result[1]
-    if statusCode != '0':
-            print "Error: " + statusCode + ": " + statusString
-    else:
-            print "Message sent: batch ID " + result[2]
-
+     #Print the contents
+    print s
     f.close()
 
 
@@ -84,17 +81,18 @@ def event_create(request):
             model_instance.created_at = timezone.now()
             model_instance.save()
             form.save_m2m()
-            sendSMS()
+            sendSMS(model_instance.related_to.all(), model_instance.title + ";postal code: " + model_instance.postal_code + ";reporter phone number:" + model_instance.reporter_phone_number)
             return redirect("event.event_list")
         else:
             return render(request, 'event/event_create.html', {'form': form})
 
 
 def event_retrieve(request, event_id):
+    event = get_object_or_404(Event, pk=event_id)
     # Check user permissions
+
     if not can_retrieve_event(request.user, Event.objects.get(pk=event_id)):
         return render(request, "main/no_permission.html")
-    event = get_object_or_404(Event, pk=event_id)
     return render(request, 'event/event_retrieve.html', {"event": event})
 
 
@@ -140,6 +138,7 @@ def event_update(request, event_id):
         form = EventUpdateForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
+            sendSMS(event.related_to.all(), event.title + ";postal code: " + event.postal_code + ";reporter phone number: " + event.reporter_phone_number)
             return HttpResponseRedirect(reverse('event.event_retrieve', args=(event_id,)))
         else:
             return render(request, 'event/event_update.html', {'form': form})
@@ -149,5 +148,6 @@ def event_delete(request, event_id):
     """
     delete a post
     """
-    Event.objects.get(pk=event_id).delete()
+    event = get_object_or_404(Event, pk=event_id)
+    event.delete()
     return HttpResponseRedirect(reverse('event.event_list'))

@@ -66,7 +66,7 @@ function initialize() {
                 var time = data.time;
                 var des = data.description;
 				var eventLink = data.event_link;
-				console.log(eventLink);
+				//console.log(eventLink);
                 if(postalCode!==''){
                     (function(postalCode, des, reporter, addr, time, key, eventLink){
                         geocoder.geocode({ 'address': postalCode}, function(results, status) {
@@ -102,9 +102,9 @@ function initialize() {
             marker.setAnimation(google.maps.Animation.BOUNCE)
 //        google.maps.event.addListener(marker, 'click', toggleBounce);
 		var newDes = description.substring(0,60);
-		console.log(eventLink);
+		//console.log(eventLink);
 		var hyperlink = "See more".link(eventLink);
-		console.log(hyperlink);
+		//console.log(hyperlink);
         var content = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+

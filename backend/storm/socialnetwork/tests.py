@@ -1,8 +1,17 @@
+"""socialnetwork tests module
+Defines automated unit tests for the socialnetwork app, and stubs
+used in these tests.
+Refer to the STD for SocialCenter for more information.
+
+@author: Muhammad Fazli Bin Rosli
+Matriculation Number: N1302335L
+"""
+
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.http import HttpRequest, HttpResponseRedirect
 from django.core.urlresolvers import resolve
-from django.contrib.auth.models import User, Permission
+from django.contrib.auth.models import User, Permission, Group
 from django.template.loader import render_to_string
 import random
 import string
@@ -133,7 +142,7 @@ class TestBotWithPages(TestBot):
         return pages
 
 class SingletonTestCase(TestCase):
-    """TC001
+    """Test Case 1: Social Center Is Singleton
     """
     
     def test_social_center_is_singleton(self):
@@ -146,7 +155,8 @@ class SingletonTestCase(TestCase):
         del social_center2;
 
 class SocialCenterAddStubTestCase(TestCase):
-
+    """Test Case 2: Social Center Must Add Stubs
+    """
     TEST_SITE = "test"
     
     @classmethod
@@ -176,7 +186,8 @@ class SocialCenterAddStubTestCase(TestCase):
         self.social_center.remove_site(self.TEST_SITE)
 
 class SocialCenterExposeTestCase(TestCase):
-
+    """Test Case 3: Social Center Must Expose Social Network Properties
+    """
     TEST_SITE = "test"
     
     @classmethod
@@ -209,7 +220,8 @@ class SocialCenterExposeTestCase(TestCase):
                          self.test_bot.get_account_url())
 
 class SocialCenterAuthTestCase(TestCase):
-
+    """Test Case 4: Social Center Must Authenticate Stub
+    """
     TEST_SITE = "test"
     
     @classmethod
@@ -247,9 +259,9 @@ class SocialCenterAuthTestCase(TestCase):
         callback_url = "http://testapp2.com/"
         redirect_url, auth_data = self.social_center.start_authentication(self.TEST_SITE, callback_url)
         
-        self.assertRaises(BaseException, self.social_center.process_client_token, None)
-        self.assertRaises(BaseException, self.social_center.process_client_token, {})
-        self.assertRaises(BaseException, self.social_center.process_client_token, { "callback_url" : callback_url })
+        self.assertRaises(Exception, self.social_center.process_client_token, None)
+        self.assertRaises(Exception, self.social_center.process_client_token, {})
+        self.assertRaises(Exception, self.social_center.process_client_token, { "callback_url" : callback_url })
         
         invalid_result = self.social_center.process_client_token(self.TEST_SITE, "invalid_code", auth_data)
         
@@ -276,7 +288,8 @@ class SocialCenterAuthTestCase(TestCase):
         self.assertTrue(self.social_center.is_logged_in(self.TEST_SITE))
 
 class SocialCenterPageTestCase(TestCase):
-
+    """Test Case 5: Social Center Must Retrieve Pages
+    """
     TEST_SITE = "test"
     TEST_PAGED_SITE = "test_paged"
     
@@ -329,7 +342,8 @@ class SocialCenterPageTestCase(TestCase):
             self.assertEqual(page["name"], "Page " + str(i+1))
 
 class SocialCenterPublishStubTestCase(TestCase):
-
+    """Test Case 6: Social Center Must Publish Posts on Stub
+    """
     TEST_SITE = "test"
     
     @classmethod
@@ -395,7 +409,8 @@ class SocialCenterPublishStubTestCase(TestCase):
         self.assertIn("error", invalid_result)
 
 class StaticURLTestCase(TestCase):
-    
+    """Test Case 7: Social Center Static Views Must Resolve
+    """
     def test_social_url_resolves_to_social_view(self):
         found = resolve("/social/")
         self.assertEqual(found.func, sn_views.social)
@@ -409,7 +424,8 @@ class StaticURLTestCase(TestCase):
         self.assertEqual(found.func, sn_views.social_post)
 
 class DynamicURLTestCase(TestCase):
-    
+    """Test Case 8: Social Center Dynamic Views Must Resolve
+    """
     @staticmethod
     def generate_random_string(size, chars):
         return ''.join(random.choice(chars) for _ in range(size))
@@ -434,17 +450,20 @@ class DynamicURLTestCase(TestCase):
         self.assert_dynamic_url_resolves_to("/social/%s/page", sn_views.social_page_select)
 
 class RequestTestCase(TestCase):
-
+    """Test Case 9: Social Center Views Must Render
+    """
     TEST_SITE = "test"
     TEST_PAGED_SITE = "test_paged"
     
     @staticmethod
     def generate_user_with_permissions():
+        admin_group = Group.objects.create(name="CMSAdmin")
         user = User.objects.create_user(username='testuser')
-        user.user_permissions.add(Permission.objects.get(codename="add_socialtoken"))
-        user.user_permissions.add(Permission.objects.get(codename="change_socialtoken"))
-        user.user_permissions.add(Permission.objects.get(codename="delete_socialtoken"))
-        user = User.objects.get(pk=user.pk)
+        user.groups.add(admin_group)
+        # user.user_permissions.add(Permission.objects.get(codename="add_socialtoken"))
+        # user.user_permissions.add(Permission.objects.get(codename="change_socialtoken"))
+        # user.user_permissions.add(Permission.objects.get(codename="delete_socialtoken"))
+        # user = User.objects.get(pk=user.pk)
         return user
     
     @staticmethod
@@ -549,8 +568,8 @@ class RequestTestCase(TestCase):
         not_found_response = sn_views.social_callback(get_request, "non_existant_site")
         self.assertEqual(not_found_response.status_code, 404)
         
-        self.assertRaises(BaseException, sn_views.social_callback, get_request, self.TEST_SITE)
-        self.assertRaises(BaseException, sn_views.social_callback, get_request, self.TEST_PAGED_SITE)
+        self.assertRaises(Exception, sn_views.social_callback, get_request, self.TEST_SITE)
+        self.assertRaises(Exception, sn_views.social_callback, get_request, self.TEST_PAGED_SITE)
         
         test_client_token_name = self.test_bot.get_client_token_name()
         test_paged_client_token_name = self.test_paged_bot.get_client_token_name()

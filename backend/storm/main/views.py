@@ -30,7 +30,7 @@ def main_page(request, emergency_situation_id=0):
     event_list = event_list.order_by('-id')
     # Make Response
     for event in event_list:
-        event.description = event.description[:250] #Todo Need to use tags instead
+        event.description = event.description[:250] #Todo: Need to use tags instead
     return render(request, "main/main_page.html",
                   {'event_list': event_list, 'filter_id': emergency_situation_id})
 
