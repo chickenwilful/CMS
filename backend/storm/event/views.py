@@ -38,7 +38,7 @@ def sendSMS(rescueAgencyList, message):
     phoneNumberList = []
     for rescueAgency in rescueAgencyList:
         profile = UserProfile.objects.get(user=rescueAgency)
-        phoneNumberList.append('65' + profile.phone_number)
+        phoneNumberList.append(profile.phone_number)
         phoneNumberString = (",").join(phoneNumberList)
         print "phoneNumberString: ", "\"", phoneNumberString, "\""
 
@@ -47,7 +47,9 @@ def sendSMS(rescueAgencyList, message):
     # If your firewall blocks access to port 5567, you can fall back to port 80:
     # url = "http://bulksms.vsms.net/eapi/submission/send_sms/2/2.0"
     # (See FAQ for more details.)
-    url = "http://api.clickatell.com/http/sendmsg?user=vanvoducabc&password=AIGcSRIFaZZVRQ&api_id=3475157&to="+phoneNumberString+"&text=Message"
+    # url = "http://api.clickatell.com/http/sendmsg?user=vanvoducabc&password=AIGcSRIFaZZVRQ&api_id=3475157&to="+phoneNumberString+"&text=Message"
+    encMessage = urllib.quote_plus(message)
+    url = "https://tapi.starhub.com/sessions?action=create&token=614555634e484f636b4a6d4f48524a5a577766684c77704c70424a704f5164734f5744484b4e474b464e6b6e&n="+phoneNumberString+"&msg=" + encMessage
 
     print url
 
@@ -79,7 +81,7 @@ def event_create(request):
             model_instance.created_at = timezone.now()
             model_instance.save()
             form.save_m2m()
-            sendSMS(model_instance.related_to.all(), model_instance.title)
+            sendSMS(model_instance.related_to.all(), model_instance.title + ";postal code: " + model_instance.postal_code + ";reporter phone number:" + model_instance.reporter_phone_number)
             return redirect("event.event_list")
         else:
             return render(request, 'event/event_create.html', {'form': form})
@@ -136,7 +138,7 @@ def event_update(request, event_id):
         form = EventUpdateForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
-            sendSMS(event.related_to.all(), event.title)
+            sendSMS(event.related_to.all(), event.title + ";postal code: " + event.postal_code + ";reporter phone number: " + event.reporter_phone_number)
             return HttpResponseRedirect(reverse('event.event_retrieve', args=(event_id,)))
         else:
             return render(request, 'event/event_update.html', {'form': form})
