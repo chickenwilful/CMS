@@ -1,3 +1,7 @@
+# ignore intellji
+*.iml
+/.idea/*
+
 #ignore thumbnails created by windows
 Thumbs.db
 
